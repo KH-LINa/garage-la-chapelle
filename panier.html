@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon Panier — Garage la Chapelle</title>
+  <meta name="description" content="Votre panier — Garage la Chapelle pièces automobiles">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <style>
+    .page-hero{background:linear-gradient(135deg,#0a0a14 0%,#111130 50%,#0a0a14 100%);padding:calc(var(--nav-h) + 60px) 5% 60px;text-align:center;}
+    .page-hero .tag{display:inline-block;background:rgba(17,82,212,.15);color:var(--brand-light);font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:100px;padding:5px 16px;margin-bottom:12px;}
+    .page-hero h1{font-size:clamp(1.8rem,4vw,3rem);color:#fff;font-weight:700;margin-bottom:14px;}
+    .page-hero p{color:var(--text-soft);font-size:1.05rem;max-width:600px;margin:0 auto 28px;}
+    .page-hero .actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+    .content-section{padding:64px 5%;max-width:1200px;margin:0 auto;}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+    .card{background:linear-gradient(135deg,rgba(22,33,62,.8),rgba(10,10,20,.8));border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:28px 24px;transition:all .25s ease;}
+    .card:hover{transform:translateY(-4px);border-color:rgba(17,82,212,.4);}
+    .card h3{color:#fff;font-size:1rem;margin-bottom:8px;}
+    .card p{color:var(--text-soft);font-size:.88rem;line-height:1.6;}
+    .form-group{margin-bottom:20px;}
+    .form-group label{display:block;color:var(--text-soft);font-size:.88rem;margin-bottom:6px;font-weight:500;}
+    .form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:12px 14px;color:var(--text);font-family:var(--font);font-size:.9rem;transition:all .25s ease;}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--brand);background:rgba(17,82,212,.08);}
+    .form-group select option{background:#1a1a2e;}
+    .form-group textarea{resize:vertical;min-height:120px;}
+    @media(max-width:900px){.grid-3{grid-template-columns:1fr 1fr;}.grid-2{grid-template-columns:1fr;}}
+    @media(max-width:600px){.grid-3{grid-template-columns:1fr;}.page-hero .actions{flex-direction:column;align-items:center;}}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo"><div class="logo-icon">🔧</div><div class="logo-text">Garage <span>la Chapelle</span></div></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li><li><a href="catalogue.html">Catalogue</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="blog.html">Blog</a></li><li><a href="a-propos.html">À Propos</a></li><li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-cta"><a href="devis.html" class="btn-ghost">Devis gratuit</a><a href="rendez-vous.html" class="btn-primary">📅 Rendez-vous</a></div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="nav-drawer" id="navDrawer">
+    <a href="index.html">🏠 Accueil</a><a href="catalogue.html">🛒 Catalogue</a><a href="galerie.html">🖼️ Galerie</a><a href="blog.html">📝 Blog</a><a href="a-propos.html">ℹ️ À Propos</a><a href="contact.html">📞 Contact</a><a href="suivi-commande.html">📦 Suivi</a>
+    <div class="drawer-cta"><a href="devis.html" class="btn-ghost">Devis gratuit</a><a href="rendez-vous.html" class="btn-primary">📅 Prendre rendez-vous</a></div>
+  </div>
+  <div class="page-content"><section class='page-hero'>
+  <span class='tag'>Espace achat</span>
+  <h1>Mon panier</h1>
+</section>
+<div class='content-section'>
+  <div class='grid-2'>
+    <div>
+      <h2 style='color:#fff;font-size:1.2rem;margin-bottom:20px'>Articles (2)</h2>
+      <div class='card' style='margin-bottom:16px;display:flex;gap:16px;align-items:center'>
+        <div style='width:60px;height:60px;background:rgba(17,82,212,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0'>🔧</div>
+        <div style='flex:1'><h3 style='font-size:.95rem'>Alternateur Valeo — Renault Clio IV</h3><p style='color:var(--brand-light);font-weight:600'>89 €</p></div>
+        <button style='background:rgba(230,51,51,.15);border:1px solid rgba(230,51,51,.3);color:#e88;border-radius:6px;padding:6px 12px;cursor:pointer;font-size:.82rem' onclick='this.closest(&quot;.card&quot;).remove()'>✕</button>
+      </div>
+      <div class='card' style='display:flex;gap:16px;align-items:center'>
+        <div style='width:60px;height:60px;background:rgba(17,82,212,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0'>🛑</div>
+        <div style='flex:1'><h3 style='font-size:.95rem'>Plaquettes frein Brembo — BMW Série 3</h3><p style='color:var(--brand-light);font-weight:600'>65 €</p></div>
+        <button style='background:rgba(230,51,51,.15);border:1px solid rgba(230,51,51,.3);color:#e88;border-radius:6px;padding:6px 12px;cursor:pointer;font-size:.82rem' onclick='this.closest(&quot;.card&quot;).remove()'>✕</button>
+      </div>
+      <div style='margin-top:20px'><a href='catalogue.html' style='color:var(--brand-light);text-decoration:none;font-size:.88rem'>← Continuer mes achats</a></div>
+    </div>
+    <div>
+      <div class='card'>
+        <h3>Récapitulatif</h3>
+        <div style='display:flex;justify-content:space-between;margin:16px 0;color:var(--text-soft);font-size:.9rem'><span>Sous-total</span><span>154 €</span></div>
+        <div style='display:flex;justify-content:space-between;margin-bottom:16px;color:var(--text-soft);font-size:.9rem'><span>Livraison</span><span>Gratuite</span></div>
+        <div style='display:flex;justify-content:space-between;padding-top:16px;border-top:1px solid rgba(255,255,255,.07);font-weight:700;color:#fff;font-size:1.1rem'><span>Total TTC</span><span>154 €</span></div>
+        <button class='btn-primary' style='width:100%;padding:14px;margin-top:20px;font-size:1rem' onclick='alert(&quot;✅ Commande confirmée ! Numéro : GLC-2024-00124&quot;)'>✅ Passer la commande</button>
+        <p style='color:var(--text-soft);font-size:.78rem;text-align:center;margin-top:12px'>🔒 Paiement sécurisé · Garantie satisfait</p>
+      </div>
+      <div class='card' style='margin-top:16px'><h3>🎁 Code promo</h3><div style='display:flex;gap:10px;margin-top:12px'><input type='text' placeholder='GARAGE10' style='flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px;color:var(--text);font-family:var(--font)'><button class='btn-ghost' onclick='alert(&quot;Code valide : -10€ appliqué !&quot;)'>Appliquer</button></div></div>
+    </div>
+  </div>
+</div></div>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="logo-text">Garage <span>la Chapelle</span></div><p>Votre expert automobile à Paris 18ème depuis 20 ans.</p></div>
+      <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="catalogue.html">Catalogue</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="rendez-vous.html">Rendez-vous</a></li><li><a href="devis.html">Devis gratuit</a></li><li><a href="suivi-commande.html">Suivi commande</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col footer-contact"><h4>Contact</h4><li><span class="icon">📍</span>12 Rue de la Paix, 75018 Paris</li><li><span class="icon">📞</span><a href="tel:+33123456789">01 23 45 67 89</a></li></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Garage la Chapelle.</p><div class="footer-links"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div></div>
+  </footer>
+  <script src="assets/js/nav.js"></script>
+</body>
+</html>

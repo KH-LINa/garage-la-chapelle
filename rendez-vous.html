@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prendre Rendez-vous — Garage la Chapelle</title>
+  <meta name="description" content="Réservez votre intervention en ligne — Garage la Chapelle Paris 18">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <style>
+    .page-hero{background:linear-gradient(135deg,#0a0a14 0%,#111130 50%,#0a0a14 100%);padding:calc(var(--nav-h) + 60px) 5% 60px;text-align:center;}
+    .page-hero .tag{display:inline-block;background:rgba(17,82,212,.15);color:var(--brand-light);font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:100px;padding:5px 16px;margin-bottom:12px;}
+    .page-hero h1{font-size:clamp(1.8rem,4vw,3rem);color:#fff;font-weight:700;margin-bottom:14px;}
+    .page-hero p{color:var(--text-soft);font-size:1.05rem;max-width:600px;margin:0 auto 28px;}
+    .page-hero .actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+    .content-section{padding:64px 5%;max-width:1200px;margin:0 auto;}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+    .card{background:linear-gradient(135deg,rgba(22,33,62,.8),rgba(10,10,20,.8));border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:28px 24px;transition:all .25s ease;}
+    .card:hover{transform:translateY(-4px);border-color:rgba(17,82,212,.4);}
+    .card h3{color:#fff;font-size:1rem;margin-bottom:8px;}
+    .card p{color:var(--text-soft);font-size:.88rem;line-height:1.6;}
+    .form-group{margin-bottom:20px;}
+    .form-group label{display:block;color:var(--text-soft);font-size:.88rem;margin-bottom:6px;font-weight:500;}
+    .form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:12px 14px;color:var(--text);font-family:var(--font);font-size:.9rem;transition:all .25s ease;}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--brand);background:rgba(17,82,212,.08);}
+    .form-group select option{background:#1a1a2e;}
+    .form-group textarea{resize:vertical;min-height:120px;}
+    .form-submit{margin-top:8px;}
+    @media(max-width:900px){.grid-3{grid-template-columns:1fr 1fr;}.grid-2{grid-template-columns:1fr;}}
+    @media(max-width:600px){.grid-3{grid-template-columns:1fr;}.page-hero .actions{flex-direction:column;align-items:center;}}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo"><div class="logo-icon">🔧</div><div class="logo-text">Garage <span>la Chapelle</span></div></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="catalogue.html">Catalogue</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="a-propos.html">À Propos</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="devis.html" class="btn-ghost">Devis gratuit</a>
+      <a href="rendez-vous.html" class="btn-primary">📅 Rendez-vous</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="nav-drawer" id="navDrawer">
+    <a href="index.html">🏠 Accueil</a>
+    <a href="catalogue.html">🛒 Catalogue</a>
+    <a href="galerie.html">🖼️ Galerie</a>
+    <a href="blog.html">📝 Blog</a>
+    <a href="a-propos.html">ℹ️ À Propos</a>
+    <a href="contact.html">📞 Contact</a>
+    <a href="suivi-commande.html">📦 Suivi commande</a>
+    <div class="drawer-cta">
+      <a href="devis.html" class="btn-ghost">Devis gratuit</a>
+      <a href="rendez-vous.html" class="btn-primary">📅 Prendre rendez-vous</a>
+    </div>
+  </div>
+  <div class="page-content"><section class="page-hero">
+  <span class="tag">Réservation en ligne</span>
+  <h1>Prenez rendez-vous en ligne</h1>
+  <p>Réservez votre intervention en quelques clics. Confirmation immédiate par email.</p>
+</section>
+<div class="content-section">
+  <style>
+    .rdv-grid{display:grid;grid-template-columns:3fr 2fr;gap:40px;align-items:start;}
+    .rdv-form-card{background:rgba(22,33,62,.5);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:40px;}
+    .rdv-form-card h2{color:#fff;font-size:1.3rem;margin-bottom:24px;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .calendar{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:24px;}
+    .cal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+    .cal-header h3{color:#fff;font-size:1rem;}
+    .cal-nav{background:none;border:none;color:var(--text-soft);cursor:pointer;font-size:1.2rem;padding:4px 10px;border-radius:6px;}
+    .cal-nav:hover{background:rgba(255,255,255,.06);}
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;}
+    .cal-grid .day-label{color:var(--text-soft);font-size:.75rem;font-weight:600;padding:4px 0;}
+    .cal-grid .day{padding:8px 4px;border-radius:6px;cursor:pointer;font-size:.85rem;color:var(--text-soft);transition:all .2s;}
+    .cal-grid .day:hover{background:rgba(17,82,212,.25);color:#fff;}
+    .cal-grid .day.selected{background:var(--brand);color:#fff;}
+    .cal-grid .day.today{border:1px solid var(--brand);color:var(--brand-light);}
+    .cal-grid .day.disabled{opacity:.3;cursor:not-allowed;}
+    .slots{margin-top:16px;}
+    .slots h4{color:#fff;font-size:.9rem;margin-bottom:12px;}
+    .slot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+    .slot{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:8px;text-align:center;cursor:pointer;font-size:.82rem;color:var(--text-soft);transition:all .2s;}
+    .slot:hover,.slot.selected{background:rgba(17,82,212,.25);border-color:var(--brand);color:#fff;}
+    .slot.full{opacity:.35;cursor:not-allowed;}
+    .info-cards{display:flex;flex-direction:column;gap:16px;}
+    .info-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:20px;}
+    .info-card h4{color:#fff;font-size:.9rem;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+    .info-card p,.info-card li{color:var(--text-soft);font-size:.85rem;line-height:1.6;}
+    .info-card ul{padding-left:16px;margin-top:8px;}
+    @media(max-width:900px){.rdv-grid{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}}
+  </style>
+  <div class="rdv-grid">
+    <div>
+      <div class="rdv-form-card">
+        <h2>📅 Informations de réservation</h2>
+        <div class="form-group">
+          <label>Type de prestation</label>
+          <select><option>Entretien régulier / Vidange</option><option>Diagnostic électronique</option><option>Freins</option><option>Climatisation</option><option>Pneus</option><option>Contrôle technique</option><option>Autre réparation</option></select>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Marque du véhicule</label><input type="text" placeholder="ex: Renault"></div>
+          <div class="form-group"><label>Modèle</label><input type="text" placeholder="ex: Clio IV"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Année</label><input type="number" placeholder="2018"></div>
+          <div class="form-group"><label>Kilométrage</label><input type="text" placeholder="ex: 85 000 km"></div>
+        </div>
+        <div class="form-group"><label>Description du problème (optionnel)</label><textarea placeholder="Décrivez votre problème ou prestation souhaitée..."></textarea></div>
+      </div>
+      <br>
+      <div class="rdv-form-card">
+        <h2>👤 Vos coordonnées</h2>
+        <div class="form-row">
+          <div class="form-group"><label>Prénom</label><input type="text" placeholder="Jean"></div>
+          <div class="form-group"><label>Nom</label><input type="text" placeholder="Dupont"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Téléphone</label><input type="tel" placeholder="06 12 34 56 78"></div>
+          <div class="form-group"><label>Email</label><input type="email" placeholder="jean@exemple.fr"></div>
+        </div>
+        <div class="form-submit"><button class="btn-primary" style="width:100%;padding:14px;font-size:1rem;" onclick="alert('✅ Rendez-vous confirmé ! Vous recevrez un email de confirmation.')">✅ Confirmer le rendez-vous</button></div>
+      </div>
+    </div>
+    <div class="info-cards">
+      <div class="calendar">
+        <div class="cal-header"><h3>📅 Choisir une date</h3><button class="cal-nav">‹</button><button class="cal-nav">›</button></div>
+        <div class="cal-grid">
+          <div class="day-label">L</div><div class="day-label">M</div><div class="day-label">M</div><div class="day-label">J</div><div class="day-label">V</div><div class="day-label">S</div><div class="day-label">D</div>
+          <div class="day disabled">24</div><div class="day disabled">25</div><div class="day today">26</div><div class="day">27</div><div class="day">28</div><div class="day">1</div><div class="day disabled">2</div>
+          <div class="day">3</div><div class="day">4</div><div class="day">5</div><div class="day selected">6</div><div class="day">7</div><div class="day">8</div><div class="day disabled">9</div>
+          <div class="day">10</div><div class="day">11</div><div class="day">12</div><div class="day">13</div><div class="day">14</div><div class="day">15</div><div class="day disabled">16</div>
+        </div>
+        <div class="slots">
+          <h4>Créneaux disponibles — Mercredi 6</h4>
+          <div class="slot-grid">
+            <div class="slot">08h30</div><div class="slot full">09h00</div><div class="slot">09h30</div>
+            <div class="slot full">10h00</div><div class="slot">10h30</div><div class="slot">11h00</div>
+            <div class="slot">14h00</div><div class="slot selected">14h30</div><div class="slot">15h00</div>
+            <div class="slot">15h30</div><div class="slot full">16h00</div><div class="slot">16h30</div>
+          </div>
+        </div>
+      </div>
+      <div class="info-card"><h4>🔒 Réservation sécurisée</h4><p>Vos données sont protégées conformément au RGPD. Annulation gratuite jusqu'à 24h avant.</p></div>
+      <div class="info-card"><h4>📍 Nous trouver</h4><p>12 Rue de la Paix<br>75018 Paris<br><br>🕐 Lun-Ven : 8h30 – 19h00<br>🕐 Sam : 9h00 – 17h00</p></div>
+      <div class="info-card"><h4>✅ Nos engagements</h4><ul><li>Devis transparent avant intervention</li><li>Pièces d'origine ou équivalent</li><li>Techniciens certifiés</li><li>Garantie 12 mois sur les réparations</li></ul></div>
+    </div>
+  </div>
+</div></div>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="logo-text">Garage <span>la Chapelle</span></div><p>Votre expert automobile de confiance à Paris 18ème.</p></div>
+      <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="catalogue.html">Catalogue</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="rendez-vous.html">Rendez-vous</a></li><li><a href="devis.html">Devis gratuit</a></li><li><a href="suivi-commande.html">Suivi commande</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col footer-contact"><h4>Contact</h4><li><span class="icon">📍</span>12 Rue de la Paix, 75018 Paris</li><li><span class="icon">📞</span><a href="tel:+33123456789">01 23 45 67 89</a></li></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Garage la Chapelle. Tous droits réservés.</p><div class="footer-links"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div></div>
+  </footer>
+  <script src="assets/js/nav.js"></script>
+</body>
+</html>

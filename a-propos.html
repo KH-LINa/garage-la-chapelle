@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>À Propos — Garage la Chapelle</title>
+  <meta name="description" content="Découvrez l'histoire et l'équipe du Garage la Chapelle, expert automobile à Paris 18">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <style>
+    .page-hero{background:linear-gradient(135deg,#0a0a14 0%,#111130 50%,#0a0a14 100%);padding:calc(var(--nav-h) + 60px) 5% 60px;text-align:center;}
+    .page-hero .tag{display:inline-block;background:rgba(17,82,212,.15);color:var(--brand-light);font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:100px;padding:5px 16px;margin-bottom:12px;}
+    .page-hero h1{font-size:clamp(1.8rem,4vw,3rem);color:#fff;font-weight:700;margin-bottom:14px;}
+    .page-hero p{color:var(--text-soft);font-size:1.05rem;max-width:600px;margin:0 auto 28px;}
+    .page-hero .actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+    .content-section{padding:64px 5%;max-width:1200px;margin:0 auto;}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+    .card{background:linear-gradient(135deg,rgba(22,33,62,.8),rgba(10,10,20,.8));border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:28px 24px;transition:all .25s ease;}
+    .card:hover{transform:translateY(-4px);border-color:rgba(17,82,212,.4);}
+    .card h3{color:#fff;font-size:1rem;margin-bottom:8px;}
+    .card p{color:var(--text-soft);font-size:.88rem;line-height:1.6;}
+    .form-group{margin-bottom:20px;}
+    .form-group label{display:block;color:var(--text-soft);font-size:.88rem;margin-bottom:6px;font-weight:500;}
+    .form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:12px 14px;color:var(--text);font-family:var(--font);font-size:.9rem;transition:all .25s ease;}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--brand);background:rgba(17,82,212,.08);}
+    .form-group select option{background:#1a1a2e;}
+    .form-group textarea{resize:vertical;min-height:120px;}
+    @media(max-width:900px){.grid-3{grid-template-columns:1fr 1fr;}.grid-2{grid-template-columns:1fr;}}
+    @media(max-width:600px){.grid-3{grid-template-columns:1fr;}.page-hero .actions{flex-direction:column;align-items:center;}}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo"><div class="logo-icon">🔧</div><div class="logo-text">Garage <span>la Chapelle</span></div></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li><li><a href="catalogue.html">Catalogue</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="blog.html">Blog</a></li><li><a href="a-propos.html">À Propos</a></li><li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-cta"><a href="devis.html" class="btn-ghost">Devis gratuit</a><a href="rendez-vous.html" class="btn-primary">📅 Rendez-vous</a></div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="nav-drawer" id="navDrawer">
+    <a href="index.html">🏠 Accueil</a><a href="catalogue.html">🛒 Catalogue</a><a href="galerie.html">🖼️ Galerie</a><a href="blog.html">📝 Blog</a><a href="a-propos.html">ℹ️ À Propos</a><a href="contact.html">📞 Contact</a><a href="suivi-commande.html">📦 Suivi</a>
+    <div class="drawer-cta"><a href="devis.html" class="btn-ghost">Devis gratuit</a><a href="rendez-vous.html" class="btn-primary">📅 Prendre rendez-vous</a></div>
+  </div>
+  <div class="page-content"><section class='page-hero'>
+  <span class='tag'>Notre histoire</span>
+  <h1>Garage la Chapelle depuis 2003</h1>
+  <p>Votre garage de confiance dans le 18ème arrondissement de Paris depuis plus de 20 ans.</p>
+  <div class='actions'>
+    <a href='contact.html' class='btn-primary'>📞 Nous contacter</a>
+    <a href='rendez-vous.html' class='btn-ghost'>📅 Prendre rendez-vous</a>
+  </div>
+</section>
+<div class='content-section'>
+  <div class='grid-2' style='margin-bottom:48px;align-items:center'>
+    <div>
+      <h2 style='color:#fff;font-size:1.8rem;margin-bottom:20px'>Notre mission : votre tranquillité</h2>
+      <p style='color:var(--text-soft);line-height:1.8;margin-bottom:16px'>Fondé en 2003 par Mohammed Fédilak, mécanicien passionné et diplômé, le Garage la Chapelle s'est imposé comme la référence automobile du 18ème arrondissement de Paris.</p>
+      <p style='color:var(--text-soft);line-height:1.8;margin-bottom:16px'>Notre engagement : transparence totale sur les prix, qualité d'intervention irréprochable et respect des délais annoncés. Nous croyons qu'un client bien informé est un client serein.</p>
+      <p style='color:var(--text-soft);line-height:1.8'>Agréé RTA, certifié pour les fluides frigorigènes R134a et R1234yf, nous disposons des outils de diagnostic les plus récents pour tous véhicules toutes marques.</p>
+    </div>
+    <div style='display:grid;grid-template-columns:1fr 1fr;gap:16px'>
+      <div class='card' style='text-align:center'><div style='font-size:2rem;font-weight:700;color:var(--brand-light)'>20+</div><div style='color:var(--text-soft);font-size:.88rem;margin-top:4px'>Ans d'expérience</div></div>
+      <div class='card' style='text-align:center'><div style='font-size:2rem;font-weight:700;color:var(--brand-light)'>5000+</div><div style='color:var(--text-soft);font-size:.88rem;margin-top:4px'>Clients satisfaits</div></div>
+      <div class='card' style='text-align:center'><div style='font-size:2rem;font-weight:700;color:var(--brand-light)'>4.9★</div><div style='color:var(--text-soft);font-size:.88rem;margin-top:4px'>Note Google</div></div>
+      <div class='card' style='text-align:center'><div style='font-size:2rem;font-weight:700;color:var(--brand-light)'>50+</div><div style='color:var(--text-soft);font-size:.88rem;margin-top:4px'>Marques traitées</div></div>
+    </div>
+  </div>
+  <h2 style='color:#fff;font-size:1.4rem;margin-bottom:24px;text-align:center'>Notre équipe</h2>
+  <div class='grid-3'>
+    <div class='card' style='text-align:center'><div style='width:64px;height:64px;border-radius:50%;background:var(--brand);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;margin:0 auto 16px'>MF</div><h3>Mohammed Fédilak</h3><p>Fondateur &amp; Chef mécanicien<br>20 ans d'expérience</p></div>
+    <div class='card' style='text-align:center'><div style='width:64px;height:64px;border-radius:50%;background:rgba(17,82,212,.4);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;margin:0 auto 16px'>KM</div><h3>Karim Meziani</h3><p>Technicien électronique<br>Spécialiste diagnostic</p></div>
+    <div class='card' style='text-align:center'><div style='width:64px;height:64px;border-radius:50%;background:rgba(230,51,51,.3);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;margin:0 auto 16px'>SB</div><h3>Sophie Beaumont</h3><p>Responsable accueil<br>Gestion des devis</p></div>
+  </div>
+</div></div>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="logo-text">Garage <span>la Chapelle</span></div><p>Votre expert automobile à Paris 18ème depuis 20 ans.</p></div>
+      <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="catalogue.html">Catalogue</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="rendez-vous.html">Rendez-vous</a></li><li><a href="devis.html">Devis gratuit</a></li><li><a href="suivi-commande.html">Suivi commande</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col footer-contact"><h4>Contact</h4><li><span class="icon">📍</span>12 Rue de la Paix, 75018 Paris</li><li><span class="icon">📞</span><a href="tel:+33123456789">01 23 45 67 89</a></li></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Garage la Chapelle.</p><div class="footer-links"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div></div>
+  </footer>
+  <script src="assets/js/nav.js"></script>
+</body>
+</html>

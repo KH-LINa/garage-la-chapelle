@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogue de Pièces — Garage la Chapelle</title>
+  <meta name="description" content="Pièces automobiles neuves et d'occasion disponibles chez Garage la Chapelle Paris 18">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <style>
+    .page-hero{background:linear-gradient(135deg,#0a0a14 0%,#111130 50%,#0a0a14 100%);padding:calc(var(--nav-h) + 60px) 5% 60px;text-align:center;}
+    .page-hero .tag{display:inline-block;background:rgba(17,82,212,.15);color:var(--brand-light);font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:100px;padding:5px 16px;margin-bottom:12px;}
+    .page-hero h1{font-size:clamp(1.8rem,4vw,3rem);color:#fff;font-weight:700;margin-bottom:14px;}
+    .page-hero p{color:var(--text-soft);font-size:1.05rem;max-width:600px;margin:0 auto 28px;}
+    .page-hero .actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+    .content-section{padding:64px 5%;max-width:1200px;margin:0 auto;}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+    .card{background:linear-gradient(135deg,rgba(22,33,62,.8),rgba(10,10,20,.8));border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:28px 24px;transition:all .25s ease;}
+    .card:hover{transform:translateY(-4px);border-color:rgba(17,82,212,.4);}
+    .card h3{color:#fff;font-size:1rem;margin-bottom:8px;}
+    .card p{color:var(--text-soft);font-size:.88rem;line-height:1.6;}
+    .form-group{margin-bottom:20px;}
+    .form-group label{display:block;color:var(--text-soft);font-size:.88rem;margin-bottom:6px;font-weight:500;}
+    .form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:12px 14px;color:var(--text);font-family:var(--font);font-size:.9rem;transition:all .25s ease;}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--brand);background:rgba(17,82,212,.08);}
+    .form-group select option{background:#1a1a2e;}
+    .form-group textarea{resize:vertical;min-height:120px;}
+    @media(max-width:900px){.grid-3{grid-template-columns:1fr 1fr;}.grid-2{grid-template-columns:1fr;}}
+    @media(max-width:600px){.grid-3{grid-template-columns:1fr;}.page-hero .actions{flex-direction:column;align-items:center;}}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo"><div class="logo-icon">🔧</div><div class="logo-text">Garage <span>la Chapelle</span></div></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li><li><a href="catalogue.html">Catalogue</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="blog.html">Blog</a></li><li><a href="a-propos.html">À Propos</a></li><li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-cta"><a href="devis.html" class="btn-ghost">Devis gratuit</a><a href="rendez-vous.html" class="btn-primary">📅 Rendez-vous</a></div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="nav-drawer" id="navDrawer">
+    <a href="index.html">🏠 Accueil</a><a href="catalogue.html">🛒 Catalogue</a><a href="galerie.html">🖼️ Galerie</a><a href="blog.html">📝 Blog</a><a href="a-propos.html">ℹ️ À Propos</a><a href="contact.html">📞 Contact</a><a href="suivi-commande.html">📦 Suivi</a>
+    <div class="drawer-cta"><a href="devis.html" class="btn-ghost">Devis gratuit</a><a href="rendez-vous.html" class="btn-primary">📅 Prendre rendez-vous</a></div>
+  </div>
+  <div class="page-content"><section class='page-hero'>
+  <span class='tag'>Pièces &amp; Accessoires</span>
+  <h1>Catalogue de pièces automobiles</h1>
+  <p>Pièces d'occasion et neuves, toutes marques. Qualité garantie, prix compétitifs.</p>
+  <div class='actions'>
+    <a href='devis.html' class='btn-primary'>📋 Demander un devis</a>
+    <a href='panier.html' class='btn-ghost'>🛒 Voir le panier</a>
+  </div>
+</section>
+<div class='content-section'>
+  <div style='display:flex;gap:16px;margin-bottom:32px;flex-wrap:wrap;align-items:center'>
+    <input type='text' placeholder='🔎 Rechercher une pièce...' style='flex:1;min-width:200px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:12px 16px;color:var(--text);font-family:var(--font);font-size:.9rem'>
+    <select style='background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:12px 16px;color:var(--text);font-family:var(--font)'><option>Toutes catégories</option><option>Moteur</option><option>Freins</option><option>Suspension</option><option>Carrosserie</option><option>Électronique</option></select>
+    <select style='background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:12px 16px;color:var(--text);font-family:var(--font)'><option>Tous types</option><option>Occasion</option><option>Neuf</option><option>Reconditionné</option></select>
+  </div>
+  <div class='grid-3'>
+    <div class='card'><div style='background:rgba(17,82,212,.1);border-radius:8px;padding:20px;text-align:center;margin-bottom:16px;font-size:40px'>🔧</div><span style='background:rgba(17,82,212,.15);color:var(--brand-light);font-size:.72rem;font-weight:600;border-radius:100px;padding:3px 10px'>OCCASION</span><h3 style='margin-top:10px'>Alternateur Valeo</h3><p>Compatible Renault Clio IV, Mégane III. Révisé, testé, garanti 6 mois.</p><div style='display:flex;justify-content:space-between;align-items:center;margin-top:16px'><span style='color:var(--brand-light);font-size:1.1rem;font-weight:700'>89 €</span><button class='btn-primary' style='padding:8px 16px;font-size:.82rem' onclick='alert("Article ajouté au panier !")'>Ajouter</button></div></div>
+    <div class='card'><div style='background:rgba(17,82,212,.1);border-radius:8px;padding:20px;text-align:center;margin-bottom:16px;font-size:40px'>🛑</div><span style='background:rgba(255,255,255,.08);color:var(--text-soft);font-size:.72rem;font-weight:600;border-radius:100px;padding:3px 10px'>NEUF</span><h3 style='margin-top:10px'>Plaquettes frein Brembo</h3><p>Kit avant 4 plaquettes. Compatible BMW Série 3 / Série 5 E90-E60.</p><div style='display:flex;justify-content:space-between;align-items:center;margin-top:16px'><span style='color:var(--brand-light);font-size:1.1rem;font-weight:700'>65 €</span><button class='btn-primary' style='padding:8px 16px;font-size:.82rem' onclick='alert("Article ajouté au panier !")'>Ajouter</button></div></div>
+    <div class='card'><div style='background:rgba(17,82,212,.1);border-radius:8px;padding:20px;text-align:center;margin-bottom:16px;font-size:40px'>❄️</div><span style='background:rgba(17,82,212,.15);color:var(--brand-light);font-size:.72rem;font-weight:600;border-radius:100px;padding:3px 10px'>OCCASION</span><h3 style='margin-top:10px'>Compresseur AC Denso</h3><p>Pour Toyota Yaris 2010-2020. Contrôlé, pressostaté, garanti 3 mois.</p><div style='display:flex;justify-content:space-between;align-items:center;margin-top:16px'><span style='color:var(--brand-light);font-size:1.1rem;font-weight:700'>145 €</span><button class='btn-primary' style='padding:8px 16px;font-size:.82rem' onclick='alert("Article ajouté au panier !")'>Ajouter</button></div></div>
+    <div class='card'><div style='background:rgba(17,82,212,.1);border-radius:8px;padding:20px;text-align:center;margin-bottom:16px;font-size:40px'>🔩</div><span style='background:rgba(255,165,0,.1);color:orange;font-size:.72rem;font-weight:600;border-radius:100px;padding:3px 10px'>RECONDITIONNÉ</span><h3 style='margin-top:10px'>Démarreur Bosch</h3><p>Démarreur reconditionné pour Peugeot 206/207/208. Garantie 12 mois.</p><div style='display:flex;justify-content:space-between;align-items:center;margin-top:16px'><span style='color:var(--brand-light);font-size:1.1rem;font-weight:700'>75 €</span><button class='btn-primary' style='padding:8px 16px;font-size:.82rem' onclick='alert("Article ajouté au panier !")'>Ajouter</button></div></div>
+    <div class='card'><div style='background:rgba(17,82,212,.1);border-radius:8px;padding:20px;text-align:center;margin-bottom:16px;font-size:40px'>🚗</div><span style='background:rgba(17,82,212,.15);color:var(--brand-light);font-size:.72rem;font-weight:600;border-radius:100px;padding:3px 10px'>OCCASION</span><h3 style='margin-top:10px'>Boîte de vitesses</h3><p>Boîte 5 vitesses VW Golf V. Kilométrage certifié 82 000 km. Garanti 6 mois.</p><div style='display:flex;justify-content:space-between;align-items:center;margin-top:16px'><span style='color:var(--brand-light);font-size:1.1rem;font-weight:700'>390 €</span><button class='btn-primary' style='padding:8px 16px;font-size:.82rem' onclick='alert("Article ajouté au panier !")'>Ajouter</button></div></div>
+    <div class='card'><div style='background:rgba(17,82,212,.1);border-radius:8px;padding:20px;text-align:center;margin-bottom:16px;font-size:40px'>⚡</div><span style='background:rgba(255,255,255,.08);color:var(--text-soft);font-size:.72rem;font-weight:600;border-radius:100px;padding:3px 10px'>NEUF</span><h3 style='margin-top:10px'>Batterie Varta 70Ah</h3><p>Batterie neuve 12V 70Ah. Universel, livraison pose comprise. Garantie 2 ans.</p><div style='display:flex;justify-content:space-between;align-items:center;margin-top:16px'><span style='color:var(--brand-light);font-size:1.1rem;font-weight:700'>110 €</span><button class='btn-primary' style='padding:8px 16px;font-size:.82rem' onclick='alert("Article ajouté au panier !")'>Ajouter</button></div></div>
+  </div>
+  <div style='text-align:center;margin-top:40px'>
+    <p style='color:var(--text-soft);margin-bottom:20px'>Vous ne trouvez pas la pièce recherchée ? Contactez-nous !</p>
+    <a href='devis.html' class='btn-primary'>📋 Demander une pièce spécifique</a>
+  </div>
+</div></div>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="logo-text">Garage <span>la Chapelle</span></div><p>Votre expert automobile à Paris 18ème depuis 20 ans.</p></div>
+      <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="catalogue.html">Catalogue</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="rendez-vous.html">Rendez-vous</a></li><li><a href="devis.html">Devis gratuit</a></li><li><a href="suivi-commande.html">Suivi commande</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col footer-contact"><h4>Contact</h4><li><span class="icon">📍</span>12 Rue de la Paix, 75018 Paris</li><li><span class="icon">📞</span><a href="tel:+33123456789">01 23 45 67 89</a></li></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Garage la Chapelle.</p><div class="footer-links"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div></div>
+  </footer>
+  <script src="assets/js/nav.js"></script>
+</body>
+</html>
