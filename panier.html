@@ -1,260 +1,375 @@
 ﻿<!DOCTYPE html>
+<html lang="fr">
 
-<html class="dark" lang="fr"><head>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Mon Panier - Garage la Chapelle</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#1152d4",
-                        "background-light": "#f6f6f8",
-                        "background-dark": "#101622",
-                    },
-                    fontFamily: {
-                        "display": ["Space Grotesk"]
-                    },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
-                },
-            },
-        }
-    </script>
-<style>
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-    </style>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Mon Panier — Garage la Chapelle</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="assets/css/mobile.css" />
+  <style>
+    .delivery-opt {
+      align-items: center;
+      gap: .75rem;
+      padding: .875rem;
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: .5rem;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .delivery-opt.selected {
+      border-color: var(--primary);
+      background: rgba(17, 82, 212, .08);
+    }
+
+    .delivery-opt .radio {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s;
+    }
+
+    .delivery-opt.selected .radio {
+      border-color: var(--primary);
+      background: var(--primary);
+    }
+
+    .delivery-opt.selected .radio::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .del-info .lbl {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--text);
+      display: block;
+    }
+
+    .del-info .sub {
+      font-size: .72rem;
+      color: var(--text-2);
+    }
+
+    .del-price {
+      margin-left: auto;
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--primary-light);
+    }
+  </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
-<!-- Header / TopNavBar -->
-<!-- SITE NAV UNIFIED -->
-<style>
-.site-nav-wrapper{position:sticky;top:0;z-index:100;background:rgba(16,22,34,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(17,82,212,.2);}
-.site-nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.5rem;}
-.site-nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:#fff;}
-.site-nav-logo .icon{width:40px;height:40px;background:#1152d4;border-radius:10px;display:flex;align-items:center;justify-content:center;}
-.site-nav-logo span.material-symbols-outlined{font-size:22px;color:#fff;}
-.site-nav-logo strong{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;color:#fff;}
-.site-nav-links{display:flex;align-items:center;gap:1.5rem;}
-.site-nav-links a{font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:500;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s;}
-.site-nav-links a:hover,.site-nav-links a.active{color:#fff;}
-.site-nav-links a.active{color:#5b8fff;}
-.site-nav-actions{display:flex;align-items:center;gap:.5rem;}
-.site-nav-cart{position:relative;width:38px;height:38px;background:rgba(17,82,212,.15);border-radius:9px;display:flex;align-items:center;justify-content:center;text-decoration:none;border:none;cursor:pointer;}
-.site-nav-cart .material-symbols-outlined{font-size:20px;color:#5b8fff;}
-.site-nav-cart .badge{position:absolute;top:-5px;right:-5px;background:#dc2626;color:#fff;font-size:10px;font-weight:700;border-radius:9999px;padding:1px 5px;}
-.site-nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;}
-.site-nav-hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s;}
-.site-nav-mobile{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,12,22,.98);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;}
-.site-nav-mobile.open{display:flex;}
-.site-nav-mobile a{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:600;color:#fff;text-decoration:none;padding:.5rem 2rem;border-radius:12px;transition:background .2s;}
-.site-nav-mobile a:hover{background:rgba(17,82,212,.2);}
-.site-nav-mobile .close-btn{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;}
-@media(max-width:768px){
-  .site-nav-links{display:none;}
-  .site-nav-hamburger{display:flex;}
-}
-</style>
-<nav class="site-nav-wrapper">
-  <div class="site-nav-inner">
-    <a class="site-nav-logo" href="index.html">
-      <div class="icon"><span class="material-symbols-outlined">directions_car</span></div>
-      <strong>Garage la Chapelle</strong>
-    </a>
-    <div class="site-nav-links">
-      <a href="index.html">Accueil</a>
-      <a href="catalogue.html">Catalogue</a>
-      <a href="devis.html">Devis</a>
-      <a href="rendez-vous.html">Rendez-vous</a>
-      <a href="contact.html">Contact</a>
-      <a href="a-propos.html">À Propos</a>
-      <a href="blog.html">Blog</a>
-      <a href="galerie.html">Galerie</a>
-    </div>
-    <div class="site-nav-actions">
-      <a class="site-nav-cart" href="panier.html" title="Mon panier">
-        <span class="material-symbols-outlined">shopping_cart</span>
-        <span class="badge">2</span>
-      </a>
-      <button class="site-nav-hamburger" onclick="document.getElementById('mobile-nav').classList.toggle('open')" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-</nav>
-<div id="mobile-nav" class="site-nav-mobile">
-  <button class="close-btn" onclick="document.getElementById('mobile-nav').classList.remove('open')">✕</button>
-  <a href="index.html">Accueil</a>
-  <a href="catalogue.html">Catalogue</a>
-  <a href="devis.html">Devis</a>
-  <a href="rendez-vous.html">Rendez-vous</a>
-  <a href="contact.html">Contact</a>
-  <a href="a-propos.html">À Propos</a>
-  <a href="blog.html">Blog</a>
-  <a href="galerie.html">Galerie</a>
-  <a href="panier.html">Mon Panier</a>
-  <a href="suivi-commande.html">Suivi de commande</a>
-</div>
-<!-- END SITE NAV -->
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-<div class="flex flex-col lg:flex-row gap-8">
-<!-- Left Column: Cart Items -->
-<div class="flex-grow space-y-6">
-<div class="flex items-center justify-between">
-<h2 class="text-3xl font-bold tracking-tight">Mon Panier <span class="text-slate-500 dark:text-slate-400 font-normal text-lg">(2 articles)</span></h2>
-<a class="text-primary hover:underline flex items-center gap-1 text-sm font-medium" href="#">
-<span class="material-symbols-outlined text-sm">arrow_back</span>
-                        Continuer mes achats
-                    </a>
-</div>
-<!-- Cart List -->
-<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
-<!-- Item 1 -->
-<div class="p-6 border-b border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row gap-6 items-center">
-<div class="w-32 h-32 bg-slate-100 dark:bg-slate-800 rounded-lg flex-shrink-0 bg-cover bg-center" data-alt="Alternateur automobile neuf pour Peugeot 208" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA2somsI2yiX5OGXzVzKBhP5F2WHC2gOHA2VCzSG-Qne0G75BwHZscsPtYeCL8ZVVHhVaqpzNkr_2ZEPRu1XEwRHhuazi_W7i__XPZiv870GnnbXUW16WhEBoF8ccF5grlp--wp6O3aJ48NpkdVKcX2a17HNUpKhw0F53OupCMuP37ZsEZlrog9bPia0stu8mVNkAEYf8bG-t4F9Xjh8ROkc2VNvj3DPcbsaModctjAtDkcONWlyYtI0NzgYcNG_620YKcKWsA8N4XR')"></div>
-<div class="flex-grow">
-<div class="flex justify-between items-start mb-1">
-<h3 class="text-lg font-semibold">Alternateur pour Peugeot 208</h3>
-<button class="text-slate-400 hover:text-red-500 transition-colors">
-<span class="material-symbols-outlined">delete</span>
-</button>
-</div>
-<p class="text-slate-500 dark:text-slate-400 text-sm mb-4">Référence: ALT-P208-85</p>
-<div class="flex justify-between items-center">
-<div class="flex items-center border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
-<button class="px-3 py-1 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">-</button>
-<span class="px-4 py-1 text-sm font-medium border-x border-slate-200 dark:border-slate-700">1</span>
-<button class="px-3 py-1 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">+</button>
-</div>
-<span class="text-xl font-bold">85,00 €</span>
-</div>
-</div>
-</div>
-<!-- Item 2 -->
-<div class="p-6 flex flex-col sm:flex-row gap-6 items-center">
-<div class="w-32 h-32 bg-slate-100 dark:bg-slate-800 rounded-lg flex-shrink-0 bg-cover bg-center" data-alt="Phare avant gauche pour Renault Clio IV" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDlH_8HjcHt1diW1uyWnz-C8YWXq1OdIkAVesXTmsapmYngmJUBgs3oqBxRC4nXfhoKWPwOKG_I25CiacSv0YZVCzLC8B9cPDM79xBhiAit8f6HWJzAdcHcGDOwKtsDGwEPNzE0X5TrUZAwCfMy0tTy_x9WgsbnZYbJN6mDsUAdOgwQJDgXTPNuzygT72Badhby0fQOTibAmAXBcGSJQPR1MEd7tqVia8_aB1e0-yJ29H3JhgR9oIlyV5mY3_0ll5g3uMl5TLbRxoTk')"></div>
-<div class="flex-grow">
-<div class="flex justify-between items-start mb-1">
-<h3 class="text-lg font-semibold">Phare avant gauche pour Renault Clio IV</h3>
-<button class="text-slate-400 hover:text-red-500 transition-colors">
-<span class="material-symbols-outlined">delete</span>
-</button>
-</div>
-<p class="text-slate-500 dark:text-slate-400 text-sm mb-4">Référence: PH-RCLIO4-120</p>
-<div class="flex justify-between items-center">
-<div class="flex items-center border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
-<button class="px-3 py-1 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">-</button>
-<span class="px-4 py-1 text-sm font-medium border-x border-slate-200 dark:border-slate-700">1</span>
-<button class="px-3 py-1 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">+</button>
-</div>
-<span class="text-xl font-bold">120,00 €</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Delivery Options -->
-<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6">
-<h3 class="text-lg font-bold mb-4">Options de livraison</h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-<label class="relative flex items-center p-4 border border-primary bg-primary/5 rounded-xl cursor-pointer">
-<input checked="" class="text-primary focus:ring-primary h-5 w-5" name="delivery" type="radio"/>
-<div class="ml-4">
-<p class="font-bold text-sm">Livraison à domicile</p>
-<p class="text-xs text-slate-500">Sous 3-5 jours ouvrés (+ 9,90 €)</p>
-</div>
-<span class="material-symbols-outlined ml-auto text-primary">local_shipping</span>
-</label>
-<label class="relative flex items-center p-4 border border-slate-200 dark:border-slate-800 rounded-xl cursor-pointer hover:border-primary/50 transition-colors">
-<input class="text-primary focus:ring-primary h-5 w-5" name="delivery" type="radio"/>
-<div class="ml-4">
-<p class="font-bold text-sm">Retrait en magasin</p>
-<p class="text-xs text-slate-500">Disponible sous 2h (Gratuit)</p>
-</div>
-<span class="material-symbols-outlined ml-auto text-slate-400">store</span>
-</label>
-</div>
-</div>
-</div>
-<!-- Right Column: Summary -->
-<div class="w-full lg:w-96">
-<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 sticky top-24">
-<h3 class="text-xl font-bold mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">Résumé de la commande</h3>
-<div class="space-y-4 mb-6">
-<div class="flex justify-between text-slate-600 dark:text-slate-400">
-<span>Sous-total</span>
-<span>205,00 €</span>
-</div>
-<div class="flex justify-between text-slate-600 dark:text-slate-400">
-<span>Frais de livraison</span>
-<span class="text-green-500 font-medium">Offerts</span>
-</div>
-<div class="flex justify-between text-slate-600 dark:text-slate-400">
-<span>TVA (20%)</span>
-<span>34,17 €</span>
-</div>
-<div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-between items-end">
-<span class="text-lg font-bold uppercase tracking-wide">Total</span>
-<span class="text-3xl font-black text-primary">205,00 €</span>
-</div>
-</div>
-<div class="mb-6 pt-6 border-t border-slate-100 dark:border-slate-800">
-<h4 class="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">Paiement express</h4>
-<div class="grid grid-cols-1 gap-3">
-<a class="w-full bg-black text-white rounded-lg py-3 flex items-center justify-center gap-2 hover:bg-zinc-900 transition-colors border border-zinc-800" href="#"><svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.05 20.28c-.96.78-2.1 1.24-3.23 1.24-1.23 0-2.09-.4-2.82-.4-.74 0-1.68.41-2.85.41-1.4 0-2.81-.84-3.83-2.19-2.08-2.73-1.6-6.86.41-9.2 1-.36 2.1-.56 3.23-.56 1.22 0 2.22.42 2.87.42.64 0 1.95-.51 3.39-.51 1.1 0 2.44.41 3.23 1.24-2.11 1.24-1.77 4.1.4 5.25-.6 1.48-1.42 2.94-2.42 3.74zm-3.66-13.06c0-1.28.53-2.52 1.4-3.41.87-.9 2.15-1.54 3.4-1.54.1 1.28-.43 2.51-1.3 3.41-.87.9-2.13 1.54-3.5 1.54z"></path></svg><span class="font-medium">Apple Pay</span></a>
-<a class="w-full bg-white text-slate-900 rounded-lg py-3 flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors border border-slate-200" href="#"><svg class="w-5 h-5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.92 3.16-1.84 4.12-1.16 1.16-2.92 2.36-6 2.36-4.84 0-8.68-3.92-8.68-8.76s3.84-8.76 8.68-8.76c2.64 0 4.52 1.04 5.96 2.4l2.32-2.32C18.64 1.36 16 0 12.48 0 5.6 0 0 5.6 0 12.48S5.6 24.96 12.48 24.96c3.76 0 6.6-1.24 8.8-3.52 2.28-2.28 2.96-5.48 2.96-8.12 0-.64-.04-1.28-.12-1.88h-11.64z" fill="#4285F4"></path></svg><span class="font-medium">Google Pay</span></a>
-</div>
-</div><a class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 rounded-lg flex items-center justify-center gap-2 transition-all mb-4" href="#"><span class="material-symbols-outlined">lock</span> Procéder au paiement</a>
-<p class="text-[10px] text-center text-slate-500 uppercase tracking-widest">Paiement sécurisé par SSL</p>
-<div class="mt-8 grid grid-cols-4 gap-2 opacity-50 grayscale hover:grayscale-0 transition-all">
-<div class="h-8 bg-slate-200 dark:bg-slate-800 rounded flex items-center justify-center"><span class="text-[10px] font-bold">VISA</span></div>
-<div class="h-8 bg-slate-200 dark:bg-slate-800 rounded flex items-center justify-center"><span class="text-[10px] font-bold">MC</span></div>
-<div class="h-8 bg-slate-200 dark:bg-slate-800 rounded flex items-center justify-center"><span class="text-[10px] font-bold">PP</span></div>
-<div class="h-8 bg-slate-200 dark:bg-slate-800 rounded flex items-center justify-center"><span class="text-[10px] font-bold">CB</span></div>
-</div>
-</div>
-</div>
-</div>
-</main>
-<!-- Footer -->
-<footer class="bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-900 mt-20">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-<div class="flex flex-col md:flex-row items-center justify-between gap-8">
-<div class="flex flex-col gap-2">
-<a class="flex items-center gap-2 text-primary" href="#">
-<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 48 48">
-<path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z"></path>
-</svg>
-<span class="font-bold">Garage la Chapelle</span>
-</a>
-<p class="text-sm text-slate-500">© 2024 Garage la Chapelle. Tous droits réservés.</p>
-</div>
-<!-- Certifié Qualité Pro Badge -->
-<div class="flex items-center gap-4 bg-white dark:bg-slate-900 px-6 py-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
-<div class="bg-primary/10 p-2 rounded-full">
-<span class="material-symbols-outlined text-primary text-3xl">verified</span>
-</div>
-<div>
-<p class="text-xs uppercase tracking-widest font-bold text-slate-400">Badge Officiel</p>
-<p class="font-bold text-primary">Certifié Qualité Pro</p>
-</div>
-</div>
-<div class="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-4 text-sm font-medium">
-<a class="hover:text-primary transition-colors" href="#">À Propos</a>
-<a class="hover:text-primary transition-colors" href="galerie.html">Galerie</a>
-<a class="hover:text-primary transition-colors" href="blog.html">Blog</a>
-<a class="hover:text-primary transition-colors" href="contact.html">Contact</a>
-<a class="hover:text-primary transition-colors" href="#">Mentions Légales</a>
-</div>
-</div>
-</div>
-</footer>
-</body></html>
 
+<body>
+  <script src="assets/js/nav.js" data-page="cart" data-cart="2"></script>
+
+  <main class="page-content">
+
+    <div class="page-title-block">
+      <h1>Mon Panier</h1>
+      <p>Vérifiez vos articles puis finalisez votre commande.</p>
+    </div>
+
+    <div class="cart-layout">
+      <div>
+        <!-- ITEMS -->
+        <div class="cart-item" id="item1">
+          <img class="cart-item-img"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSKPUBBIjAMQa8LfUWbT3sQUH-yFsrEDlbHlGm3P3xXLAJEpfCJXb_bqW0JkmDGZJiUibbBkLqQ6UqKHqHqr5v8x0VdMK-7yO16sNcXM9sMPsJjqTMqaLJvTcqF5hNWpEIRjKVjp_YA"
+            alt="Alt." />
+          <div class="cart-item-info">
+            <div class="cart-item-name">Alternateur — Peugeot 208</div>
+            <div class="cart-item-ref">Réf: ALT-P208-85</div>
+            <div class="cart-item-price">169,90 €</div>
+            <div class="qty-controls" style="margin-top:.5rem;">
+              <button class="qty-btn" onclick="changeQty('item1',-1)">−</button>
+              <span class="qty-value" id="item1-qty">1</span>
+              <button class="qty-btn" onclick="changeQty('item1',1)">+</button>
+              <button style="margin-left:auto;background:none;border:none;color:var(--accent-red);cursor:pointer;"
+                onclick="removeItem('item1')"><span class="material-symbols-outlined"
+                  style="font-size:18px">delete</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="cart-item" id="item2">
+          <img class="cart-item-img"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuClvEq3U8HHGQ_BYfStAeSYLzJDT-G1Dss_iBT4J_2GMN3_UG3jFq3bDZ-yC43PjmTQ8eTHsZxm44sazMUkf4B9X0q_hnZQ-V4ZlHlLWXpmXJkRMjmBrK_rEBHGSqHm1llGf4MhK5l3A"
+            alt="Phare" />
+          <div class="cart-item-info">
+            <div class="cart-item-name">Phare avant gauche — Renault Clio IV</div>
+            <div class="cart-item-ref">Réf: PH-RCLIO4-120</div>
+            <div class="cart-item-price">119,90 €</div>
+            <div class="qty-controls" style="margin-top:.5rem;">
+              <button class="qty-btn" onclick="changeQty('item2',-1)">−</button>
+              <span class="qty-value" id="item2-qty">1</span>
+              <button class="qty-btn" onclick="changeQty('item2',1)">+</button>
+              <button style="margin-left:auto;background:none;border:none;color:var(--accent-red);cursor:pointer;"
+                onclick="removeItem('item2')"><span class="material-symbols-outlined"
+                  style="font-size:18px">delete</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Promo -->
+        <div style="display:flex;gap:.5rem;margin-bottom:1rem;">
+          <input type="text" id="promo-input" class="form-input" placeholder="Code promo" style="flex:1" />
+          <button class="btn-secondary" style="padding:.75rem 1rem;white-space:nowrap;" onclick="applyPromo()">Appliquer</button>
+        </div>
+      </div>
+
+      <div class="cart-sidebar">
+        <!-- DELIVERY -->
+        <div class="form-block">
+          <h3>Livraison</h3>
+          <div class="delivery-opt selected" onclick="selectDel(this)">
+            <div class="radio"></div>
+            <div class="del-info"><span class="lbl">Livraison à domicile</span><span class="sub">3-5 jours ouvrés</span>
+            </div>
+            <span class="del-price">9,90 €</span>
+          </div>
+          <div class="delivery-opt" onclick="selectDel(this)">
+            <div class="radio"></div>
+            <div class="del-info"><span class="lbl">Retrait en magasin</span><span class="sub">Disponible sous 2h</span>
+            </div>
+            <span class="del-price" style="color:var(--accent-green)">Gratuit</span>
+          </div>
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="order-summary">
+          <div class="summary-row"><span class="label">Sous-total</span><span class="value">289,80 €</span></div>
+          <div class="summary-row"><span class="label">Livraison</span><span class="value">9,90 €</span></div>
+          <div class="summary-row"><span class="label">Promo</span><span class="value"
+              style="color:var(--accent-green)">– 0,00 €</span></div>
+          <div class="summary-row total"><span class="label">Total TTC</span><span class="value">299,70 €</span></div>
+        </div>
+
+        <button class="btn-primary btn-full" id="pay-btn" onclick="placeOrder()">
+          <span class="material-symbols-outlined">lock</span>
+          Payer · <span id="pay-amount">299,70 €</span>
+        </button>
+        <p style="text-align:center;font-size:.72rem;color:var(--text-3);margin-top:.5rem;">CB · PayPal · Virement ·
+          100% sécurisé</p>
+        <a href="catalogue.html"
+          style="display:block;text-align:center;color:var(--primary-light);font-size:.85rem;margin-top:.75rem;text-decoration:none;">←
+          Continuer mes achats</a>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function selectDel(el) { 
+      document.querySelectorAll('.delivery-opt').forEach(o => o.classList.remove('selected')); 
+      el.classList.add('selected'); 
+      updateCart();
+    }
+    function changeQty(id, delta) {
+      const el = document.getElementById(id + '-qty');
+      const nv = Math.max(1, parseInt(el.textContent) + delta);
+      el.textContent = nv;
+      updateCart();
+      refreshBadge();
+    }
+    function removeItem(id) {
+      if (confirm('Retirer cet article du panier ?')) {
+        document.getElementById(id).remove();
+        updateCart();
+        refreshBadge();
+      }
+    }
+
+    // Promo codes database
+    const PROMO_CODES = {
+      'NOEL10': { discount: 10, type: 'percent' }, // 10% off
+      'GARAGE15': { discount: 15, type: 'percent' }, // 15% off
+      'LIVRAISON': { discount: 9.90, type: 'fixed' } // Free shipping
+    };
+
+    let currentPromo = null;
+
+    function applyPromo() {
+      const input = document.getElementById('promo-input');
+      const code = input.value.trim().toUpperCase();
+
+      if (!code) {
+        alert('Veuillez entrer un code promo');
+        return;
+      }
+
+      if (!PROMO_CODES[code]) {
+        alert('Code promo invalide');
+        input.value = '';
+        return;
+      }
+
+      currentPromo = { code, ...PROMO_CODES[code] };
+      updateCart();
+      alert(`Code "${code}" appliqué !`);
+    }
+
+    function updateCart() {
+      // Calculate subtotal from items
+      let subtotal = 0;
+      document.querySelectorAll('.cart-item').forEach(el => {
+        const priceEl = el.querySelector('.cart-item-price');
+        const qtyEl = el.querySelector('.qty-value');
+        if (priceEl && qtyEl) {
+          const price = parsePrice(priceEl.textContent);
+          const qty = parseInt(qtyEl.textContent);
+          subtotal += price * qty;
+        }
+      });
+
+      // Get delivery cost
+      const selectedDel = document.querySelector('.delivery-opt.selected');
+      let deliveryCost = 9.90;
+      if (selectedDel) {
+        const priceEl = selectedDel.querySelector('.del-price');
+        if (priceEl && priceEl.textContent.includes('Gratuit')) {
+          deliveryCost = 0;
+        } else if (priceEl) {
+          deliveryCost = parsePrice(priceEl.textContent);
+        }
+      }
+
+      // Calculate discount
+      let discount = 0;
+      if (currentPromo) {
+        if (currentPromo.type === 'percent') {
+          discount = (subtotal + deliveryCost) * currentPromo.discount / 100;
+        } else if (currentPromo.type === 'fixed') {
+          discount = Math.min(currentPromo.discount, subtotal + deliveryCost);
+        }
+      }
+
+      // Calculate total
+      const total = Math.max(0, subtotal + deliveryCost - discount);
+
+      // Update summary
+      const summaryRows = document.querySelectorAll('.order-summary .summary-row');
+      // persist count for other pages
+      const cnt = document.querySelectorAll('.cart-item').length;
+      localStorage.setItem('cartCount', cnt);
+      if (summaryRows.length >= 4) {
+        summaryRows[0].querySelector('.value').textContent = formatPrice(subtotal) + ' €';
+        summaryRows[1].querySelector('.value').textContent = formatPrice(deliveryCost) + ' €';
+        summaryRows[2].querySelector('.value').textContent = '– ' + formatPrice(discount) + ' €';
+        summaryRows[3].querySelector('.value').textContent = formatPrice(total) + ' €';
+      }
+
+      // Update pay button
+      const payBtn = document.getElementById('pay-amount');
+      if (payBtn) payBtn.textContent = formatPrice(total) + ' €';
+    }
+
+    function refreshBadge() {
+      let count = document.querySelectorAll('.cart-item').length;
+      if (count === 0) {
+        const stored = parseInt(localStorage.getItem('cartCount')||'0',10);
+        if (stored>0) count = stored;
+      }
+      document.querySelectorAll('.cart-pill .badge, .header-btn .cart-badge').forEach(b=>b.textContent=count);
+    }
+
+    // Function to sync cart state with localStorage
+    function syncCartState() {
+      const stored = parseInt(localStorage.getItem('cartCount')||'0', 10);
+      if (stored === 0) {
+        document.querySelectorAll('.cart-item').forEach(el => el.remove());
+      }
+      updateCart();
+      refreshBadge();
+    }
+
+    // Run on initial page load
+    document.addEventListener('DOMContentLoaded', syncCartState);
+    
+    // Also run when page becomes visible again (from cache or tab switch)
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        syncCartState();
+      }
+    });
+
+    function parsePrice(text) {
+      // Expects strings like "299,70 €"
+      return parseFloat(text.replace(/[^0-9,]/g, '').replace(',', '.')) || 0;
+    }
+
+    function formatPrice(num) {
+      return num.toFixed(2).replace('.', ',');
+    }
+
+    function placeOrder() {
+      // Read total from the summary to keep values in sync
+      const totalEl = document.querySelector('.order-summary .total .value');
+      let total = 0;
+      if (totalEl) total = parsePrice(totalEl.textContent);
+
+      // Generate simple order id: CMD-YYYY-NNNN
+      const now = new Date();
+      const year = now.getFullYear();
+      const rnd = Math.floor(Math.random() * 9000) + 1000;
+      const orderId = `CMD-${year}-${rnd}`;
+
+      // Read cart items
+      const items = [];
+      document.querySelectorAll('.cart-item').forEach(el => {
+        const nameEl = el.querySelector('.cart-item-name');
+        const priceEl = el.querySelector('.cart-item-price');
+        const qtyEl = el.querySelector('.qty-value');
+        if (nameEl && priceEl && qtyEl) {
+          items.push({
+            name: nameEl.textContent,
+            price: priceEl.textContent,
+            qty: parseInt(qtyEl.textContent)
+          });
+        }
+      });
+
+      // Read selected delivery option
+      const selectedDel = document.querySelector('.delivery-opt.selected');
+      let delivery = 'Livraison à domicile';
+      let deliveryPrice = '9,90';
+      if (selectedDel) {
+        const lblEl = selectedDel.querySelector('.lbl');
+        const priceEl = selectedDel.querySelector('.del-price');
+        if (lblEl) delivery = lblEl.textContent;
+        if (priceEl) deliveryPrice = priceEl.textContent.includes('Gratuit') ? '0' : priceEl.textContent.replace(/[^0-9,]/g, '');
+      }
+
+      // Build URL params
+      const params = new URLSearchParams({
+        order: orderId,
+        total: formatPrice(total),
+        items: JSON.stringify(items),
+        delivery: delivery,
+        deliveryPrice: deliveryPrice
+      });
+      // open confirmation in a new tab so panier reste ouvert
+      window.open('confirmation-commande.html?' + params.toString(), '_blank');
+      // reset cart UI
+      document.querySelectorAll('.cart-item').forEach(el=>el.remove());
+      currentPromo = null;
+      document.getElementById('promo-input').value = '';
+      updateCart();
+    }
+  </script>
+</body>
+
+</html>

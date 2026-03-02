@@ -1,293 +1,112 @@
 ﻿<!DOCTYPE html>
+<html lang="fr">
 
-<html class="dark" lang="fr"><head>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Galerie - Garage la Chapelle | Expertise Auto &amp; Mécanique</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#1152d4",
-                        "accent-red": "#ef4444",
-                        "background-light": "#f6f6f8",
-                        "background-dark": "#101622",
-                    },
-                    fontFamily: {
-                        "display": ["Space Grotesk"]
-                    },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
-                },
-            },
-        }
-    </script>
-<style>
-        body { font-family: 'Space Grotesk', sans-serif; }
-    </style>
-<style>
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-</style></head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased animate-[fadeIn_0.5s_ease-out]">
-<!-- Top Navigation Bar -->
-<!-- SITE NAV UNIFIED -->
-<style>
-.site-nav-wrapper{position:sticky;top:0;z-index:100;background:rgba(16,22,34,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(17,82,212,.2);}
-.site-nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.5rem;}
-.site-nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:#fff;}
-.site-nav-logo .icon{width:40px;height:40px;background:#1152d4;border-radius:10px;display:flex;align-items:center;justify-content:center;}
-.site-nav-logo span.material-symbols-outlined{font-size:22px;color:#fff;}
-.site-nav-logo strong{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;color:#fff;}
-.site-nav-links{display:flex;align-items:center;gap:1.5rem;}
-.site-nav-links a{font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:500;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s;}
-.site-nav-links a:hover,.site-nav-links a.active{color:#fff;}
-.site-nav-links a.active{color:#5b8fff;}
-.site-nav-actions{display:flex;align-items:center;gap:.5rem;}
-.site-nav-cart{position:relative;width:38px;height:38px;background:rgba(17,82,212,.15);border-radius:9px;display:flex;align-items:center;justify-content:center;text-decoration:none;border:none;cursor:pointer;}
-.site-nav-cart .material-symbols-outlined{font-size:20px;color:#5b8fff;}
-.site-nav-cart .badge{position:absolute;top:-5px;right:-5px;background:#dc2626;color:#fff;font-size:10px;font-weight:700;border-radius:9999px;padding:1px 5px;}
-.site-nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;}
-.site-nav-hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s;}
-.site-nav-mobile{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,12,22,.98);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;}
-.site-nav-mobile.open{display:flex;}
-.site-nav-mobile a{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:600;color:#fff;text-decoration:none;padding:.5rem 2rem;border-radius:12px;transition:background .2s;}
-.site-nav-mobile a:hover{background:rgba(17,82,212,.2);}
-.site-nav-mobile .close-btn{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;}
-@media(max-width:768px){
-  .site-nav-links{display:none;}
-  .site-nav-hamburger{display:flex;}
-}
-</style>
-<nav class="site-nav-wrapper">
-  <div class="site-nav-inner">
-    <a class="site-nav-logo" href="index.html">
-      <div class="icon"><span class="material-symbols-outlined">directions_car</span></div>
-      <strong>Garage la Chapelle</strong>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Galerie — Garage la Chapelle</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="assets/css/mobile.css" />
+</head>
+
+<body>
+  <script src="assets/js/nav.js" data-page="galerie" data-cart="2"></script>
+
+  <main class="page-content">
+
+    <div class="page-title-block">
+      <h1>Galerie</h1>
+      <p>Découvrez notre atelier et nos réalisations en images.</p>
+    </div>
+
+    <div class="category-chips" id="gallery-chips">
+      <div class="chip active" onclick="filterGallery(this,'all')">Tout</div>
+      <div class="chip" onclick="filterGallery(this,'atelier')">Atelier</div>
+      <div class="chip" onclick="filterGallery(this,'reparation')">Réparations</div>
+      <div class="chip" onclick="filterGallery(this,'vehicule')">Véhicules</div>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item" data-cat="atelier" onclick="openLightbox(this)">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtORprCb5M_pFPItn6IMftz53p6FGXMtzcvVcyeYHR93IYYpFvyX7YxKYNWC-N6ep7MTXc3nB2ChOHz1c4KFXT9pJ4KGOR9Q_QH2P8wDNW2J_ybdmcT_VibMI967rglNWdx4eaXfzHYiRmY7Wc3qoSYh__jcoyS8ptd8yT9McxhSDJ-7N3IidC6c6bZqeQclE9GYOWLLDTSNGe-6KT_gaslliTju25xdHYZKDzucE6yoqrhLPukq4a6uxdYMAweWxRE3ZGVJZi-SLK"
+          alt="Atelier principal" />
+        <div class="overlay"><span class="material-symbols-outlined">zoom_in</span></div>
+      </div>
+      <div class="gallery-item" data-cat="reparation" onclick="openLightbox(this)">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqZyXHGAwNlFdMj4E_1Nj7Kx7Q8oioUcAOCTd_L2x56GGXYfRCc-JSIPoql-T28BMHAQ0V7FYUK-Eg9PxceJiY3wvli2uDWlaBOIPtqF4Ui2ZVSck9Pj25BMiC3FJIler8qLlyxoi8a5Qa_od-Cp9QQk5u2EypjndqQHp1vd9sja3YNA9Wzb4wyac2xWTaeTL1nAaYzx70YShdspV-Z-eet-N2cC3wVPx9AnrZzuA4S1eYwgc4VTZXl8kv-sNxk4QXrlYTT739M5M1"
+          alt="Diagnostic" />
+        <div class="overlay"><span class="material-symbols-outlined">zoom_in</span></div>
+      </div>
+      <div class="gallery-item" data-cat="reparation" onclick="openLightbox(this)">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu0Qo6vIwOUoytOhFdD8TXJkxU-b-lVqIl_tAWS4xT69M2YR54-nBdI4Y4C-_DFegY0pA-vGlPl2e5ZO50UUg4_MWKmLjstyyE9ppVQ3v7ulLCw7XsEP-LoBAb_aP2wNX72Mp8Qw1DIt01PpTeETfQ12UW2csjHSGgSH2dcCwjo8xKzExZylxEh_DmXwM66jl1glggBByqh0BKqa-qp1TW4tPN4Lw_OCqYq2rtFRY3votdu8a6RR5LQEDFubYx6jytM6kZliz1yrgL"
+          alt="Réparation" />
+        <div class="overlay"><span class="material-symbols-outlined">zoom_in</span></div>
+      </div>
+      <div class="gallery-item" data-cat="atelier" onclick="openLightbox(this)">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtORprCb5M_pFPItn6IMftz53p6FGXMtzcvVcyeYHR93IYYpFvyX7YxKYNWC-N6ep7MTXc3nB2ChOHz1c4KFXT9pJ4KGOR9Q_QH2P8wDNW2J_ybdmcT_VibMI967rglNWdx4eaXfzHYiRmY7Wc3qoSYh__jcoyS8ptd8yT9McxhSDJ-7N3IidC6c6bZqeQclE9GYOWLLDTSNGe-6KT_gaslliTju25xdHYZKDzucE6yoqrhLPukq4a6uxdYMAweWxRE3ZGVJZi-SLK"
+          alt="Équipement" />
+        <div class="overlay"><span class="material-symbols-outlined">zoom_in</span></div>
+      </div>
+      <div class="gallery-item" data-cat="vehicule" onclick="openLightbox(this)">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqZyXHGAwNlFdMj4E_1Nj7Kx7Q8oioUcAOCTd_L2x56GGXYfRCc-JSIPoql-T28BMHAQ0V7FYUK-Eg9PxceJiY3wvli2uDWlaBOIPtqF4Ui2ZVSck9Pj25BMiC3FJIler8qLlyxoi8a5Qa_od-Cp9QQk5u2EypjndqQHp1vd9sja3YNA9Wzb4wyac2xWTaeTL1nAaYzx70YShdspV-Z-eet-N2cC3wVPx9AnrZzuA4S1eYwgc4VTZXl8kv-sNxk4QXrlYTT739M5M1"
+          alt="Véhicule" />
+        <div class="overlay"><span class="material-symbols-outlined">zoom_in</span></div>
+      </div>
+      <div class="gallery-item" data-cat="vehicule" onclick="openLightbox(this)">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu0Qo6vIwOUoytOhFdD8TXJkxU-b-lVqIl_tAWS4xT69M2YR54-nBdI4Y4C-_DFegY0pA-vGlPl2e5ZO50UUg4_MWKmLjstyyE9ppVQ3v7ulLCw7XsEP-LoBAb_aP2wNX72Mp8Qw1DIt01PpTeETfQ12UW2csjHSGgSH2dcCwjo8xKzExZylxEh_DmXwM66jl1glggBByqh0BKqa-qp1TW4tPN4Lw_OCqYq2rtFRY3votdu8a6RR5LQEDFubYx6jytM6kZliz1yrgL"
+          alt="Client" />
+        <div class="overlay"><span class="material-symbols-outlined">zoom_in</span></div>
+      </div>
+      <div class="gallery-item" data-cat="atelier" onclick="openLightbox(this)">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtORprCb5M_pFPItn6IMftz53p6FGXMtzcvVcyeYHR93IYYpFvyX7YxKYNWC-N6ep7MTXc3nB2ChOHz1c4KFXT9pJ4KGOR9Q_QH2P8wDNW2J_ybdmcT_VibMI967rglNWdx4eaXfzHYiRmY7Wc3qoSYh__jcoyS8ptd8yT9McxhSDJ-7N3IidC6c6bZqeQclE9GYOWLLDTSNGe-6KT_gaslliTju25xdHYZKDzucE6yoqrhLPukq4a6uxdYMAweWxRE3ZGVJZi-SLK"
+          alt="Atelier 2" />
+        <div class="overlay"><span class="material-symbols-outlined">zoom_in</span></div>
+      </div>
+      <div class="gallery-item" data-cat="reparation" onclick="openLightbox(this)">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqZyXHGAwNlFdMj4E_1Nj7Kx7Q8oioUcAOCTd_L2x56GGXYfRCc-JSIPoql-T28BMHAQ0V7FYUK-Eg9PxceJiY3wvli2uDWlaBOIPtqF4Ui2ZVSck9Pj25BMiC3FJIler8qLlyxoi8a5Qa_od-Cp9QQk5u2EypjndqQHp1vd9sja3YNA9Wzb4wyac2xWTaeTL1nAaYzx70YShdspV-Z-eet-N2cC3wVPx9AnrZzuA4S1eYwgc4VTZXl8kv-sNxk4QXrlYTT739M5M1"
+          alt="Outil" />
+        <div class="overlay"><span class="material-symbols-outlined">zoom_in</span></div>
+      </div>
+    </div>
+
+    <a class="btn-primary btn-full" href="rendez-vous.html">
+      <span class="material-symbols-outlined">calendar_month</span>
+      Prendre rendez-vous
     </a>
-    <div class="site-nav-links">
-      <a href="index.html">Accueil</a>
-      <a href="catalogue.html">Catalogue</a>
-      <a href="devis.html">Devis</a>
-      <a href="rendez-vous.html">Rendez-vous</a>
-      <a href="contact.html">Contact</a>
-      <a href="a-propos.html">À Propos</a>
-      <a href="blog.html">Blog</a>
-      <a href="galerie.html">Galerie</a>
-    </div>
-    <div class="site-nav-actions">
-      <a class="site-nav-cart" href="panier.html" title="Mon panier">
-        <span class="material-symbols-outlined">shopping_cart</span>
-        <span class="badge">2</span>
-      </a>
-      <button class="site-nav-hamburger" onclick="document.getElementById('mobile-nav').classList.toggle('open')" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-</nav>
-<div id="mobile-nav" class="site-nav-mobile">
-  <button class="close-btn" onclick="document.getElementById('mobile-nav').classList.remove('open')">✕</button>
-  <a href="index.html">Accueil</a>
-  <a href="catalogue.html">Catalogue</a>
-  <a href="devis.html">Devis</a>
-  <a href="rendez-vous.html">Rendez-vous</a>
-  <a href="contact.html">Contact</a>
-  <a href="a-propos.html">À Propos</a>
-  <a href="blog.html">Blog</a>
-  <a href="galerie.html">Galerie</a>
-  <a href="panier.html">Mon Panier</a>
-  <a href="suivi-commande.html">Suivi de commande</a>
-</div>
-<!-- END SITE NAV -->
-<main>
-<!-- Hero Section -->
-<section class="relative py-20 overflow-hidden">
-<div class="absolute inset-0 z-0">
-<div class="absolute inset-0 bg-gradient-to-b from-primary/10 to-background-dark/95"></div>
-<img alt="Atelier mécanique moderne" class="w-full h-full object-cover" data-alt="Atelier de mécanique automobile spacieux et moderne" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZbhzozVQ0kW8s0xAecRCQFuchFgCmvj89UJiCFE9Mc4TfPx_ViQkKB0o-vePiVrX_6nWF-Zt5bLbYbsDzP7eZPvoUWAGmFBXTXEkJFKrbfVbJeatUDMpQaY_X1X14Oyg-_JrHH8JFK_GvuuLXWb4SYI5Bv5MY9GRFIGblVEa-Q9OmHADtQbiH2nuq3uZB5BDdv04tJGDSXMciBlG6fjxjQYdxql6jBmIN36lHm0OrTNX6M4AzGjN8QhvGB7nBQP47Hz8CLStCCJ4v"/>
-</div>
-<div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
-<span class="inline-block py-1 px-3 rounded-full bg-primary/20 text-primary text-xs font-bold tracking-widest uppercase mb-4">Expertise Auto</span>
-<h1 class="text-4xl md:text-6xl font-bold mb-6 text-white leading-tight">Notre Atelier en Images</h1>
-<p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
-                    Découvrez la modernité de nos équipements et l'expertise technique de notre garage. Une technologie de pointe au service de votre sécurité et de la performance de votre véhicule.
-                </p>
-<div class="flex flex-wrap justify-center gap-4">
-<button class="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all flex items-center gap-2 transition-all duration-300 active:scale-95 hover:shadow-lg">
-<span class="material-symbols-outlined">calendar_month</span>
-                        Prendre RDV
-                    </button>
-</div>
-</div>
-</section>
-<!-- Gallery Section -->
-<section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<!-- Filter Tabs -->
-<div class="flex flex-wrap items-center justify-center gap-2 mb-12">
-<button class="px-6 py-2 rounded-full bg-primary text-white font-medium text-sm transition-all transition-all duration-300 active:scale-95 hover:scale-105 transition-all duration-300 active:scale-95 hover:shadow-lg">Tout</button>
-<button class="px-6 py-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium text-sm hover:bg-slate-200 dark:hover:bg-slate-700 transition-all transition-all duration-300 active:scale-95 hover:scale-105 transition-all duration-300 active:scale-95 hover:shadow-lg">Atelier</button>
-<button class="px-6 py-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium text-sm hover:bg-slate-200 dark:hover:bg-slate-700 transition-all transition-all duration-300 active:scale-95 hover:scale-105 transition-all duration-300 active:scale-95 hover:shadow-lg">Équipe</button>
-<button class="px-6 py-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium text-sm hover:bg-slate-200 dark:hover:bg-slate-700 transition-all transition-all duration-300 active:scale-95 hover:scale-105 transition-all duration-300 active:scale-95 hover:shadow-lg">Pièces d'occasion</button>
-<button class="px-6 py-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium text-sm hover:bg-slate-200 dark:hover:bg-slate-700 transition-all transition-all duration-300 active:scale-95 hover:scale-105 transition-all duration-300 active:scale-95 hover:shadow-lg">Réalisations</button>
-</div>
-<!-- Image Grid -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-<!-- Gallery Item 1 -->
-<div class="group relative overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 aspect-video cursor-zoom-in transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20">
-<img alt="Diagnostic électronique" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Technicien utilisant un outil de diagnostic électronique moderne" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOCRUjgGCYhlZ9lRaoKPIwE7QMLrcVCo4TpRngatbI8gWC_fZbKPQz23KRg_gMcs243svOCL5BToT2u2D3V0Aa28xG0fVEODijK3irtN-ZBoujBAkVr-MZxGQkc8CKSby1xkmcruzeu2bQBGc3aGAZPz6yILxg5X-mZ9I5X6kUypPPtL0WtQTsxuE0C-oFIzAB20n1npPmlGZ0kg34AwZLKxsUSbr98P9FDugsgjBxR1-OOken_r2Kj4_Wg0lQojHnmEPbtJK2-hmS"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-<span class="text-primary text-xs font-bold uppercase mb-1">Atelier</span>
-<h3 class="text-white font-bold text-lg">Diagnostic Électronique</h3>
-</div>
-<div class="absolute top-4 right-4 bg-white/10 backdrop-blur-md p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
-<span class="material-symbols-outlined text-white">zoom_in</span>
-</div>
-</div>
-<!-- Gallery Item 2 -->
-<div class="group relative overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 aspect-video cursor-zoom-in transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20">
-<img alt="Mécanique de précision" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Moteur de voiture en cours de réparation minutieuse" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk-mfQhH14YX78Jr4-ohbSXAcRxro0n3q0fC1GQsca_WFKXvUQ2Wtlfgad6jK-djfZpBXKxqrYmU43oL5HqpPtrW2Syhde03BjUtOf7O2M-k6DLQdrZ9FUlHgrmZCclT3Fy_4Qvg05AfmNDhPUHJ6Lq2KbDWbBAyJgQk870VdWbvvz5XZEvBjX9HfH2zJ9YjR_7Hx3XcBecyaWI7e49IrMAtF3gPQAQDFSCwa2JLqAR8BsXbaM_4BTQX0t00zmyeRw5IG552KOm2-y"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-<span class="text-accent-red text-xs font-bold uppercase mb-1">Réalisations</span>
-<h3 class="text-white font-bold text-lg">Mécanique de précision</h3>
-</div>
-<div class="absolute top-4 right-4 bg-white/10 backdrop-blur-md p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
-<span class="material-symbols-outlined text-white">zoom_in</span>
-</div>
-</div>
-<!-- Gallery Item 3 -->
-<div class="group relative overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 aspect-video cursor-zoom-in transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20">
-<img alt="Stock pièces d'occasion" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Étagères de pièces auto d'occasion parfaitement organisées" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZ86ttTAjRsNSad4MDdyBg9NLSnDseP8Ixm313E9luOpEAtao4HfTI33V16OFBmdFN1sl9kCVrdofCTnlGSE_e3674OvDpUVY0eU6-zU4o0_FCxo5ptKJ6zHiSoG3Of1AD7oL3KqhtypAnC2r0JLAjj0MGOdhGs0fhyuuLm3zcIoTZP0WY4dKFzrMkHiLtnBcavnfygI7JgXgtWfScBI-o27vQD8JvpQBIUBcjxq95VVofhHl3pRwBEuh3sBJFEMUz1OBOPYDPBLLY"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-<span class="text-primary text-xs font-bold uppercase mb-1">Pièces d'occasion</span>
-<h3 class="text-white font-bold text-lg">Stock de pièces d'occasion</h3>
-</div>
-<div class="absolute top-4 right-4 bg-white/10 backdrop-blur-md p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
-<span class="material-symbols-outlined text-white">zoom_in</span>
-</div>
-</div>
-<!-- Gallery Item 4 -->
-<div class="group relative overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 aspect-video cursor-zoom-in transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20">
-<img alt="Notre équipe d'experts" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Deux mécaniciens travaillant ensemble sur un châssis" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdLdrNJ3C8y-TBVoiwYNr4W6Z14luPYOO0wM0ixzN_DIYGL6h0mDRlLzrLwJE0d5htkbCK1x2F11wLz9znEbWX2YEUg-2lDSlGmV-BcUpUsUtoe5TlhsHvC6sf9ZjaAwvWoVfADGCYAzCczwFGWhNmroYH_vorPMmaI9xSqqgH4QsrRpYNdSCGrHFFBiMxr6jNrAtEsxGEUKppBDoLbGsnPTr6d_t6RedTGShfkn5st4Irj24jhOctIFM8CmszB1udwaCcra9pwEYS"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-<span class="text-primary text-xs font-bold uppercase mb-1">Équipe</span>
-<h3 class="text-white font-bold text-lg">Nos Experts en action</h3>
-</div>
-<div class="absolute top-4 right-4 bg-white/10 backdrop-blur-md p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
-<span class="material-symbols-outlined text-white">zoom_in</span>
-</div>
-</div>
-<!-- Gallery Item 5 -->
-<div class="group relative overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 aspect-video cursor-zoom-in transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20">
-<img alt="Rénovation moteur" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Moteur haute performance entièrement rénové" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHfXKQL2j_waI9Cx4Pk6WuYAksB-xJdj6xX8mxs7ouZ4k7kOWQ4uq9wvASb47c-qNQ0oT9a7Q_HXhKwgRNAFW0VjoA5jIC2-j_VuXiuibwnqxK5Jy1MyUWmb-iHte2GmZK1Tbx2NPiTfBoiS5Cl-gG4vTuEu4A7QUGgLd6QSA1K8rIAYBxxH3MKJSs9fmsH5OOrLHGQaKiQirUn4X3PCukIuYZyOKr6oWR3G0ehneV9vGI2nyGkKDFgYk5N-DxHGSbq30VmnDx33Sc"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-<span class="text-accent-red text-xs font-bold uppercase mb-1">Réalisations</span>
-<h3 class="text-white font-bold text-lg">Rénovation Moteur</h3>
-</div>
-<div class="absolute top-4 right-4 bg-white/10 backdrop-blur-md p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
-<span class="material-symbols-outlined text-white">zoom_in</span>
-</div>
-</div>
-<!-- Gallery Item 6 -->
-<div class="group relative overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800 aspect-video cursor-zoom-in transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20">
-<img alt="Atelier carrosserie" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Cabine de peinture moderne pour carrosserie automobile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMnme84VkdOv_Ubr8sxDkq09VUP5hVTRlNddCntuI0uRTuEku9wjp1YqFeeUWq4OisYwmssMc8LJJ0jztfI4FWPI6ELOMcJU09uwya-vENCvArwC-xpstCI2WBIUU-ps8Qe6Pc92DTn3K5R3MhqQBZ1zfr7XDJRkfbi4U91Ub13clH2AJQSIiNl5mLMoON31DXpSpJMnUnzrvTYF1vdixUzlVfFwvZqbyuAeHtj-zpVxZhDiuMRvybZ1TS0XUcJzok0jNVialp8Ed3"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-<span class="text-primary text-xs font-bold uppercase mb-1">Atelier</span>
-<h3 class="text-white font-bold text-lg">Atelier Carrosserie</h3>
-</div>
-<div class="absolute top-4 right-4 bg-white/10 backdrop-blur-md p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
-<span class="material-symbols-outlined text-white">zoom_in</span>
-</div>
-</div>
-</div>
-</section>
-<!-- CTA Section -->
-<section class="bg-primary/10 border-y border-primary/20 py-16">
-<div class="max-w-4xl mx-auto px-4 text-center">
-<h2 class="text-3xl font-bold mb-6">Besoin d'une expertise auto ?</h2>
-<p class="text-slate-400 mb-8">Nos experts sont à votre disposition pour tout diagnostic ou réparation mécanique.</p>
-<div class="flex flex-col sm:flex-row gap-4 justify-center">
-<button class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-bold transition-all transition-all duration-300 active:scale-95 hover:shadow-lg">Prendre rendez-vous</button>
-<button class="bg-transparent border border-slate-700 hover:bg-slate-800 text-white px-8 py-3 rounded-lg font-bold transition-all transition-all duration-300 active:scale-95 hover:shadow-lg">Consulter les tarifs</button>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer Section -->
-<footer class="bg-slate-950 text-slate-400 py-16">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-<div class="col-span-1 md:col-span-1">
-<div class="flex items-center gap-2 mb-6">
-<span class="material-symbols-outlined text-primary text-3xl">minor_crash</span>
-<span class="text-xl font-bold text-white tracking-tight">Garage la Chapelle</span>
-</div>
-<p class="text-sm leading-relaxed mb-6">
-                        Votre partenaire de confiance pour la mécanique générale, le diagnostic et l'expertise automobile depuis plus de 15 ans.
-                    </p>
-<div class="flex gap-4">
-<a class="hover:text-primary" href="#"><span class="material-symbols-outlined">public</span></a>
-<a class="hover:text-primary" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
-<a class="hover:text-primary" href="#"><span class="material-symbols-outlined">share</span></a>
-</div>
-</div>
-<div>
-<h4 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Navigation</h4>
-<ul class="space-y-4 text-sm">
-<li><a class="hover:text-white transition-colors" href="index.html">Accueil</a></li>
-<li><a class="hover:text-white transition-colors" href="devis.html">Services</a></li>
-<li><a class="hover:text-white transition-colors" href="catalogue.html">Catalogue de Pièces</a></li>
-<li><a class="hover:text-white transition-colors" href="galerie.html">Galerie Photos</a></li>
-</ul>
-</div>
-<div>
-<h4 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Contact</h4>
-<ul class="space-y-4 text-sm">
-<li class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary text-sm mt-1">location_on</span>
-<span>123 Avenue de la Chapelle,<br/>75018 Paris</span>
-</li>
-<li class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-sm">phone_iphone</span>
-<span>01 40 00 00 00</span>
-</li>
-<li class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-sm">mail</span>
-<span>contact@garage-chapelle.fr</span>
-</li>
-</ul>
-</div>
-<div>
-<h4 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Newsletter</h4>
-<p class="text-sm mb-4">Recevez nos offres et conseils d'entretien.</p>
-<form class="flex gap-2">
-<input class="bg-slate-900 border-slate-800 rounded-lg flex-1 text-sm focus:ring-primary focus:border-primary" placeholder="Votre email" type="email"/>
-<button class="bg-primary text-white p-2 rounded-lg hover:bg-primary/90 transition-all transition-all duration-300 active:scale-95 hover:shadow-lg" type="submit">
-<span class="material-symbols-outlined">send</span>
-</button>
-</form>
-</div>
-</div>
-<div class="pt-8 border-t border-slate-900 text-xs"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-<div class="flex items-center gap-2 text-slate-400">
-<span class="material-symbols-outlined text-primary text-xl">verified_user</span>
-<span class="text-[10px] font-bold uppercase tracking-wider">Certifié Qualité Pro</span>
-</div>
-<div class="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-<p class="text-slate-500">© 2024 Garage la Chapelle. Tous droits réservés.</p>
-<div class="flex gap-4">
-<a class="hover:text-white transition-colors" href="#">Mentions Légales</a>
-<a class="hover:text-white transition-colors" href="#">Politique de Confidentialité</a>
-<a class="hover:text-white transition-colors" href="#">CGV</a>
-</div>
-</div>
-</div></div>
-</div>
-</footer>
-</body></html>
 
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+    <img id="lb-img" src="" alt="" />
+  </div>
+
+  <script>
+    function openLightbox(el) {
+      document.getElementById('lb-img').src = el.querySelector('img').src;
+      document.getElementById('lightbox').classList.add('open');
+    }
+    function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+    function filterGallery(el, cat) {
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        item.style.display = (cat === 'all' || item.dataset.cat === cat) ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+
+</html>

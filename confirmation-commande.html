@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Commande confirmée — Garage la Chapelle</title>
+    <meta name="description" content="Votre commande a bien été enregistrée. Merci pour votre confiance." />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="assets/css/mobile.css" />
+    <style>
+        /* ── Checkmark animation ─────────────────────── */
+        .success-circle {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981, #059669);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+            box-shadow: 0 12px 40px rgba(16, 185, 129, .35);
+            animation: popIn .5s cubic-bezier(.26, 1.45, .57, 1) both;
+        }
+
+        .success-circle .material-symbols-outlined {
+            font-size: 48px;
+            color: #fff;
+            font-variation-settings: 'FILL' 1;
+            animation: checkFade .4s .3s ease both;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes checkFade {
+            from {
+                opacity: 0;
+                transform: scale(.5);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* ── Order number badge ──────────────────────── */
+        .order-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            padding: .5rem 1rem;
+            border-radius: 12px;
+            background: rgba(17, 82, 212, .12);
+            border: 1px solid rgba(17, 82, 212, .3);
+            font-size: .88rem;
+            font-weight: 700;
+            color: var(--primary-light);
+            letter-spacing: .05em;
+            cursor: pointer;
+            transition: background .2s;
+        }
+
+        .order-badge:hover {
+            background: rgba(17, 82, 212, .2);
+        }
+
+        .order-badge .material-symbols-outlined {
+            font-size: 16px;
+        }
+
+        /* ── Hero section ────────────────────────────── */
+        .confirm-hero {
+            text-align: center;
+            padding: 2.5rem 1rem 1.5rem;
+            animation: fadeIn .4s ease both;
+        }
+
+        .confirm-hero h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: .4rem;
+        }
+
+        .confirm-hero p {
+            font-size: .9rem;
+            color: var(--text-2);
+            line-height: 1.5;
+            max-width: 360px;
+            margin: 0 auto .75rem;
+        }
+
+        /* ── Info sections ───────────────────────────── */
+        .grid-2 {
+            display: grid;
+            gap: 1rem;
+        }
+
+        @media(min-width: 900px) {
+            .grid-2 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* ── Steps ───────────────────────────────────── */
+        .next-steps {
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+        }
+
+        .next-step {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            padding: .875rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+        }
+
+        .step-num {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(17, 82, 212, .12);
+            border: 2px solid rgba(17, 82, 212, .3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .82rem;
+            font-weight: 800;
+            color: var(--primary-light);
+            flex-shrink: 0;
+        }
+
+        .step-text .st {
+            font-size: .88rem;
+            font-weight: 700;
+            color: var(--text);
+            display: block;
+        }
+
+        .step-text .sb {
+            font-size: .75rem;
+            color: var(--text-2);
+        }
+    </style>
+</head>
+
+<body>
+    <script src="assets/js/nav.js" data-page="cart" data-cart="0"></script>
+
+    <main class="page-content">
+
+        <!-- ── HERO ─── -->
+        <div class="confirm-hero">
+            <div class="success-circle">
+                <span class="material-symbols-outlined">check</span>
+            </div>
+            <h1>Commande confirmée&nbsp;! 🎉</h1>
+            <p>Merci pour votre confiance. Votre commande a bien été enregistrée et est maintenant en cours de
+                traitement.</p>
+            <div class="order-badge" id="order-badge" onclick="copyOrder()">
+                <span class="material-symbols-outlined">receipt_long</span>
+                <span id="order-id">CMD-2026-0343</span>
+                <span class="material-symbols-outlined" id="copy-icon" style="font-size:14px;color:var(--text-3)">content_copy</span>
+            </div>
+            <p style="font-size:.72rem;color:var(--text-3);margin-top:.5rem;">Cliquez pour copier le numéro</p>
+        </div>
+
+        <div class="grid-2">
+
+            <!-- ── RÉCAPITULATIF ─── -->
+            <div>
+                <div class="section-header"><span class="section-title">Récapitulatif</span></div>
+                <div class="order-summary" id="summary-items">
+                    <div class="summary-row">
+                        <span class="label">🔧 Alternateur — Peugeot 208</span>
+                        <span class="value">169,90 €</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="label">💡 Phare avant — Renault Clio IV</span>
+                        <span class="value">119,90 €</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="label">Livraison à domicile</span>
+                        <span class="value">9,90 €</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span class="label">Total payé</span>
+                        <span class="value">299,70 €</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3><span class="material-symbols-outlined">local_shipping</span> Livraison</h3>
+                    <div class="info-row">
+                        <span class="material-symbols-outlined">home</span>
+                        <span class="info-label">Adresse</span>
+                        <span class="info-value" id="delivery-addr">12 Rue de l'exemple, Paris 18e</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="material-symbols-outlined">schedule</span>
+                        <span class="info-label">Estimée</span>
+                        <span class="info-value" id="delivery-date">Vendredi 28 mars 2026</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="material-symbols-outlined">inventory_2</span>
+                        <span class="info-label">Mode</span>
+                        <span class="info-value" id="delivery-mode">Livraison à domicile</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── PROCHAINES ÉTAPES ─── -->
+            <div>
+                <div class="section-header"><span class="section-title">Prochaines étapes</span></div>
+                <div class="next-steps">
+                    <div class="next-step">
+                        <div class="step-num">1</div>
+                        <div class="step-text">
+                            <span class="st">Email de confirmation</span>
+                            <span class="sb">Envoyé à votre adresse dans quelques minutes</span>
+                        </div>
+                    </div>
+                    <div class="next-step">
+                        <div class="step-num">2</div>
+                        <div class="step-text">
+                            <span class="st">Préparation de votre commande</span>
+                            <span class="sb">Sous 24h ouvrées</span>
+                        </div>
+                    </div>
+                    <div class="next-step">
+                        <div class="step-num">3</div>
+                        <div class="step-text">
+                            <span class="st">Expédition</span>
+                            <span class="sb">SMS et email avec lien de suivi</span>
+                        </div>
+                    </div>
+                    <div class="next-step">
+                        <div class="step-num">4</div>
+                        <div class="step-text">
+                            <span class="st">Livraison à votre domicile</span>
+                            <span class="sb">Ven. 28 mars · Créneau à choisir</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert info" style="margin-top:1rem">
+                    <span class="material-symbols-outlined">notifications_active</span>
+                    Vous recevrez un <strong>SMS de confirmation</strong> au numéro renseigné lors de la commande.
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ── ACTIONS ─── -->
+        <div style="display:flex;gap:.75rem;margin-top:1.25rem;flex-wrap:wrap;">
+            <a class="btn-primary" href="suivi-commande.html" style="flex:1;justify-content:center;min-width:160px;">
+                <span class="material-symbols-outlined">local_shipping</span>
+                Suivre ma commande
+            </a>
+            <a class="btn-secondary" href="index.html" style="flex:1;justify-content:center;min-width:160px;">
+                <span class="material-symbols-outlined">home</span>
+                Retour à l'accueil
+            </a>
+        </div>
+
+        <!-- ── CROSS-SELL ─── -->
+        <div class="section-header" style="margin-top:1.75rem;"><span class="section-title">Besoin d'autre chose
+                ?</span></div>
+        <div class="quick-actions">
+            <a class="quick-action-card" href="rendez-vous.html">
+                <div class="card-icon"><span class="material-symbols-outlined">calendar_month</span></div>
+                <div class="card-title">Prendre RDV</div>
+                <div class="card-desc">Pour poser vos pièces</div>
+            </a>
+            <a class="quick-action-card" href="catalogue.html">
+                <div class="card-icon"><span class="material-symbols-outlined">inventory_2</span></div>
+                <div class="card-title">Catalogue</div>
+                <div class="card-desc">Continuer mes achats</div>
+            </a>
+            <a class="quick-action-card accent-red" href="devis.html">
+                <div class="card-icon"><span class="material-symbols-outlined">request_quote</span></div>
+                <div class="card-title">Devis gratuit</div>
+                <div class="card-desc">Pour d'autres travaux</div>
+            </a>
+            <a class="quick-action-card accent-green" href="contact.html">
+                <div class="card-icon"><span class="material-symbols-outlined">headset_mic</span></div>
+                <div class="card-title">Assistance</div>
+                <div class="card-desc">Une question ?</div>
+            </a>
+        </div>
+
+    </main>
+
+    <script>
+        // Read params and update page
+        function getParams() {
+            return Object.fromEntries(new URLSearchParams(window.location.search).entries());
+        }
+
+        function setOrderOnPage(orderId, total) {
+            if (orderId) {
+                const idEl = document.getElementById('order-id');
+                idEl.textContent = orderId;
+            }
+            if (total) {
+                const totalEl = document.querySelector('.order-summary .total .value');
+                if (totalEl) totalEl.textContent = total.replace('.', ',') + ' €';
+                const payTotalEls = document.querySelectorAll('#pay-amount');
+                payTotalEls.forEach(e => e.textContent = total.replace('.', ',') + ' €');
+            }
+        }
+
+        let CURRENT_ORDER_ID = 'CMD-2026-0343';
+
+        function renderOrderItems(items, delivery, deliveryPrice) {
+            const summaryEl = document.getElementById('summary-items');
+            if (!summaryEl || !items || items.length === 0) return;
+
+            let html = '';
+            items.forEach(item => {
+                html += `<div class="summary-row">
+                    <span class="label">${item.name} × ${item.qty}</span>
+                    <span class="value">${item.price}</span>
+                </div>`;
+            });
+
+            // Add delivery
+            if (delivery) {
+                const delPrice = deliveryPrice === '0' || deliveryPrice === 'Gratuit' ? 'Gratuit' : deliveryPrice + ' €';
+                html += `<div class="summary-row">
+                    <span class="label">${delivery}</span>
+                    <span class="value" style="color:${deliveryPrice === '0' ? 'var(--accent-green)' : ''}">${delPrice}</span>
+                </div>`;
+            }
+
+            // Add total (read from page)
+            const totalEl = document.querySelector('.order-summary .total .value');
+            if (totalEl) {
+                html += `<div class="summary-row total">
+                    <span class="label">Total payé</span>
+                    <span class="value">${totalEl.textContent}</span>
+                </div>`;
+            }
+
+            summaryEl.innerHTML = html;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = getParams();
+            if (params.order) CURRENT_ORDER_ID = params.order;
+            if (params.total) setOrderOnPage(CURRENT_ORDER_ID, params.total);
+            else setOrderOnPage(CURRENT_ORDER_ID);
+
+            // Update delivery mode
+            if (params.delivery) {
+                const delModeEl = document.getElementById('delivery-mode');
+                if (delModeEl) delModeEl.textContent = params.delivery;
+            }
+
+            // Render items from params
+            if (params.items) {
+                try {
+                    const items = JSON.parse(decodeURIComponent(params.items));
+                    renderOrderItems(items, params.delivery, params.deliveryPrice);
+                } catch (e) {
+                    console.log('Could not parse items:', e);
+                }
+            }
+        });
+
+        function copyOrder() {
+            navigator.clipboard.writeText(CURRENT_ORDER_ID).then(() => {
+                const icon = document.getElementById('copy-icon');
+                icon.textContent = 'check';
+                icon.style.color = 'var(--accent-green)';
+                setTimeout(() => { icon.textContent = 'content_copy'; icon.style.color = ''; }, 2000);
+            });
+        }
+    </script>
+</body>
+
+</html>

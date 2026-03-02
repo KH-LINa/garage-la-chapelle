@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Créer un profil — Garage la Chapelle</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="assets/css/mobile.css" />
+</head>
+
+<body>
+    <script src="assets/js/nav.js" data-page="creer-profil" data-cart="2"></script>
+
+    <main class="page-content">
+        <div class="page-title-block">
+            <h1>Créer un compte</h1>
+            <p>Rejoignez-nous pour gérer vos devis, factures et suivre vos réparations.</p>
+        </div>
+
+        <form style="display:grid;gap:1.5rem;"
+            onsubmit="event.preventDefault(); alert('✅ Votre compte a été créé avec succès !\n\nVous allez être redirigé.'); window.location.href='compte.html';">
+
+            <div class="form-block">
+                <h3>Informations Personnelles</h3>
+                <div class="form-group">
+                    <label class="form-label" for="prenom">Prénom *</label>
+                    <input type="text" id="prenom" class="form-input" placeholder="Jean" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="nom">Nom *</label>
+                    <input type="text" id="nom" class="form-input" placeholder="Dupont" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="email">Email *</label>
+                    <input type="email" id="email" class="form-input" placeholder="jean@email.fr" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="tel">Téléphone</label>
+                    <input type="tel" id="tel" class="form-input" placeholder="06 12 34 56 78" />
+                </div>
+            </div>
+
+            <div class="form-block">
+                <h3>Sécurité</h3>
+                <div class="form-group">
+                    <label class="form-label" for="password">Mot de passe *</label>
+                    <input type="password" id="password" class="form-input" placeholder="••••••••" required
+                        minlength="8" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="confirm_password">Confirmez le mot de passe *</label>
+                    <input type="password" id="confirm_password" class="form-input" placeholder="••••••••" required
+                        minlength="8" />
+                </div>
+            </div>
+
+            <button type="submit" class="btn-primary btn-full">
+                <span class="material-symbols-outlined">person_add</span>
+                Créer mon compte
+            </button>
+
+            <p style="text-align:center; font-size:0.9rem; margin-top:1rem; color:var(--text-2);">
+                Vous avez déjà un compte ? <a href="compte.html"
+                    style="color:var(--primary-light); font-weight:600; text-decoration:none;">Connectez-vous</a>
+            </p>
+
+        </form>
+    </main>
+
+    <script>
+        // Simple password validation
+        const form = document.querySelector('form');
+        const pwd = document.getElementById('password');
+        const confirmPwd = document.getElementById('confirm_password');
+
+        form.addEventListener('submit', function (e) {
+            if (pwd.value !== confirmPwd.value) {
+                e.preventDefault();
+                alert("Les mots de passe ne correspondent pas.");
+            }
+        });
+    </script>
+</body>
+
+</html>

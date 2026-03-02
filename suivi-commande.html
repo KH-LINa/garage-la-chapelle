@@ -1,235 +1,159 @@
 ﻿<!DOCTYPE html>
+<html lang="fr">
 
-<html class="dark" lang="fr"><head>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#1152d4",
-                        "accent-red": "#ef4444",
-                        "whatsapp": "#25D366",
-                        "background-light": "#f6f6f8",
-                        "background-dark": "#101622",
-                    },
-                    fontFamily: {
-                        "display": ["Space Grotesk", "sans-serif"]
-                    },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
-                },
-            },
-        }
-    </script>
-<style>
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-    </style>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Suivi de commande — Garage la Chapelle</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="assets/css/mobile.css" />
+  <style>
+    .tracking-hero {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: var(--radius-xl);
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .tracking-hero .lbl {
+      font-size: .7rem;
+      color: rgba(255, 255, 255, .7);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+    }
+
+    .tracking-hero .val {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .tracking-hero .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .3rem .75rem;
+      background: rgba(255, 255, 255, .15);
+      border-radius: 999px;
+      font-size: .75rem;
+      font-weight: 700;
+      color: #fff;
+      margin-top: .5rem;
+    }
+
+    .tracking-hero .pill .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #86efac;
+      animation: pulse-dot 2s infinite;
+    }
+  </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
-<!-- Top Navigation Bar -->
-<!-- SITE NAV UNIFIED -->
-<style>
-.site-nav-wrapper{position:sticky;top:0;z-index:100;background:rgba(16,22,34,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(17,82,212,.2);}
-.site-nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.5rem;}
-.site-nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:#fff;}
-.site-nav-logo .icon{width:40px;height:40px;background:#1152d4;border-radius:10px;display:flex;align-items:center;justify-content:center;}
-.site-nav-logo span.material-symbols-outlined{font-size:22px;color:#fff;}
-.site-nav-logo strong{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;color:#fff;}
-.site-nav-links{display:flex;align-items:center;gap:1.5rem;}
-.site-nav-links a{font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:500;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s;}
-.site-nav-links a:hover,.site-nav-links a.active{color:#fff;}
-.site-nav-links a.active{color:#5b8fff;}
-.site-nav-actions{display:flex;align-items:center;gap:.5rem;}
-.site-nav-cart{position:relative;width:38px;height:38px;background:rgba(17,82,212,.15);border-radius:9px;display:flex;align-items:center;justify-content:center;text-decoration:none;border:none;cursor:pointer;}
-.site-nav-cart .material-symbols-outlined{font-size:20px;color:#5b8fff;}
-.site-nav-cart .badge{position:absolute;top:-5px;right:-5px;background:#dc2626;color:#fff;font-size:10px;font-weight:700;border-radius:9999px;padding:1px 5px;}
-.site-nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;}
-.site-nav-hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s;}
-.site-nav-mobile{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,12,22,.98);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;}
-.site-nav-mobile.open{display:flex;}
-.site-nav-mobile a{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:600;color:#fff;text-decoration:none;padding:.5rem 2rem;border-radius:12px;transition:background .2s;}
-.site-nav-mobile a:hover{background:rgba(17,82,212,.2);}
-.site-nav-mobile .close-btn{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;}
-@media(max-width:768px){
-  .site-nav-links{display:none;}
-  .site-nav-hamburger{display:flex;}
-}
-</style>
-<nav class="site-nav-wrapper">
-  <div class="site-nav-inner">
-    <a class="site-nav-logo" href="index.html">
-      <div class="icon"><span class="material-symbols-outlined">directions_car</span></div>
-      <strong>Garage la Chapelle</strong>
-    </a>
-    <div class="site-nav-links">
-      <a href="index.html">Accueil</a>
-      <a href="catalogue.html">Catalogue</a>
-      <a href="devis.html">Devis</a>
-      <a href="rendez-vous.html">Rendez-vous</a>
-      <a href="contact.html">Contact</a>
-      <a href="a-propos.html">À Propos</a>
-      <a href="blog.html">Blog</a>
-      <a href="galerie.html">Galerie</a>
-    </div>
-    <div class="site-nav-actions">
-      <a class="site-nav-cart" href="panier.html" title="Mon panier">
-        <span class="material-symbols-outlined">shopping_cart</span>
-        <span class="badge">2</span>
-      </a>
-      <button class="site-nav-hamburger" onclick="document.getElementById('mobile-nav').classList.toggle('open')" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-</nav>
-<div id="mobile-nav" class="site-nav-mobile">
-  <button class="close-btn" onclick="document.getElementById('mobile-nav').classList.remove('open')">✕</button>
-  <a href="index.html">Accueil</a>
-  <a href="catalogue.html">Catalogue</a>
-  <a href="devis.html">Devis</a>
-  <a href="rendez-vous.html">Rendez-vous</a>
-  <a href="contact.html">Contact</a>
-  <a href="a-propos.html">À Propos</a>
-  <a href="blog.html">Blog</a>
-  <a href="galerie.html">Galerie</a>
-  <a href="panier.html">Mon Panier</a>
-  <a href="suivi-commande.html">Suivi de commande</a>
-</div>
-<!-- END SITE NAV -->
-<!-- Main Content -->
-<main class="flex-grow flex flex-col items-center justify-center px-6 py-12">
-<div class="w-full max-w-xl">
-<!-- Header Section -->
-<div class="text-center mb-10">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-red/10 text-accent-red text-xs font-bold uppercase tracking-wider mb-4 border border-accent-red/20">
-<span class="size-2 rounded-full bg-accent-red animate-pulse"></span>
-                    Suivi en temps réel
-                </div>
-<h2 class="text-4xl font-bold mb-4">Suivi de votre commande</h2>
-<p class="text-slate-500 dark:text-slate-400 text-lg">
-                    Entrez vos informations pour connaître l'état d'avancement de votre prestation mécanique.
-                </p>
-</div>
-<!-- Tracking Card -->
-<div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl shadow-2xl backdrop-blur-sm">
-<div class="aspect-video w-full rounded-xl mb-8 overflow-hidden relative group">
-<div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent z-10"></div>
-<img alt="Workshop Banner" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Modern automotive workshop with high tech equipment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzunfVqH_hlnGOoUrXAljq0z9Jo-81NHNCITvL9a65zsMz4askOWSRzxjQnFBZG_ea_v7trq3A9NUhPG04-oB-RGgPIdt13J1jHCVtc0y3D1SaYA7B7i64NZmaAt6hkXbnecx1-aA4Ob9kuPXyWaVQrbosE26Q7oQn3JLvSuhM7d8U522zqa_vwWvRS5aLUg2cs2yXKdL-olRptFEBTj2PyROIG2AvYShLDItxhIVCawSrqPsRRAQ-H_PU0-k6WqvO3Gu4hwR-_K0Q"/>
-<div class="absolute bottom-4 left-4 z-20 flex items-center gap-3">
-<div class="size-10 rounded-full bg-primary flex items-center justify-center text-white">
-<span class="material-symbols-outlined">build</span>
-</div>
-<div>
-<p class="text-white font-bold leading-none">Détails de suivi</p>
-<p class="text-slate-300 text-xs">Mise à jour automatique</p>
-</div>
-</div><div class="absolute bottom-4 right-4 z-20">
-<a class="flex items-center gap-2 px-3 py-2 bg-whatsapp hover:bg-whatsapp/90 text-white text-xs font-bold rounded-lg transition-all shadow-lg shadow-whatsapp/20 backdrop-blur-sm" href="#">
-<svg class="size-4" fill="currentColor" viewbox="0 0 24 24">
-<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
-</svg>
-        WhatsApp
-    </a>
-</div>
-</div>
-<form class="space-y-6">
-<div class="space-y-2">
-<label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Numéro de commande</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">tag</span>
-<input class="w-full pl-12 pr-4 py-4 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-500" placeholder="Ex: ORD-12345" type="text"/>
-</div>
-</div>
-<div class="space-y-2">
-<label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Adresse Email</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">mail</span>
-<input class="w-full pl-12 pr-4 py-4 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-500" placeholder="votre@email.com" type="email"/>
-</div>
-</div>
-<!-- SMS Notifications Module -->
-<div class="space-y-4 pt-2 border-t border-slate-200/50 dark:border-slate-800/50">
-<div class="flex items-center gap-2 mb-2">
-<span class="material-symbols-outlined text-primary text-xl">sms</span>
-<h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">Notifications SMS</h3>
-</div>
-<div class="space-y-2">
-<label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Numéro de téléphone (optionnel)</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">smartphone</span>
-<input class="w-full pl-12 pr-4 py-4 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-500" placeholder="06 00 00 00 00" type="tel"/>
-</div>
-</div>
-<label class="flex items-start gap-3 cursor-pointer group">
-<div class="relative flex items-center">
-<input class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 checked:bg-primary checked:border-primary transition-all" type="checkbox"/>
-<span class="material-symbols-outlined absolute text-white text-sm scale-0 peer-checked:scale-100 transition-transform left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">check</span>
-</div>
-<span class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-            Je souhaite recevoir des notifications par SMS concernant l'avancement de ma prestation chez <span class="text-slate-900 dark:text-slate-200 font-medium">Garage de la Chapelle</span>.
-        </span>
-</label>
-</div><button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/30 transition-all active:scale-[0.98]" type="button">
-<span class="material-symbols-outlined">analytics</span>
-                        Suivre ma commande
-                    </button>
-</form>
-<div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-green-500">verified_user</span>
-                        Paiement Sécurisé
-                    </div>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary">support_agent</span>
-                        Aide 24/7
-                    </div>
-</div>
-</div>
-<p class="text-center mt-8 text-sm text-slate-500">
-                Besoin d'aide ? <a class="text-primary font-medium hover:underline underline-offset-4" href="contact.html">Contactez notre support</a>
-</p>
-</div>
-</main>
-<!-- Footer -->
-<footer class="w-full py-10 px-6 border-t border-slate-200 dark:border-slate-800">
-<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-<div class="flex items-center gap-4">
-<div class="flex flex-col">
-<p class="text-sm font-bold text-slate-900 dark:text-white">Garage la Chapelle © 2024</p>
-<p class="text-xs text-slate-500">Expertise automobile de proximité</p>
-</div>
-</div>
-<!-- Quality Badge -->
-<div class="flex items-center gap-3 bg-slate-100 dark:bg-slate-800/50 px-5 py-2.5 rounded-full border border-slate-200 dark:border-slate-700">
-<div class="flex -space-x-1">
-<span class="material-symbols-outlined text-primary fill-1">star</span>
-<span class="material-symbols-outlined text-primary fill-1">star</span>
-<span class="material-symbols-outlined text-primary fill-1">star</span>
-<span class="material-symbols-outlined text-primary fill-1">star</span>
-<span class="material-symbols-outlined text-primary fill-1">star</span>
-</div>
-<div class="h-4 w-px bg-slate-300 dark:bg-slate-700 mx-1"></div>
-<span class="text-xs font-bold text-slate-700 dark:text-slate-300 tracking-tight">CERTIFIÉ QUALITÉ PRO</span>
-</div>
-<div class="flex items-center gap-6">
-<a class="text-xs text-slate-500 hover:text-primary" href="#">Mentions Légales</a>
-<a class="text-xs text-slate-500 hover:text-primary" href="#">Confidentialité</a>
-<div class="flex items-center gap-3 ml-4">
-<a class="text-slate-400 hover:text-primary transition-colors" href="#">
-<svg class="size-5" fill="currentColor" viewbox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
-</a>
-</div>
-</div>
-</div>
-</footer>
-</body></html>
 
+<body>
+  <script src="assets/js/nav.js" data-page="tracking" data-cart="2"></script>
+
+  <main class="page-content">
+
+    <div class="page-title-block">
+      <h1>Suivi de commande</h1>
+      <p>Entrez votre numéro de commande ou retrouvez vos commandes dans votre <a href="espace-client.html"
+          style="color:var(--primary-light)">espace client</a>.</p>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="form-block" style="margin-bottom:1rem;">
+      <div style="display:flex;gap:.5rem;">
+        <input type="text" class="form-input" placeholder="N° de commande…" value="CMD-2026-0342" style="flex:1;" />
+        <button class="btn-primary" style="padding:.75rem 1rem;">
+          <span class="material-symbols-outlined">search</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ORDER STATUS -->
+    <div class="tracking-hero">
+      <span class="lbl">Commande N°</span>
+      <div class="val">CMD-2026-0342</div>
+      <div class="pill"><span class="dot"></span>Commande en cours de préparation</div>
+      <div style="margin-top:.75rem;font-size:.8rem;color:rgba(255,255,255,.75)">
+        Livraison estimée : <strong style="color:#fff">Vendredi 28 mars 2026</strong>
+      </div>
+    </div>
+
+    <!-- LAYOUT RESPONSIVE -->
+    <div class="tracking-layout">
+      <div>
+        <div class="section-header"><span class="section-title">Suivi de livraison</span></div>
+        <div class="timeline">
+          <div class="timeline-item done">
+            <div class="timeline-dot"><span class="material-symbols-outlined">check</span></div>
+            <div class="timeline-content">
+              <div class="timeline-title">Commande confirmée</div>
+              <div class="timeline-date">Lun 24 mars · 14h32</div>
+            </div>
+          </div>
+          <div class="timeline-item done">
+            <div class="timeline-dot"><span class="material-symbols-outlined">check</span></div>
+            <div class="timeline-content">
+              <div class="timeline-title">Paiement validé</div>
+              <div class="timeline-date">Lun 24 mars · 14h35</div>
+            </div>
+          </div>
+          <div class="timeline-item done">
+            <div class="timeline-dot"><span class="material-symbols-outlined">check</span></div>
+            <div class="timeline-content">
+              <div class="timeline-title">Commande en cours de préparation</div>
+              <div class="timeline-date">Mar 25 mars · 09h15</div>
+            </div>
+          </div>
+          <div class="timeline-item active">
+            <div class="timeline-dot"><span class="material-symbols-outlined">local_shipping</span></div>
+            <div class="timeline-content">
+              <div class="timeline-title">En cours de livraison</div>
+              <div class="timeline-date">Jeu 27 mars · En transit</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"><span class="material-symbols-outlined">home</span></div>
+            <div class="timeline-content">
+              <div class="timeline-title">Livré</div>
+              <div class="timeline-date">Ven 28 mars (estimé)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="info-card">
+          <h3><span class="material-symbols-outlined">inventory_2</span> Détails commande</h3>
+          <div class="info-row"><span class="material-symbols-outlined">category</span><span
+              class="info-label">Alternateur</span><span class="info-value">169,90 €</span></div>
+          <div class="info-row"><span class="material-symbols-outlined">category</span><span class="info-label">Phare
+              avant</span><span class="info-value">119,90 €</span></div>
+          <div class="info-row"><span class="material-symbols-outlined">local_shipping</span><span
+              class="info-label">Livraison</span><span class="info-value">9,90 €</span></div>
+          <div class="info-row" style="padding-top:.75rem;margin-top:.25rem;border-top:1px solid var(--border)">
+            <span class="material-symbols-outlined">receipt</span><span class="info-label">Total</span>
+            <span class="info-value" style="font-weight:800;color:var(--primary-light)">299,70 €</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:.75rem;">
+          <a class="btn-secondary" href="contact.html" style="flex:1;justify-content:center;"><span
+              class="material-symbols-outlined">headset_mic</span> Assistance</a>
+          <a class="btn-primary" href="https://wa.me/33123456789?text=Commande%20CMD-2026-0342" target="_blank"
+            style="flex:1;justify-content:center;background:#25d366"><span class="material-symbols-outlined">chat</span>
+            WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</body>
+
+</html>

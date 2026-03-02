@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mes rendez-vous — Garage la Chapelle</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="assets/css/mobile.css" />
+  <style>
+    .appt-card { background: var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; margin-bottom:1rem; }
+    .appt-row { display:flex; align-items:center; gap:.5rem; margin-bottom:.25rem; }
+    .appt-label { font-weight:700; width:120px; }
+  </style>
+</head>
+<body>
+  <script src="assets/js/nav.js" data-page="profile" data-cart="0"></script>
+  <main class="page-content">
+    <div class="page-title-block">
+      <h1>Mes rendez-vous</h1>
+      <p>Vous trouverez ci-dessous la liste de vos prises de rendez-vous.</p>
+    </div>
+    <div id="appointments-container"></div>
+    <div id="no-appointments" style="display:none; text-align:center; color:var(--text-2);">Aucun rendez-vous pour l'instant.</div>
+  </main>
+  <script>
+    function renderAppointments() {
+      const container = document.getElementById('appointments-container');
+      const appts = JSON.parse(localStorage.getItem('appointments')||'[]');
+      if (!appts || appts.length===0) {
+        document.getElementById('no-appointments').style.display='block';
+        return;
+      }
+      appts.forEach(a=>{
+        const card = document.createElement('div'); card.className='appt-card';
+        card.innerHTML = `
+          <div class="appt-row"><span class="appt-label">Service:</span>${a.service}</div>
+          <div class="appt-row"><span class="appt-label">Date:</span>${a.date} à ${a.time}</div>
+          <div class="appt-row"><span class="appt-label">Client:</span>${a.first} ${a.last}</div>
+          <div class="appt-row"><span class="appt-label">Téléphone:</span>${a.phone}</div>
+          ${a.email?`<div class="appt-row"><span class="appt-label">Email:</span>${a.email}</div>`:''}
+          ${a.vehicle?`<div class="appt-row"><span class="appt-label">Véhicule:</span>${a.vehicle}</div>`:''}
+          ${a.problem?`<div class="appt-row"><span class="appt-label">Problème:</span>${a.problem}</div>`:''}
+          <div class="appt-row"><span class="appt-label">Enregistré:</span>${new Date(a.created).toLocaleString()}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+    document.addEventListener('DOMContentLoaded', renderAppointments);
+  </script>
+</body>
+</html>

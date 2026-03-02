@@ -1,459 +1,99 @@
 ﻿<!DOCTYPE html>
+<html lang="fr">
 
-<html class="dark" lang="fr"><head>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Blog &amp; Conseils Auto - Garage la Chapelle</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#1152d4",
-                        "background-light": "#f6f6f8",
-                        "background-dark": "#101622",
-                    },
-                    fontFamily: {
-                        "display": ["Space Grotesk", "sans-serif"],
-                        "sans": ["Noto Sans", "sans-serif"]
-                    },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
-                },
-            },
-        }
-    </script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Blog & Conseils Auto — Garage la Chapelle</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="assets/css/mobile.css" />
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-sans">
-<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-<!-- SITE NAV UNIFIED -->
-<style>
-.site-nav-wrapper{position:sticky;top:0;z-index:100;background:rgba(16,22,34,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(17,82,212,.2);}
-.site-nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.5rem;}
-.site-nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:#fff;}
-.site-nav-logo .icon{width:40px;height:40px;background:#1152d4;border-radius:10px;display:flex;align-items:center;justify-content:center;}
-.site-nav-logo span.material-symbols-outlined{font-size:22px;color:#fff;}
-.site-nav-logo strong{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;color:#fff;}
-.site-nav-links{display:flex;align-items:center;gap:1.5rem;}
-.site-nav-links a{font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:500;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s;}
-.site-nav-links a:hover,.site-nav-links a.active{color:#fff;}
-.site-nav-links a.active{color:#5b8fff;}
-.site-nav-actions{display:flex;align-items:center;gap:.5rem;}
-.site-nav-cart{position:relative;width:38px;height:38px;background:rgba(17,82,212,.15);border-radius:9px;display:flex;align-items:center;justify-content:center;text-decoration:none;border:none;cursor:pointer;}
-.site-nav-cart .material-symbols-outlined{font-size:20px;color:#5b8fff;}
-.site-nav-cart .badge{position:absolute;top:-5px;right:-5px;background:#dc2626;color:#fff;font-size:10px;font-weight:700;border-radius:9999px;padding:1px 5px;}
-.site-nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;}
-.site-nav-hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s;}
-.site-nav-mobile{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,12,22,.98);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;}
-.site-nav-mobile.open{display:flex;}
-.site-nav-mobile a{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:600;color:#fff;text-decoration:none;padding:.5rem 2rem;border-radius:12px;transition:background .2s;}
-.site-nav-mobile a:hover{background:rgba(17,82,212,.2);}
-.site-nav-mobile .close-btn{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;}
-@media(max-width:768px){
-  .site-nav-links{display:none;}
-  .site-nav-hamburger{display:flex;}
-}
-</style>
-<nav class="site-nav-wrapper">
-  <div class="site-nav-inner">
-    <a class="site-nav-logo" href="index.html">
-      <div class="icon"><span class="material-symbols-outlined">directions_car</span></div>
-      <strong>Garage la Chapelle</strong>
-    </a>
-    <div class="site-nav-links">
-      <a href="index.html">Accueil</a>
-      <a href="catalogue.html">Catalogue</a>
-      <a href="devis.html">Devis</a>
-      <a href="rendez-vous.html">Rendez-vous</a>
-      <a href="contact.html">Contact</a>
-      <a href="a-propos.html">À Propos</a>
-      <a href="blog.html">Blog</a>
-      <a href="galerie.html">Galerie</a>
+
+<body>
+  <script src="assets/js/nav.js" data-page="blog" data-cart="2"></script>
+
+  <main class="page-content">
+
+    <div class="page-title-block">
+      <h1>Blog & Conseils</h1>
+      <p>Nos experts partagent leurs astuces pour prendre soin de votre véhicule.</p>
     </div>
-    <div class="site-nav-actions">
-      <a class="site-nav-cart" href="panier.html" title="Mon panier">
-        <span class="material-symbols-outlined">shopping_cart</span>
-        <span class="badge">2</span>
+
+    <div class="blog-grid">
+      <a class="article-card" href="blog-freins.html">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtORprCb5M_pFPItn6IMftz53p6FGXMtzcvVcyeYHR93IYYpFvyX7YxKYNWC-N6ep7MTXc3nB2ChOHz1c4KFXT9pJ4KGOR9Q_QH2P8wDNW2J_ybdmcT_VibMI967rglNWdx4eaXfzHYiRmY7Wc3qoSYh__jcoyS8ptd8yT9McxhSDJ-7N3IidC6c6bZqeQclE9GYOWLLDTSNGe-6KT_gaslliTju25xdHYZKDzucE6yoqrhLPukq4a6uxdYMAweWxRE3ZGVJZi-SLK"
+          alt="Freins" />
+        <div class="article-body">
+          <div class="article-tag">★ À la une · Sécurité</div>
+          <div class="article-title">Entretien des freins : quand faut-il vraiment s'inquiéter ?</div>
+          <div class="article-excerpt">Les signes avant-coureurs d'une usure excessive de vos plaquettes et disques de
+            frein.</div>
+          <div class="article-meta"><span>📅 15 mars 2026</span><span style="color:var(--primary-light)">Lire →</span>
+          </div>
+        </div>
       </a>
-      <button class="site-nav-hamburger" onclick="document.getElementById('mobile-nav').classList.toggle('open')" aria-label="Menu">
-        <span></span><span></span><span></span>
+
+      <a class="article-card" href="blog-article.html">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqZyXHGAwNlFdMj4E_1Nj7Kx7Q8oioUcAOCTd_L2x56GGXYfRCc-JSIPoql-T28BMHAQ0V7FYUK-Eg9PxceJiY3wvli2uDWlaBOIPtqF4Ui2ZVSck9Pj25BMiC3FJIler8qLlyxoi8a5Qa_od-Cp9QQk5u2EypjndqQHp1vd9sja3YNA9Wzb4wyac2xWTaeTL1nAaYzx70YShdspV-Z-eet-N2cC3wVPx9AnrZzuA4S1eYwgc4VTZXl8kv-sNxk4QXrlYTT739M5M1"
+          alt="Vidange" />
+        <div class="article-body">
+          <div class="article-tag">Entretien</div>
+          <div class="article-title">La vidange moteur : le secret de la longévité</div>
+          <div class="article-excerpt">Pourquoi changer son huile régulièrement ? L'impact direct sur votre moteur.
+          </div>
+          <div class="article-meta"><span>📅 8 mars 2026</span><span style="color:var(--primary-light)">Lire →</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="article-card" href="blog-article.html">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu0Qo6vIwOUoytOhFdD8TXJkxU-b-lVqIl_tAWS4xT69M2YR54-nBdI4Y4C-_DFegY0pA-vGlPl2e5ZO50UUg4_MWKmLjstyyE9ppVQ3v7ulLCw7XsEP-LoBAb_aP2wNX72Mp8Qw1DIt01PpTeETfQ12UW2csjHSGgSH2dcCwjo8xKzExZylxEh_DmXwM66jl1glggBByqh0BKqa-qp1TW4tPN4Lw_OCqYq2rtFRY3votdu8a6RR5LQEDFubYx6jytM6kZliz1yrgL"
+          alt="Contrôle technique" />
+        <div class="article-body">
+          <div class="article-tag">Conseils</div>
+          <div class="article-title">Préparer son contrôle technique sans stress</div>
+          <div class="article-excerpt">Notre check-list des 10 points essentiels à vérifier avant le jour J.</div>
+          <div class="article-meta"><span>📅 1 mars 2026</span><span style="color:var(--primary-light)">Lire →</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="article-card" href="blog-article.html">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtORprCb5M_pFPItn6IMftz53p6FGXMtzcvVcyeYHR93IYYpFvyX7YxKYNWC-N6ep7MTXc3nB2ChOHz1c4KFXT9pJ4KGOR9Q_QH2P8wDNW2J_ybdmcT_VibMI967rglNWdx4eaXfzHYiRmY7Wc3qoSYh__jcoyS8ptd8yT9McxhSDJ-7N3IidC6c6bZqeQclE9GYOWLLDTSNGe-6KT_gaslliTju25xdHYZKDzucE6yoqrhLPukq4a6uxdYMAweWxRE3ZGVJZi-SLK"
+          alt="Pneus" />
+        <div class="article-body">
+          <div class="article-tag">Sécurité</div>
+          <div class="article-title">Quand changer ses pneus ? Les 5 signes</div>
+          <div class="article-excerpt">Sculptures, craquelures, vieillissement... Quand faut-il agir ?</div>
+          <div class="article-meta"><span>📅 22 fév. 2026</span><span style="color:var(--primary-light)">Lire →</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="form-block"
+      style="margin-top:1rem;background:linear-gradient(135deg,rgba(17,82,212,0.15),rgba(17,82,212,0.05));border-color:var(--border-p);">
+      <h3>📬 Rester informé</h3>
+      <p style="font-size:.8rem;color:var(--text-2);margin-bottom:.75rem;">Recevez nos meilleurs conseils directement
+        dans votre boîte mail.</p>
+      <div class="form-group">
+        <input type="email" class="form-input" placeholder="votre@email.com" />
+      </div>
+      <button class="btn-primary btn-full" onclick="alert('✅ Inscription confirmée !')">
+        <span class="material-symbols-outlined">mail</span>
+        S'inscrire gratuitement
       </button>
     </div>
-  </div>
-</nav>
-<div id="mobile-nav" class="site-nav-mobile">
-  <button class="close-btn" onclick="document.getElementById('mobile-nav').classList.remove('open')">✕</button>
-  <a href="index.html">Accueil</a>
-  <a href="catalogue.html">Catalogue</a>
-  <a href="devis.html">Devis</a>
-  <a href="rendez-vous.html">Rendez-vous</a>
-  <a href="contact.html">Contact</a>
-  <a href="a-propos.html">À Propos</a>
-  <a href="blog.html">Blog</a>
-  <a href="galerie.html">Galerie</a>
-  <a href="panier.html">Mon Panier</a>
-  <a href="suivi-commande.html">Suivi de commande</a>
-</div>
-<!-- END SITE NAV -->
-<!-- Hero Section -->
-<section class="relative w-full py-12 lg:py-20 bg-slate-900 overflow-hidden">
-<div class="absolute inset-0 opacity-40" data-alt="Interior of a modern high-end car repair garage" style="background-image: linear-gradient(to right, #101622 30%, transparent 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuDOmYETIOBq-GDv57vGWPmS4Gwa-p6ua7kXltcqKaRtFryU4cLhsAm8RA4HcM0lep2SS6PAlhuQQ7HtUgddDNAHtkrqGTQINVArzAdFTbfXDKdGrLGWYMGZlE_Fq9Oe1WLYRjHFbdRv1fyu7l_qtxteu8HMeAcyn5SHzTsGWR7q_4kPTAHT_988pyrmY00durJuS8tp6E40etWVDitbM6MPUtnBYz7WUdJ6ISaxzBKzJgsWwC2mbfKOp2AbrWl21sBVjpmRucODdgwe'); background-size: cover; background-position: center;">
-</div>
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-<div class="max-w-2xl">
-<span class="inline-block px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-4 border border-primary/30">Expertise &amp; Passion</span>
-<h2 class="font-display text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">Blog &amp; Conseils Auto</h2>
-<p class="text-lg text-slate-300 leading-relaxed mb-8">
-                        Découvrez nos guides d'entretien mécanique, conseils de sécurité routière et actualités automobiles pour prolonger la vie de votre véhicule.
-                    </p>
-<div class="flex flex-wrap gap-3">
-<a class="bg-white text-slate-900 px-6 py-3 rounded-lg font-bold text-sm hover:bg-slate-100 transition-colors" href="#articles">Parcourir les articles</a>
-<a class="bg-primary/20 backdrop-blur-sm border border-primary/40 text-white px-6 py-3 rounded-lg font-bold text-sm hover:bg-primary/30 transition-colors" href="#newsletter">S'abonner aux conseils</a>
-</div>
-</div>
-</div>
-</section>
-<!-- Main Content -->
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20" id="articles">
-<div class="flex flex-col lg:flex-row gap-12">
-<!-- Blog Posts Grid -->
-<div class="lg:w-2/3">
-<!-- Categories Filter -->
-<div class="flex overflow-x-auto gap-4 mb-10 pb-2 scrollbar-hide">
-<button class="whitespace-nowrap px-4 py-2 rounded-full bg-primary text-white text-sm font-bold shadow-md">Tous les articles</button>
-<button class="whitespace-nowrap px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Entretien mécanique</button>
-<button class="whitespace-nowrap px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Sécurité routière</button>
-<button class="whitespace-nowrap px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Pièces détachées</button>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-<!-- Post 1 -->
-<article class="flex flex-col bg-white dark:bg-slate-800/50 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 group hover:border-primary/50 transition-all shadow-sm hover:shadow-xl hover:shadow-primary/5">
-<div class="relative h-48 overflow-hidden">
-<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Mechanic checking tire pressure and tread depth" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCGPAMxCiDPHG34fI3e-FY_1aLG1ptkjD3ah-RIJtCj_idFngbBuE5YdHX-XLA2SCYW_heTrG7k1WAUq20UZoKFqu8ZuKkuLQnPgqfUmOV7mnr31xNR5ZWyBaOSFbX1UW-xUbElMnRfthCLONDlZu5BQnubJS4mQembDFd_cCq3wjxtoAy4RTBr6TLF2V1LuXX6izRRZVV1DfVpiq9EhTViUWMCp_2DepaMal9qW5Sby073mOdq4b5M-gvJTTRx5_4AtK3QpWUc5o9C');"></div>
-<span class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Sécurité</span>
-</div>
-<div class="p-6 flex flex-col flex-1">
-<time class="text-xs text-slate-500 dark:text-slate-400 mb-2">12 Mai 2024</time>
-<h3 class="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">Comment vérifier l'usure de vos pneus ?</h3>
-<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
-                                    Assurez votre sécurité sur la route en apprenant à détecter les signes d'usure critique de vos pneumatiques avant qu'il ne soit trop tard...
-                                </p>
-<div class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-700/50 flex justify-between items-center">
-<button class="text-primary text-sm font-bold flex items-center gap-2 group/btn">
-                                        Lire la suite
-                                        <span class="material-symbols-outlined text-sm transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
-</button>
-<span class="text-xs text-slate-500">5 min de lecture</span>
-</div>
-</div>
-</article>
-<!-- Post 2 -->
-<article class="flex flex-col bg-white dark:bg-slate-800/50 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 group hover:border-primary/50 transition-all shadow-sm">
-<div class="relative h-48 overflow-hidden">
-<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Car engine bay during oil change maintenance" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBspgpfCkcZKsDrRxz5bsCxN0QUAlvGJfan3gJTdqvl3aA4YnUAR0wgCHDVr1tXHefB04nQfW-zYzN6p5txXBGkIlPRpKfMoZ2Va2BRmek9MSWbsYvekOihguZeYa3j-ehFIT9oszgL4BDMovs_Z5g8vzbfUE19Fa3OV2mnttX920WJ_dR5EmTiBNyebbv9gSxO-pP9NtoFsIk1O5HSbsKzoT_gN_rT7AmVdHmM1fwQoi2TcBk1c0QlMGj1IkZtntNqiK__9u9tGG3p');"></div>
-<span class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Entretien</span>
-</div>
-<div class="p-6 flex flex-col flex-1">
-<time class="text-xs text-slate-500 dark:text-slate-400 mb-2">08 Mai 2024</time>
-<h3 class="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">5 conseils pour l'entretien hivernal</h3>
-<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
-                                    Préparez votre véhicule pour les basses températures et évitez les pannes surprises grâce à notre check-list mécanique complète...
-                                </p>
-<div class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-700/50 flex justify-between items-center">
-<button class="text-primary text-sm font-bold flex items-center gap-2 group/btn">
-                                        Lire la suite
-                                        <span class="material-symbols-outlined text-sm transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
-</button>
-<span class="text-xs text-slate-500">7 min de lecture</span>
-</div>
-</div>
-</article>
-<!-- Post 3 -->
-<article class="flex flex-col bg-white dark:bg-slate-800/50 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 group hover:border-primary/50 transition-all shadow-sm">
-<div class="relative h-48 overflow-hidden">
-<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Selection of high quality car spare parts" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuButEFId3haSLw_4gXUyfKGzZoQ3s4SHXNl7bAMVPsdhf2_HuOuGPxd-o8CgNHZYiIT6k4VUAr1pTiqfekRNCAdYYRX7CUmZOWe2iN3E3PTKOeKa9YBsZMGvmBvQY0ZMZ7IGv2DgzxlaCnsuFktTQjIB6zNfIrPqCU-SNF2aT_VIcNDneBLKiMDgB1QNHVw39X7qtfg727TfgxoXIcMpwxJZn8xn4uKZrYx0kuT9IZJK0K4Iwhkdu-Z6Qh3MC_V6IKMJOK-zrP7c994');"></div>
-<span class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Pièces</span>
-</div>
-<div class="p-6 flex flex-col flex-1">
-<time class="text-xs text-slate-500 dark:text-slate-400 mb-2">25 Avril 2024</time>
-<h3 class="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">Choisir les meilleures pièces de rechange</h3>
-<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
-                                    Guide complet pour comprendre la différence entre pièces d'origine (OEM) et pièces adaptables pour votre entretien mécanique.
-                                </p>
-<div class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-700/50 flex justify-between items-center">
-<button class="text-primary text-sm font-bold flex items-center gap-2 group/btn">
-                                        Lire la suite
-                                        <span class="material-symbols-outlined text-sm transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
-</button>
-<span class="text-xs text-slate-500">6 min de lecture</span>
-</div>
-</div>
-</article>
-<!-- Post 4 -->
-<article class="flex flex-col bg-white dark:bg-slate-800/50 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 group hover:border-primary/50 transition-all shadow-sm">
-<div class="relative h-48 overflow-hidden">
-<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Diagnostic computer connected to a vehicle dashboard" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBmL15rRisZ351gulsp-C0dAuHQOiyZlv_AqQUlkt5XfGjaKtEbM11p__8WQ_6CUYYmLkojkDrJ2krj8t6XFnyp0865WiragCdbHxrS_ROnfBO9UgHG6Ae1SlmDa9824iZTBiJVuJnDdV0TdCfdXHIZk8w8lQ_oktG1Ns3cKYAvVryHnFG5OzJgKs93gsw2GHQf2VpQZUqXKTmDtyYfO20eKcIx7AC1CK-MBSv2anTGuHa0EL0DvWq24FOWw2Jf7YFcYv9uaVn7W5Qy');"></div>
-<span class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Entretien</span>
-</div>
-<div class="p-6 flex flex-col flex-1">
-<time class="text-xs text-slate-500 dark:text-slate-400 mb-2">15 Avril 2024</time>
-<h3 class="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">Le diagnostic électronique : pourquoi est-ce vital ?</h3>
-<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
-                                    Comprendre l'importance de la valise de diagnostic pour identifier les pannes cachées avant qu'elles ne s'aggravent...
-                                </p>
-<div class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-700/50 flex justify-between items-center">
-<button class="text-primary text-sm font-bold flex items-center gap-2 group/btn">
-                                        Lire la suite
-                                        <span class="material-symbols-outlined text-sm transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
-</button>
-<span class="text-xs text-slate-500">4 min de lecture</span>
-</div>
-</div>
-</article>
-<!-- Post 5 -->
-<article class="flex flex-col bg-white dark:bg-slate-800/50 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 group hover:border-primary/50 transition-all shadow-sm hover:shadow-xl hover:shadow-primary/5">
-<div class="relative h-48 overflow-hidden">
-<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Close up of a car brake disc and caliper" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC5G27Fi6idTPX1tOVZ7sBfAThhW2-X852DAovMY3dL40PaGU2d1OSrIPuHcQQQqwH2JTcM1l6Jz_HnXSsZjmEVJn-16ww8tvsAegf49D_63GXkKY0fVCJ2KfMxWXtwi8LrQ-oys8x6I3FLkEOKbZ4HmrbwcUgiWlUNPpc3SR1tmAlQQDZw2LzYP-ZD0wFObTjKRc-0L3GDlRIOt9C25xs-i3QYu75kIdcPXFaohWv9n5fgtGtYhqLgbNniw9de6FtV2qiv8Hh14onE');"></div>
-<span class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Sécurité</span>
-</div>
-<div class="p-6 flex flex-col flex-1">
-<time class="text-xs text-slate-500 dark:text-slate-400 mb-2">20 Mai 2024</time>
-<h3 class="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">L'importance de l'entretien de vos freins</h3>
-<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
-                                    Des freins en bon état sont cruciaux pour votre sécurité. Découvrez pourquoi un entretien régulier est vital pour éviter les accidents et garantir un freinage optimal en toutes circonstances.
-                                </p>
-<div class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-700/50 flex justify-between items-center">
-<button class="text-primary text-sm font-bold flex items-center gap-2 group/btn">
-                                        Lire la suite
-                                        <span class="material-symbols-outlined text-sm transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
-</button>
-<span class="text-xs text-slate-500">6 min de lecture</span>
-</div>
-</div>
-</article><article class="flex flex-col bg-white dark:bg-slate-800/50 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 group hover:border-primary/50 transition-all shadow-sm hover:shadow-xl hover:shadow-primary/5">
-<div class="relative h-48 overflow-hidden">
-<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Mechanic performing an oil change on a car engine" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCH6_n6rS3N-u-WfE5868t0TzE6tU2fX9pX8j9z3S7pT5k3mN1l0j3fH2g1S0pT5k3mN1l0j3fH2g1S0pT5k3mN1l0j3fH2g1S0pT5k3mN1l0j3fH2g1S0pT5k3mN1l0j3fH2g1');"></div>
-<span class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Entretien</span>
-</div>
-<div class="p-6 flex flex-col flex-1">
-<time class="text-xs text-slate-500 dark:text-slate-400 mb-2">05 Juin 2024</time>
-<h3 class="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">L'importance de la vidange moteur : pourquoi et quand la faire ?</h3>
-<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
-                                    La vidange est l'entretien le plus crucial pour la longévité de votre moteur. Découvrez pourquoi changer l'huile régulièrement permet d'éviter des pannes coûteuses et d'optimiser les performances.
-                                </p>
-<div class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-700/50 flex justify-between items-center">
-<button class="text-primary text-sm font-bold flex items-center gap-2 group/btn">
-                                        Lire la suite
-                                        <span class="material-symbols-outlined text-sm transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
-</button>
-<span class="text-xs text-slate-500">5 min de lecture</span>
-</div>
-</div>
-</article><!-- Post 7 -->
-<article class="flex flex-col bg-white dark:bg-slate-800/50 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 group hover:border-primary/50 transition-all shadow-sm hover:shadow-xl hover:shadow-primary/5">
-<div class="relative h-48 overflow-hidden">
-<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Car inspector checking vehicle components" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDCSykWaLzbtmzhgMO9-mJCt-82INHFFgo8UihyN30APl2Q0dgWdPMI9iZv2dohSDIEAZ_mBdGKfh_9KlamTnC8hKyZM9jZTWWcY3hTYkHbETGKurc3WbBt3g2N1hOt_0dVhFD8kuK5vmwA_Si02rNPj5mUjxB4Ap0kewwExTz0H_3WFicCN5fKILGslRrWtBz82A9EUpCUy-sQ-BrpcZk6Ngkc23QI1vaMKATHAIwarVCRAhbL1pgBLEEKCotKDNhv8c2egyUyM74o');"></div>
-<span class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Conseils</span>
-</div>
-<div class="p-6 flex flex-col flex-1">
-<time class="text-xs text-slate-500 dark:text-slate-400 mb-2">12 Juin 2024</time>
-<h3 class="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">Réussir son contrôle technique : les points à vérifier</h3>
-<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
-                                    Préparez sereinement votre passage au contrôle technique en vérifiant les points essentiels de sécurité et évitez ainsi une contre-visite coûteuse.
-                                </p>
-<div class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-700/50 flex justify-between items-center">
-<button class="text-primary text-sm font-bold flex items-center gap-2 group/btn">
-                                        Lire la suite
-                                        <span class="material-symbols-outlined text-sm transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
-</button>
-<span class="text-xs text-slate-500">6 min de lecture</span>
-</div>
-</div>
-</article><!-- Post 8 -->
-<article class="flex flex-col bg-white dark:bg-slate-800/50 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 group hover:border-primary/50 transition-all shadow-sm hover:shadow-xl hover:shadow-primary/5">
-<div class="relative h-48 overflow-hidden">
-<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Car interior air conditioning vents" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDOmYETIOBq-GDv57vGWPmS4Gwa-p6ua7kXltcqKaRtFryU4cLhsAm8RA4HcM0lep2SS6PAlhuQQ7HtUgddDNAHtkrqGTQINVArzAdFTbfXDKdGrLGWYMGZlE_Fq9Oe1WLYRjHFbdRv1fyu7l_qtxteu8HMeAcyn5SHzTsGWR7q_4kPTAHT_988pyrmY00durJuS8tp6E40etWVDitbM6MPUtnBYz7WUdJ6ISaxzBKzJgsWwC2mbfKOp2AbrWl21sBVjpmRucODdgwe');"></div>
-<span class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Entretien</span>
-</div>
-<div class="p-6 flex flex-col flex-1">
-<time class="text-xs text-slate-500 dark:text-slate-400 mb-2">15 Juin 2024</time>
-<h3 class="font-display text-xl font-bold mb-3 group-hover:text-primary transition-colors">Climatisation auto : pourquoi et quand l'entretenir ?</h3>
-<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 line-clamp-3">
-                                    Un système de climatisation bien entretenu garantit votre confort thermique et préserve la qualité de l'air intérieur pour votre santé.
-                                </p>
-<div class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-700/50 flex justify-between items-center">
-<button class="text-primary text-sm font-bold flex items-center gap-2 group/btn">
-                                        Lire la suite
-                                        <span class="material-symbols-outlined text-sm transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
-</button>
-<span class="text-xs text-slate-500">5 min de lecture</span>
-</div>
-</div>
-</article></div>
-<!-- Pagination -->
-<div class="mt-12 flex justify-center items-center gap-2">
-<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-primary transition-colors">
-<span class="material-symbols-outlined">chevron_left</span>
-</button>
-<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold">1</button>
-<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">2</button>
-<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">3</button>
-<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-primary transition-colors">
-<span class="material-symbols-outlined">chevron_right</span>
-</button>
-</div>
-</div>
-<!-- Sidebar -->
-<aside class="lg:w-1/3 space-y-10">
-<!-- Search Widget -->
-<div class="bg-white dark:bg-slate-800/30 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
-<h4 class="font-display font-bold text-lg mb-4">Rechercher</h4>
-<div class="relative">
-<input class="w-full bg-slate-100 dark:bg-slate-900 border-none rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 placeholder:text-slate-500" placeholder="Entrez un mot-clé..." type="text"/>
-<button class="absolute right-3 top-1/2 -translate-y-1/2 text-primary">
-<span class="material-symbols-outlined">search</span>
-</button>
-</div>
-</div>
-<!-- Popular Articles -->
-<div class="bg-white dark:bg-slate-800/30 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
-<h4 class="font-display font-bold text-lg mb-6 border-l-4 border-primary pl-4">Articles Populaires</h4>
-<div class="space-y-6">
-<a class="flex gap-4 group" href="#">
-<div class="w-16 h-16 shrink-0 rounded-lg overflow-hidden">
-<div class="w-full h-full bg-cover bg-center" data-alt="Brake discs and pads being inspected" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC5G27Fi6idTPX1tOVZ7sBfAThhW2-X852DAovMY3dL40PaGU2d1OSrIPuHcQQQqwH2JTcM1l6Jz_HnXSsZjmEVJn-16ww8tvsAegf49D_63GXkKY0fVCJ2KfMxWXtwi8LrQ-oys8x6I3FLkEOKbZ4HmrbwcUgiWlUNPpc3SR1tmAlQQDZw2LzYP-ZD0wFObTjKRc-0L3GDlRIOt9C25xs-i3QYu75kIdcPXFaohWv9n5fgtGtYhqLgbNniw9de6FtV2qiv8Hh14onE');"></div>
-</div>
-<div>
-<h5 class="text-sm font-bold leading-tight group-hover:text-primary transition-colors line-clamp-2">Quand changer ses plaquettes de frein ?</h5>
-<span class="text-[10px] text-slate-500 uppercase font-medium mt-1 inline-block">SÉCURITÉ</span>
-</div>
-</a>
-<a class="flex gap-4 group" href="#">
-<div class="w-16 h-16 shrink-0 rounded-lg overflow-hidden">
-<div class="w-full h-full bg-cover bg-center" data-alt="Polished luxury car front grille" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDCSykWaLzbtmzhgMO9-mJCt-82INHFFgo8UihyN30APl2Q0dgWdPMI9iZv2dohSDIEAZ_mBdGKfh_9KlamTnC8hKyZM9jZTWWcY3hTYkHbETGKurc3WbBt3g2N1hOt_0dVhFD8kuK5vmwA_Si02rNPj5mUjxB4Ap0kewwExTz0H_3WFicCN5fKILGslRrWtBz82A9EUpCUy-sQ-BrpcZk6Ngkc23QI1vaMKATHAIwarVCRAhbL1pgBLEEKCotKDNhv8c2egyUyM74o');"></div>
-</div>
-<div>
-<h5 class="text-sm font-bold leading-tight group-hover:text-primary transition-colors line-clamp-2">Guide d'achat : les critères d'une bonne occasion</h5>
-<span class="text-[10px] text-slate-500 uppercase font-medium mt-1 inline-block">CONSEILS ACHAT</span>
-</div>
-</a>
-<a class="flex gap-4 group" href="#">
-<div class="w-16 h-16 shrink-0 rounded-lg overflow-hidden">
-<div class="w-full h-full bg-cover bg-center" data-alt="Blue car on highway" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCWxyHkCOhGs_YZNnuzQW9gcxTrAWrt9lYLkwWvFbUh_0qQv8zZBFjrAh5mVd7hAfsk9KqJEbbl82AT6S9xoY1bjbEyjxGzxZR4TipiNjI9tnjhHPJjYczhPScFbbIi2u39ytsR8iodSvV9lwE8vGw9hTrvi72FrwDyCAZp48C3TNRemBcvjgqnlSyYN64tpCIMiOC2mARdgFBvVFaL4MRvhwnLnQueCACisUIypa1cZlHlv56pokioIPdslnGXGcPLtutEJBQsQp_U');"></div>
-</div>
-<div>
-<h5 class="text-sm font-bold leading-tight group-hover:text-primary transition-colors line-clamp-2">Réduire sa consommation de carburant</h5>
-<span class="text-[10px] text-slate-500 uppercase font-medium mt-1 inline-block">ÉCO-CONDUITE</span>
-</div>
-</a>
-</div>
-</div>
-<!-- Categories Cloud -->
-<div class="bg-white dark:bg-slate-800/30 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
-<h4 class="font-display font-bold text-lg mb-6 border-l-4 border-primary pl-4">Catégories</h4>
-<ul class="space-y-3">
-<li><a class="flex justify-between items-center text-sm font-medium hover:text-primary transition-colors" href="#"><span>Entretien moteur</span> <span class="bg-slate-100 dark:bg-slate-900 px-2 py-1 rounded text-xs">12</span></a></li>
-<li><a class="flex justify-between items-center text-sm font-medium hover:text-primary transition-colors" href="#"><span>Sécurité routière</span> <span class="bg-slate-100 dark:bg-slate-900 px-2 py-1 rounded text-xs">8</span></a></li>
-<li><a class="flex justify-between items-center text-sm font-medium hover:text-primary transition-colors" href="#"><span>Pneumatiques</span> <span class="bg-slate-100 dark:bg-slate-900 px-2 py-1 rounded text-xs">5</span></a></li>
-<li><a class="flex justify-between items-center text-sm font-medium hover:text-primary transition-colors" href="#"><span>Électricité auto</span> <span class="bg-slate-100 dark:bg-slate-900 px-2 py-1 rounded text-xs">4</span></a></li>
-<li><a class="flex justify-between items-center text-sm font-medium hover:text-primary transition-colors" href="#"><span>Freinage</span> <span class="bg-slate-100 dark:bg-slate-900 px-2 py-1 rounded text-xs">6</span></a></li>
-</ul>
-</div>
-<!-- Newsletter Sidebar Mini -->
-<div class="bg-primary/10 border border-primary/30 p-6 rounded-xl relative overflow-hidden group" id="newsletter">
-<div class="absolute top-0 right-0 p-4 text-primary opacity-10 transform group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-6xl">mail</span>
-</div>
-<h4 class="font-display font-bold text-lg mb-2 relative z-10">Restez informé</h4>
-<p class="text-sm text-slate-600 dark:text-slate-400 mb-6 relative z-10">Recevez nos derniers conseils directement par e-mail.</p>
-<form class="space-y-3 relative z-10">
-<input class="w-full bg-white dark:bg-slate-900 border-none rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 shadow-sm" placeholder="votre@email.com" type="email"/>
-<button class="w-full bg-primary text-white py-3 rounded-lg font-bold text-sm hover:shadow-lg hover:shadow-primary/30 transition-all">S'inscrire</button>
-</form>
-</div>
-</aside>
-</div>
-</main>
-<!-- SEO Content Section -->
-<section class="bg-slate-100 dark:bg-slate-900/50 py-16 border-y border-slate-200 dark:border-slate-800">
-<div class="max-w-4xl mx-auto px-4 text-center">
-<h3 class="font-display text-2xl font-bold mb-6">Expert en entretien mécanique et sécurité routière</h3>
-<p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-                    Le Garage de la Chapelle n'est pas qu'un simple centre de réparation. Nous nous engageons à partager notre expertise pour vous aider à mieux comprendre votre véhicule. Qu'il s'agisse de <strong>conseils entretien voiture</strong> pour le quotidien ou de guides profonds sur la <strong>sécurité routière</strong>, notre équipe d'experts rédige chaque article avec rigueur technique.
-                </p>
-<div class="flex flex-wrap justify-center gap-4 text-sm font-medium text-slate-500">
-<span class="flex items-center gap-1"><span class="material-symbols-outlined text-primary text-base">check_circle</span> Révision constructeur</span>
-<span class="flex items-center gap-1"><span class="material-symbols-outlined text-primary text-base">check_circle</span> Freinage &amp; Liaison au sol</span>
-<span class="flex items-center gap-1"><span class="material-symbols-outlined text-primary text-base">check_circle</span> Diagnostic Électronique</span>
-</div>
-</div>
-</section>
-<!-- Footer -->
-<footer class="bg-slate-900 text-slate-400 py-16 border-t border-slate-800">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-<div>
-<div class="flex items-center gap-3 text-white mb-6">
-<span class="material-symbols-outlined text-primary text-2xl">directions_car</span>
-<span class="font-display font-bold text-lg">Garage de la Chapelle</span>
-</div>
-<p class="text-sm leading-relaxed mb-6">Votre partenaire de confiance pour l'entretien et la réparation automobile toutes marques depuis plus de 20 ans.</p>
-<div class="flex gap-4"><a aria-label="Facebook" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-sm">facebook</span></a><a aria-label="Instagram" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-sm">photo_camera</span></a></div>
-</div>
-<div>
-<h4 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Liens utiles</h4>
-<ul class="space-y-3 text-sm">
-<li><a class="hover:text-primary transition-colors" href="#">Réserver un entretien</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Nos véhicules d'occasion</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Tarifs prestations</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Mentions légales</a></li>
-</ul>
-</div>
-<div>
-<h4 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Contact</h4>
-<ul class="space-y-3 text-sm">
-<li class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary text-lg">location_on</span>
-<span>12 rue de la Paix, 75018 Paris</span>
-</li>
-<li class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-lg">phone</span>
-<span>01 42 55 00 00</span>
-</li>
-<li class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-lg">mail</span>
-<span>contact@garagelachapelle.fr</span>
-</li>
-</ul>
-</div>
-<div class="flex flex-col items-center lg:items-end justify-center">
-<!-- Quality Badge -->
-<div class="bg-white/5 border border-white/10 rounded-xl p-6 text-center w-full max-w-[240px]">
-<div class="mb-3 text-yellow-500">
-<span class="material-symbols-outlined text-5xl fill-1">verified</span>
-</div>
-<h5 class="text-white font-display font-bold text-lg mb-1">Garage de la Chapelle</h5>
-<p class="text-[10px] uppercase tracking-widest opacity-60">Réparateur Agréé 2024</p>
-<div class="mt-4 flex justify-center gap-1">
-<span class="material-symbols-outlined text-yellow-500 text-xs fill-1">star</span>
-<span class="material-symbols-outlined text-yellow-500 text-xs fill-1">star</span>
-<span class="material-symbols-outlined text-yellow-500 text-xs fill-1">star</span>
-<span class="material-symbols-outlined text-yellow-500 text-xs fill-1">star</span>
-<span class="material-symbols-outlined text-yellow-500 text-xs fill-1">star</span>
-</div>
-</div>
-</div>
-</div>
-<div class="pt-8 border-t border-slate-800 text-center text-xs">
-                    © 2024 Garage de la Chapelle. Tous droits réservés. Design by ProUI.
-                </div>
-</div>
-</footer>
-</div>
-</body></html>
 
+  </main>
+</body>
+
+</html>

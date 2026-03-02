@@ -1,131 +1,122 @@
-// ---- TAWK.TO LIVE CHAT ----
-// 👉 Remplace VOTRE_PROPERTY_ID et VOTRE_WIDGET_ID par tes clés Tawk.to
-//    1. Crée un compte gratuit sur https://tawk.to
-//    2. Ajoute ton site web → copie le Property ID et Widget/Chat ID
-//    3. Colle-les ci-dessous
+/**
+ * Navigation partagée – Garage la Chapelle
+ * Injecte automatiquement : top nav (desktop) + mobile header + bottom nav
+ * Usage : <script src="assets/js/nav.js" data-page="home"></script>
+ */
 (function () {
-  var Tawk_API = window.Tawk_API || {};
-  var Tawk_LoadStart = new Date();
-  var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-  s1.async = true;
-  s1.src = 'https://embed.tawk.to/VOTRE_PROPERTY_ID/VOTRE_WIDGET_ID';
-  s1.charset = 'UTF-8';
-  s1.setAttribute('crossorigin', '*');
-  s0.parentNode.insertBefore(s1, s0);
+  const pages = [
+    { id: 'home', href: 'index.html', icon: 'home', label: 'Accueil' },
+    { id: 'catalogue', href: 'catalogue.html', icon: 'inventory_2', label: 'Catalogue' },
+    { id: 'rdv', href: 'rendez-vous.html', icon: 'calendar_month', label: 'RDV' },
+    { id: 'blog', href: 'blog.html', icon: 'article', label: 'Blog' },
+    { id: 'profile', href: 'espace-client.html', icon: 'person', label: 'Profil' },
+  ];
 
-  // Personnalisation du widget
-  window.Tawk_API = window.Tawk_API || {};
-  window.Tawk_API.onLoad = function () {
-    window.Tawk_API.setAttributes({
-      'name': 'Visiteur Garage la Chapelle',
-      'email': ''
-    }, function (error) { });
-    // Message de bienvenue personnalisé
-    window.Tawk_API.customStyle = {
-      zIndex: 9000  // Sous le bouton WhatsApp (z-index: 9999)
-    };
-  };
-})();
+  const extraLinks = [
+    { href: 'devis.html', label: 'Devis' },
+    { href: 'contact.html', label: 'Contact' },
+    { href: 'galerie.html', label: 'Galerie' },
+    { href: 'a-propos.html', label: 'À Propos' },
+  ];
 
-// Navigation mobile toggle
-document.addEventListener('DOMContentLoaded', () => {
-  const toggle = document.getElementById('navToggle');
-  const drawer = document.getElementById('navDrawer');
+  // Detect current page
+  const script = document.currentScript;
+  const currentPage = script ? script.getAttribute('data-page') : '';
+  // cart count will be handled dynamically via refreshCartBadge, ignore data-cart
+  let cart = 0;
 
-  if (toggle && drawer) {
-    toggle.addEventListener('click', () => {
-      toggle.classList.toggle('open');
-      drawer.classList.toggle('open');
-      document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
-    });
-    // Close on link click
-    drawer.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        toggle.classList.remove('open');
-        drawer.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
+  // ── TOP NAV (desktop) ─────────────────────────────
+  const topNav = document.createElement('nav');
+  topNav.className = 'top-nav';
+  topNav.innerHTML = `
+    <a class="nav-logo" href="index.html">
+      <div class="logo-icon"><span class="material-symbols-outlined">directions_car</span></div>
+      <div><strong>Garage la Chapelle</strong><span class="sub">Paris 18<sup>e</sup></span></div>
+    </a>
+    <div class="nav-links">
+      ${pages.map(p => `<a href="${p.href}" class="${currentPage === p.id ? 'active' : ''}">${p.label}</a>`).join('')}
+      ${extraLinks.map(l => `<a href="${l.href}">${l.label}</a>`).join('')}
+    </div>
+    <div class="nav-actions">
+      <a class="cart-pill" href="panier.html">
+        <span class="material-symbols-outlined">shopping_cart</span>
+        <span class="badge">0</span>
+      </a>
+      <a class="nav-btn ghost" href="contact.html">
+        <span class="material-symbols-outlined">phone</span>
+        Appeler
+      </a>
+      <a class="nav-btn primary" href="rendez-vous.html">
+        <span class="material-symbols-outlined">calendar_month</span>
+        Prendre RDV
+      </a>
+    </div>
+  `;
+
+  // ── MOBILE HEADER ─────────────────────────────────
+  const mobileHeader = document.createElement('header');
+  mobileHeader.className = 'mobile-header';
+  const currentPageData = pages.find(p => p.id === currentPage) || pages[0];
+  mobileHeader.innerHTML = `
+    <a class="logo" href="index.html">
+      <div class="logo-icon"><span class="material-symbols-outlined">directions_car</span></div>
+      <div class="logo-text">Garage la Chapelle<span>${currentPageData ? currentPageData.label : 'Accueil'}</span></div>
+    </a>
+    <div class="header-actions">
+      <a class="header-btn" href="panier.html">
+        <span class="material-symbols-outlined">shopping_cart</span>
+        <span class="cart-badge">${cart}</span>
+      </a>
+      <a class="header-btn" href="contact.html">
+        <span class="material-symbols-outlined">call</span>
+      </a>
+    </div>
+  `;
+
+  // ── BOTTOM NAV (mobile) ───────────────────────────
+  const bottomNav = document.createElement('nav');
+  bottomNav.className = 'bottom-nav';
+  bottomNav.innerHTML = pages.map(p => `
+    <a class="bottom-nav-item ${currentPage === p.id ? 'active' : ''}" href="${p.href}">
+      <span class="material-symbols-outlined">${p.icon}</span>
+      <span class="label">${p.label}</span>
+    </a>
+  `).join('');
+
+  // ── WHATSAPP FAB ──────────────────────────────────
+  const fab = document.createElement('a');
+  fab.className = 'fab fab-whatsapp';
+  fab.href = 'https://wa.me/33123456789?text=Bonjour%20Garage%20la%20Chapelle%20!';
+  fab.target = '_blank';
+  fab.setAttribute('aria-label', 'WhatsApp');
+  fab.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.11.547 4.088 1.5 5.815L.057 23.25a.5.5 0 00.611.611l5.425-1.443A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zM12 22a9.95 9.95 0 01-5.097-1.394l-.364-.216-3.77 1.002 1.002-3.77-.216-.364A9.95 9.95 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>`;
+
+  // badge refresh utility (counts items in panier page)
+  function refreshCartBadge() {
+    let count = document.querySelectorAll('.cart-item').length;
+    // persist change (including zero) so other pages see most recent value
+    localStorage.setItem('cartCount', count);
+    // if no items, maybe use stored anyway, but value just set
+    if (count === 0) {
+      const stored = parseInt(localStorage.getItem('cartCount')||'0',10);
+      if (stored>0) count = stored; // unlikely since we just saved 0
+    }
+    document.querySelectorAll('.cart-pill .badge, .header-btn .cart-badge').forEach(b => b.textContent = count);
   }
 
-  // Active link highlighting
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-links a, .nav-drawer a').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-      link.classList.add('active');
-    }
+  // ── INJECT ────────────────────────────────────────
+  document.body.prepend(bottomNav);  // at end via append instead
+  document.body.prepend(mobileHeader);
+  document.body.prepend(topNav);
+  document.body.appendChild(fab);
+
+  // Fix: move bottom nav to END of body
+  document.body.removeChild(bottomNav);
+  document.body.appendChild(bottomNav);
+
+  // update badge on initial load
+  document.addEventListener('DOMContentLoaded', () => {
+    // compute badge using DOM or stored count
+    refreshCartBadge();
   });
-
-  // Scroll -> navbar shadow
-  const navbar = document.querySelector('.navbar');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 10) {
-      navbar.style.boxShadow = '0 4px 24px rgba(0,0,0,.5)';
-    } else {
-      navbar.style.boxShadow = 'none';
-    }
-  });
-
-  // ---- BOUTON WHATSAPP FLOTTANT ----
-  const waBtn = document.createElement('a');
-  waBtn.href = 'https://wa.me/33612345678?text=Bonjour%20Garage%20la%20Chapelle%2C%20je%20souhaite%20un%20renseignement.';
-  waBtn.target = '_blank';
-  waBtn.rel = 'noopener noreferrer';
-  waBtn.id = 'whatsapp-btn';
-  waBtn.setAttribute('aria-label', 'Contacter sur WhatsApp');
-  waBtn.innerHTML = `
-      <svg viewBox="0 0 32 32" width="28" height="28" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 1C7.73 1 1 7.73 1 16c0 2.67.69 5.18 1.9 7.36L1 31l7.87-1.87A15 15 0 0 0 16 31c8.27 0 15-6.73 15-15S24.27 1 16 1zm7.56 21.44c-.31.87-1.82 1.66-2.52 1.76-.66.09-1.49.13-2.4-.15a22.1 22.1 0 0 1-2.17-.8c-3.82-1.65-6.32-5.5-6.51-5.76-.18-.26-1.5-2-.1-3.76a2.33 2.33 0 0 1 1.67-.78c.2 0 .38.01.54.02.48.02.72.04.04 1.03-.86 1.2-.67 2.33-.47 2.74.2.4 1.59 2.62 3.91 3.58.55.23 .98.37 1.31.47.55.17 1.05.15 1.45.09.44-.07 1.36-.56 1.55-1.1.19-.54.19-.99.13-1.09-.06-.09-.22-.15-.46-.26-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.17-.7-.63-1.17-1.4-1.31-1.64-.14-.24-.01-.37.1-.49.11-.1.24-.27.36-.41.12-.13.16-.23.24-.39.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.79z"/>
-      </svg>
-      <span>WhatsApp</span>`;
-  document.body.appendChild(waBtn);
-
-  // Style dynamique du bouton WhatsApp
-  const style = document.createElement('style');
-  style.textContent = `
-      #whatsapp-btn {
-        position: fixed;
-        bottom: 28px;
-        right: 28px;
-        z-index: 9999;
-        background: #25d366;
-        color: #fff;
-        border-radius: 50px;
-        padding: 12px 20px 12px 16px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        text-decoration: none;
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: .88rem;
-        font-weight: 600;
-        box-shadow: 0 4px 20px rgba(37,211,102,.45);
-        transition: transform .25s ease, box-shadow .25s ease;
-      }
-      #whatsapp-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 28px rgba(37,211,102,.6);
-      }
-      #whatsapp-btn span { white-space: nowrap; }
-      @media (max-width: 600px) {
-        #whatsapp-btn span { display: none; }
-        #whatsapp-btn { padding: 13px; border-radius: 50%; }
-      }
-    `;
-  document.head.appendChild(style);
-
-  // ---- BADGE PANIER (navbar) ----
-  updateCartBadge();
-});
-
-// Mise à jour du badge panier dans la navbar
-function updateCartBadge() {
-  const cart = JSON.parse(localStorage.getItem('glc_cart') || '[]');
-  const total = cart.reduce((s, i) => s + (i.qty || 1), 0);
-  document.querySelectorAll('.cart-badge').forEach(b => {
-    b.textContent = total;
-    b.style.display = total > 0 ? 'inline-flex' : 'none';
-  });
-}
-
+})();

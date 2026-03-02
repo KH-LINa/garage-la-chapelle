@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Ajouter un véhicule — Garage la Chapelle</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="assets/css/mobile.css" />
+</head>
+
+<body>
+    <script src="assets/js/nav.js" data-page="profile" data-cart="2"></script>
+
+    <main class="page-content">
+        <div class="page-title-block">
+            <h1>Ajouter un véhicule</h1>
+            <p>Ajoutez votre véhicule pour un suivi personnalisé de vos entretiens.</p>
+        </div>
+
+        <div class="form-block">
+            <h3>Informations du véhicule</h3>
+            <div class="form-group">
+                <label class="form-label">Marque *</label>
+                <select class="form-select">
+                    <option value="">Sélectionnez…</option>
+                    <option>Peugeot</option>
+                    <option>Renault</option>
+                    <option>Citroën</option>
+                    <option>Volkswagen</option>
+                    <option>BMW</option>
+                    <option>Mercedes</option>
+                    <option>Toyota</option>
+                    <option>Ford</option>
+                    <option>Autre</option>
+                </select>
+            </div>
+            <div class="form-group"><label class="form-label">Modèle *</label><input type="text" class="form-input"
+                    placeholder="208, Clio, Golf…" /></div>
+            <div class="form-group"><label class="form-label">Année *</label><input type="number" class="form-input"
+                    placeholder="2020" min="1980" max="2026" /></div>
+            <div class="form-group"><label class="form-label">Kilométrage</label><input type="number" class="form-input"
+                    placeholder="ex: 45 000" /></div>
+            <div class="form-group">
+                <label class="form-label">Immatriculation</label>
+                <input type="text" class="form-input" placeholder="AB-123-CD"
+                    style="text-transform:uppercase;font-family:monospace;letter-spacing:.1em;" />
+            </div>
+            <div class="form-group"><label class="form-label">Numéro VIN (optionnel)</label><input type="text"
+                    class="form-input" placeholder="VF1..." /></div>
+        </div>
+
+        <div class="form-block">
+            <h3>Dates d'entretien</h3>
+            <div class="form-group"><label class="form-label">Dernière vidange</label><input type="date"
+                    class="form-input" /></div>
+            <div class="form-group"><label class="form-label">Prochain contrôle technique</label><input type="date"
+                    class="form-input" /></div>
+        </div>
+
+        <button class="btn-primary btn-full" onclick="alert('✅ Véhicule ajouté avec succès !')">
+            <span class="material-symbols-outlined">directions_car</span>
+            Ajouter ce véhicule
+        </button>
+        <a href="mes-vehicules.html"
+            style="display:block;text-align:center;color:var(--primary-light);font-size:.85rem;margin-top:.75rem">←
+            Retour à mes véhicules</a>
+    </main>
+</body>
+
+</html>

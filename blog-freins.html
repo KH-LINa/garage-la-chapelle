@@ -1,92 +1,194 @@
 ﻿<!DOCTYPE html>
 <html lang="fr">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comment bien entretenir sa freins — Garage la Chapelle</title>
-  <meta name="description" content="Guide complet sur la freins — Garage la Chapelle Paris 18">
-  <link rel="stylesheet" href="assets/css/global.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Entretien des freins : quand s'inquiéter ? — Garage la Chapelle</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="assets/css/mobile.css" />
   <style>
-    .article-hero{background:linear-gradient(135deg,#0a0a14 0%,#111130 50%,#0a0a14 100%);padding:calc(var(--nav-h) + 60px) 5% 60px;text-align:center;}
-    .article-hero .tag{display:inline-block;background:rgba(17,82,212,.15);color:var(--brand-light);font-size:.8rem;font-weight:600;text-transform:uppercase;border-radius:100px;padding:5px 16px;margin-bottom:12px;}
-    .article-hero h1{font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;font-weight:700;margin-bottom:14px;max-width:700px;margin-left:auto;margin-right:auto;}
-    .article-body{max-width:760px;margin:0 auto;padding:60px 5%;}
-    .article-body h2{color:#fff;font-size:1.4rem;margin:36px 0 14px;}
-    .article-body p{color:var(--text-soft);line-height:1.8;margin-bottom:16px;}
-    .article-body ul{color:var(--text-soft);padding-left:20px;margin-bottom:16px;line-height:1.8;}
-    .article-body strong{color:#fff;}
-    .article-cta{background:linear-gradient(135deg,rgba(17,82,212,.15),rgba(17,82,212,.05));border:1px solid rgba(17,82,212,.2);border-radius:12px;padding:32px;text-align:center;margin-top:40px;}
-    .article-cta h3{color:#fff;margin-bottom:10px;}
-    .article-cta p{color:var(--text-soft);margin-bottom:20px;}
-    .article-nav{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+    .article-content {
+      font-size: .93rem;
+      color: rgba(255, 255, 255, .78);
+      line-height: 1.75;
+    }
+
+    .article-content h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 1.5rem 0 .65rem;
+    }
+
+    .article-content p {
+      margin-bottom: .9rem;
+    }
+
+    .article-content ul {
+      padding-left: 1.25rem;
+      margin-bottom: .9rem;
+    }
+
+    .article-content li {
+      margin-bottom: .4rem;
+    }
+
+    .article-content strong {
+      color: #fff;
+    }
+
+    .article-hero {
+      width: 100%;
+      border-radius: var(--radius-xl);
+      height: 220px;
+      object-fit: cover;
+      margin-bottom: 1.25rem;
+    }
+
+    .article-author {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .875rem;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+    }
+
+    .article-author img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .article-author .a-name {
+      font-size: .88rem;
+      font-weight: 700;
+      color: #fff;
+      display: block;
+    }
+
+    .article-author .a-role {
+      font-size: .72rem;
+      color: rgba(255, 255, 255, .5);
+    }
+
+    @media(min-width:900px) {
+      .article-layout {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 2rem;
+        align-items: start;
+      }
+
+      .article-sidebar {
+        position: sticky;
+        top: calc(var(--top-nav-h) + 1rem);
+      }
+
+      .article-hero {
+        height: 360px;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <nav class="navbar">
-    <a href="index.html" class="nav-logo"><div class="logo-icon">🔧</div><div class="logo-text">Garage <span>la Chapelle</span></div></a>
-    <ul class="nav-links"><li><a href="index.html">Accueil</a></li><li><a href="catalogue.html">Catalogue</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="blog.html" class="active">Blog</a></li><li><a href="a-propos.html">À Propos</a></li><li><a href="contact.html">Contact</a></li></ul>
-    <div class="nav-cta"><a href="devis.html" class="btn-ghost">Devis gratuit</a><a href="rendez-vous.html" class="btn-primary">📅 Rendez-vous</a></div>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
-  </nav>
-  <div class="nav-drawer" id="navDrawer">
-    <a href="index.html">🏠 Accueil</a><a href="catalogue.html">🛒 Catalogue</a><a href="galerie.html">🖼️ Galerie</a><a href="blog.html">📝 Blog</a><a href="a-propos.html">ℹ️ À Propos</a><a href="contact.html">📞 Contact</a>
-    <div class="drawer-cta"><a href="devis.html" class="btn-ghost">Devis gratuit</a><a href="rendez-vous.html" class="btn-primary">📅 Prendre rendez-vous</a></div>
-  </div>
-  <div class="page-content">
-    <div class="article-hero">
-      <span class="tag">🛑 Sécurité</span>
-      <h1>Comment bien entretenir sa freins ?</h1>
-      <p style="color:var(--text-soft);margin-top:12px">Par l'équipe Garage la Chapelle · 5 min de lecture · Publié le 15 janvier 2024</p>
-    </div>
-    <div class="article-body">
-      <p>La freins est l'opération d'entretien la plus importante pour prolonger la durée de vie de votre moteur. Pourtant, de nombreux automobilistes la négligent ou méconnaissent sa fréquence recommandée.</p>
-      <h2>Pourquoi faire la vidange ?</h2>
-      <p>L'huile moteur lubrifie les pièces en mouvement, les refroidit et les nettoie des résidus de combustion. Avec le temps, elle se dégrade : elle perd ses propriétés lubrifiantes et s'enrichit en impuretés. Une vidange tardive peut entraîner :</p>
-      <ul>
-        <li>Une usure prématurée du moteur</li>
-        <li>Des dépôts de boue dans le moteur</li>
-        <li>Une surconsommation de carburant</li>
-        <li>Dans les cas extrêmes, un moteur grippé</li>
-      </ul>
-      <h2>À quelle fréquence faire la vidange ?</h2>
-      <p>Les recommandations varient selon les constructeurs et le type d'huile utilisée :</p>
-      <ul>
-        <li><strong>Huile minérale :</strong> tous les 5 000 à 7 500 km</li>
-        <li><strong>Huile semi-synthétique :</strong> tous les 10 000 km</li>
-        <li><strong>Huile full synthétique :</strong> tous les 15 000 à 30 000 km (selon constructeur)</li>
-      </ul>
-      <p>En cas de doute, référez-vous au carnet d'entretien de votre véhicule ou contactez-nous directement.</p>
-      <h2>Quelle huile choisir ?</h2>
-      <p>Le choix de l'huile dépend de votre moteur. Les spécifications sont indiquées dans votre carnet d'entretien. Ne jamais mélanger des huiles de viscosités différentes. Chez Garage la Chapelle, nous utilisons exclusivement des huiles certifiées répondant aux normes constructeurs.</p>
-      <h2>Les signes que la vidange est urgente</h2>
-      <ul>
-        <li>Le voyant d'huile est allumé</li>
-        <li>L'huile est noire comme du goudron sur la jauge</li>
-        <li>Le moteur fait du bruit au démarrage</li>
-        <li>Vous dépassez le kilométrage recommandé</li>
-      </ul>
-      <div class="article-cta">
-        <h3>🔧 Besoin d'une vidange ?</h3>
-        <p>Nos techniciens s'occupent de tout. Devis gratuit, intervention rapide en moins d'une heure.</p>
-        <div class="article-nav">
-          <a href="rendez-vous.html" class="btn-primary">📅 Prendre rendez-vous</a>
-          <a href="devis.html" class="btn-ghost">Demander un devis</a>
+  <script src="assets/js/nav.js" data-page="blog" data-cart="2"></script>
+
+  <main class="page-content">
+
+    <a href="blog.html"
+      style="display:inline-flex;align-items:center;gap:.4rem;color:var(--primary-light);font-size:.85rem;text-decoration:none;margin-bottom:1rem">
+      <span class="material-symbols-outlined" style="font-size:16px">arrow_back</span>Retour au blog
+    </a>
+
+    <div class="article-layout">
+      <div>
+        <div class="article-tag" style="margin-bottom:.6rem;">🔴 Sécurité</div>
+        <h1 style="font-size:1.5rem;font-weight:800;line-height:1.25;margin-bottom:.75rem;">Entretien des freins&nbsp;:
+          quand faut-il vraiment s'inquiéter&nbsp;?</h1>
+        <div class="article-meta" style="margin-bottom:1rem;font-size:.78rem;color:rgba(255,255,255,.5)">
+          <span>📅 15 mars 2026</span> · <span>⏱ 4 min de lecture</span>
+        </div>
+
+        <img class="article-hero"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtORprCb5M_pFPItn6IMftz53p6FGXMtzcvVcyeYHR93IYYpFvyX7YxKYNWC-N6ep7MTXc3nB2ChOHz1c4KFXT9pJ4KGOR9Q_QH2P8wDNW2J_ybdmcT_VibMI967rglNWdx4eaXfzHYiRmY7Wc3qoSYh__jcoyS8ptd8yT9McxhSDJ-7N3IidC6c6bZqeQclE9GYOWLLDTSNGe-6KT_gaslliTju25xdHYZKDzucE6yoqrhLPukq4a6uxdYMAweWxRE3ZGVJZi-SLK"
+          alt="Freins auto" />
+
+        <div class="article-author">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnq_1ThwwETDYiIjNilbYfEtjdUEq_TTWv0dXNhMIKEo1H79NPBRUlMw7jy5FFRm8UsZ_j1e0_B7b6uVioNTXJOjSWOxmFgcQgWgoVAcb6Vp1p-kLGmPpNQ-zBt7GC9nDJl8T-xln2babIlm921GqJd9-SQU54WtY04iG1Ejz3yCT1qK9lfYHnaAC4hu2-rUn-NdMuWkJ-XTHtkwqS2BWPz-b0M9uxNvdiZMUxTyNV0QWqL8TpPhu7VqLQsDPLxZ91KdZK6ff91lBx"
+            alt="Marc" />
+          <div><span class="a-name">Marc Morel</span><span class="a-role">Chef d'Atelier · Expert Freinage</span></div>
+        </div>
+
+        <div class="article-content">
+          <p>Le système de freinage est l'élément de sécurité le plus critique de votre véhicule. Pourtant, il est
+            souvent négligé jusqu'au moment où les problèmes deviennent évidents — et potentiellement dangereux.</p>
+
+          <h2>1. Les bruits anormaux, premier signal d'alerte</h2>
+          <p>Un <strong>grincement ou crissement</strong> à chaque freinage indique généralement que les plaquettes sont
+            usées jusqu'à l'indicateur métallique. Ce bruit est volontaire : il est conçu pour vous alerter. Si vous
+            entendez un <strong>frottement sourd et continu</strong>, les plaquettes sont complètement usées et les
+            disques sont endommagés.</p>
+
+          <h2>2. Les vibrations au freinage</h2>
+          <p>Si le volant ou la pédale de frein vibrent lors d'un freinage, cela peut indiquer des <strong>disques
+              voilés</strong> (déformés par la chaleur excessive). Ce problème peut s'aggraver rapidement et nécessite
+            une intervention.</p>
+
+          <h2>3. La distance de freinage augmente</h2>
+          <p>Si vous sentez que votre voiture met plus de temps à s'arrêter après la pédale de frein, c'est un signe
+            grave. Vérifiez d'abord le <strong>niveau de liquide de frein</strong>. Un niveau bas peut cacher une fuite
+            ou indiquer des plaquettes très usées.</p>
+
+          <h2>4. Le voyant brake (frein) allumé</h2>
+          <p>Sur la plupart des véhicules modernes, un voyant rouge en forme de cercle avec un « ! » indique un problème
+            avec le système de freinage. <strong>Ne l'ignorez pas</strong> — faites vérifier le véhicule rapidement.</p>
+
+          <h2>Fréquence de remplacement recommandée</h2>
+          <ul>
+            <li><strong>Plaquettes</strong> : tous les 30 000 à 80 000 km (selon conduite)</li>
+            <li><strong>Disques</strong> : tous les 60 000 à 120 000 km</li>
+            <li><strong>Liquide de frein</strong> : tous les 2 ans ou 40 000 km</li>
+          </ul>
+
+          <p>Chez Garage la Chapelle, nous effectuons un <strong>contrôle freinage gratuit</strong> lors de chaque
+            révision. N'attendez pas les signes d'alerte pour vérifier votre système de freinage — votre sécurité en
+            dépend.</p>
+        </div>
+
+        <a class="btn-primary btn-full" href="rendez-vous.html" style="margin-top:1rem;"><span
+            class="material-symbols-outlined">calendar_month</span>Prendre RDV pour un contrôle freinage</a>
+      </div>
+
+      <div class="article-sidebar">
+        <div class="form-block">
+          <h3>Devis gratuit</h3>
+          <p style="font-size:.8rem;color:rgba(255,255,255,.6);margin-bottom:.75rem;">Besoin d'un devis rapide pour vos
+            freins ?</p>
+          <a class="btn-primary btn-full" href="devis.html"><span
+              class="material-symbols-outlined">request_quote</span>Demander un devis</a>
+        </div>
+        <div class="info-card">
+          <h3><span class="material-symbols-outlined">article</span>Autres articles</h3>
+          <a href="blog-article.html"
+            style="display:block;padding:.6rem 0;border-bottom:1px solid var(--border);font-size:.83rem;color:var(--text-2);text-decoration:none">La
+            vidange moteur : secret de longévité →</a>
+          <a href="blog-article.html"
+            style="display:block;padding:.6rem 0;font-size:.83rem;color:var(--text-2);text-decoration:none">Préparer son
+            contrôle technique →</a>
         </div>
       </div>
-      <div style="margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,.07)">
-        <a href="blog.html" style="color:var(--brand-light);text-decoration:none">← Retour au blog</a>
-      </div>
     </div>
-  </div>
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <div class="footer-brand"><div class="logo-text">Garage <span>la Chapelle</span></div><p>Votre expert automobile à Paris 18ème.</p></div>
-      <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="catalogue.html">Catalogue</a></li><li><a href="blog.html">Blog</a></li></ul></div>
-      <div class="footer-col"><h4>Services</h4><ul><li><a href="rendez-vous.html">Rendez-vous</a></li><li><a href="devis.html">Devis gratuit</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div class="footer-col footer-contact"><h4>Contact</h4><li><span class="icon">📍</span>12 Rue de la Paix, 75018 Paris</li><li><span class="icon">📞</span><a href="tel:+33123456789">01 23 45 67 89</a></li></div>
-    </div>
-    <div class="footer-bottom"><p>© 2024 Garage la Chapelle.</p><div class="footer-links"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div></div>
-  </footer>
-  <script src="assets/js/nav.js"></script>
+
+  </main>
 </body>
+
 </html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Mes Véhicules — Garage la Chapelle</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="assets/css/mobile.css" />
+    <style>
+        .veh-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: .75rem;
+        }
+
+        .veh-img {
+            height: 140px;
+            background: var(--bg-card2);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .veh-badge {
+            position: absolute;
+            top: .75rem;
+            left: .75rem;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .veh-body {
+            padding: 1rem;
+        }
+
+        .veh-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .veh-plate {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-card2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: monospace;
+            font-weight: 700;
+            font-size: .8rem;
+            margin-bottom: .5rem;
+        }
+
+        .veh-meta {
+            font-size: .78rem;
+            color: var(--text-2);
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            margin-bottom: .75rem;
+        }
+
+        .vehicles-grid {
+            display: grid;
+            gap: .75rem;
+        }
+
+        @media(min-width:900px) {
+            .vehicles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script src="assets/js/nav.js" data-page="profile" data-cart="2"></script>
+
+    <main class="page-content">
+
+        <div class="page-title-block">
+            <h1>Mes Véhicules</h1>
+            <p>Gérez votre parc automobile et consultez l'historique de vos entretiens.</p>
+        </div>
+
+        <!-- RAPPEL URGENT -->
+        <div class="alert error" style="margin-bottom:1rem;">
+            <span class="material-symbols-outlined">warning</span>
+            <span>Votre <strong>Renault Clio</strong> nécessite une révision — date dépassée. <a href="rendez-vous.html"
+                    style="color:inherit;text-decoration:underline">Prendre RDV →</a></span>
+        </div>
+
+        <div class="vehicles-grid">
+            <!-- Véhicule 1 -->
+            <div class="veh-card">
+                <div class="veh-img"
+                    style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBFR9A87pbYZHkHxMv0h2HQ87qcVamP8kRRQ9Lcx0AOQGGzyoOAU-3OolKi64kEL7LeoSn4NyENVK5kSP1N4CdnZjQOSLpa4-PX4pyRX0Xqj-s2JiuUEP8EZtkurOdI0OXj_SjvBSvLZitnXrD3EbX0An9j9N5ebfSof4Jrmrjmp3fgf_6rxwqJNuExU16b8apDp2x_G1WTgIPFKoHCGBTjuzO9R0tIYc_-LsvZzhVZOfnDnVqYnfnszV6GstINSi2MfIKwvDbzK-G6')">
+                    <div class="veh-badge" style="background:var(--primary);color:#fff">Premium</div>
+                </div>
+                <div class="veh-body">
+                    <div class="veh-title">Audi A3</div>
+                    <div class="veh-plate">AB-123-CD</div>
+                    <div class="veh-meta"><span class="material-symbols-outlined"
+                            style="font-size:14px;color:var(--accent-green)">event_available</span>Dernière révision :
+                        12/03/2023</div>
+                    <button class="btn-secondary btn-full"><span class="material-symbols-outlined">history</span> Voir
+                        l'historique</button>
+                </div>
+            </div>
+
+            <!-- Véhicule 2 -->
+            <div class="veh-card">
+                <div class="veh-img"
+                    style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBU9UDwkjlSFeYpgBdmg81WjgMUyZ7j5m0LdTo8bEmGlP6nS2jJ-ZxmKOXMXJHTpiIGoyFJ47Am-8KZckg6opXyey65xI_tMhlhcChCWB2TbrCLq4R1PTqDgQ236CEYBiur95R9VVO0M8lY5SLDLaIE5cOmUcMG62Qz8Sgw35VyyrjycGWkATD-bswf73V-c5OLSteputFFbwqA7sTHugxO5YSkdsEznQEffXZAIlmTURPxNVAsLKYqjQZRGltgpGsBaiOiNWmpg3up')">
+                    <div class="veh-badge" style="background:var(--accent-red);color:#fff">Entretien requis</div>
+                </div>
+                <div class="veh-body">
+                    <div class="veh-title">Renault Clio</div>
+                    <div class="veh-plate">EF-456-GH</div>
+                    <div class="veh-meta"><span class="material-symbols-outlined"
+                            style="font-size:14px;color:var(--accent-red)">warning</span>Dernière révision : 10/11/2022
+                        <span style="color:var(--accent-red)">(dépassée)</span></div>
+                    <a class="btn-primary btn-full" href="rendez-vous.html"><span
+                            class="material-symbols-outlined">calendar_month</span> Prendre RDV</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADD VEHICLE -->
+        <a class="profile-menu-item" href="ajouter-vehicule.html"
+            style="border:2px dashed var(--border);border-radius:var(--radius-xl);justify-content:center;padding:1.5rem;text-decoration:none;flex-direction:column;gap:.5rem;">
+            <div
+                style="width:50px;height:50px;border-radius:50%;background:rgba(17,82,212,.1);display:flex;align-items:center;justify-content:center;">
+                <span class="material-symbols-outlined" style="color:var(--primary-light)">add</span>
+            </div>
+            <span style="font-weight:700;color:var(--text)">Ajouter un véhicule</span>
+        </a>
+
+    </main>
+</body>
+
+</html>
