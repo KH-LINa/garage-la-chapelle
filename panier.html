@@ -1,89 +1,260 @@
 ﻿<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mon Panier — Garage la Chapelle</title>
-  <meta name="description" content="Votre panier — Garage la Chapelle pièces automobiles">
-  <link rel="stylesheet" href="assets/css/global.css">
-  <style>
-    .page-hero{background:linear-gradient(135deg,#0a0a14 0%,#111130 50%,#0a0a14 100%);padding:calc(var(--nav-h) + 60px) 5% 60px;text-align:center;}
-    .page-hero .tag{display:inline-block;background:rgba(17,82,212,.15);color:var(--brand-light);font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:100px;padding:5px 16px;margin-bottom:12px;}
-    .page-hero h1{font-size:clamp(1.8rem,4vw,3rem);color:#fff;font-weight:700;margin-bottom:14px;}
-    .page-hero p{color:var(--text-soft);font-size:1.05rem;max-width:600px;margin:0 auto 28px;}
-    .page-hero .actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-    .content-section{padding:64px 5%;max-width:1200px;margin:0 auto;}
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-    .card{background:linear-gradient(135deg,rgba(22,33,62,.8),rgba(10,10,20,.8));border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:28px 24px;transition:all .25s ease;}
-    .card:hover{transform:translateY(-4px);border-color:rgba(17,82,212,.4);}
-    .card h3{color:#fff;font-size:1rem;margin-bottom:8px;}
-    .card p{color:var(--text-soft);font-size:.88rem;line-height:1.6;}
-    .form-group{margin-bottom:20px;}
-    .form-group label{display:block;color:var(--text-soft);font-size:.88rem;margin-bottom:6px;font-weight:500;}
-    .form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:12px 14px;color:var(--text);font-family:var(--font);font-size:.9rem;transition:all .25s ease;}
-    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--brand);background:rgba(17,82,212,.08);}
-    .form-group select option{background:#1a1a2e;}
-    .form-group textarea{resize:vertical;min-height:120px;}
-    @media(max-width:900px){.grid-3{grid-template-columns:1fr 1fr;}.grid-2{grid-template-columns:1fr;}}
-    @media(max-width:600px){.grid-3{grid-template-columns:1fr;}.page-hero .actions{flex-direction:column;align-items:center;}}
-  </style>
+
+<html class="dark" lang="fr"><head>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mon Panier - Garage la Chapelle</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
 </head>
-<body>
-  <nav class="navbar">
-    <a href="index.html" class="nav-logo"><div class="logo-icon">🔧</div><div class="logo-text">Garage <span>la Chapelle</span></div></a>
-    <ul class="nav-links">
-      <li><a href="index.html">Accueil</a></li><li><a href="catalogue.html">Catalogue</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="blog.html">Blog</a></li><li><a href="a-propos.html">À Propos</a></li><li><a href="contact.html">Contact</a></li>
-    </ul>
-    <div class="nav-cta"><a href="devis.html" class="btn-ghost">Devis gratuit</a><a href="rendez-vous.html" class="btn-primary">📅 Rendez-vous</a></div>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
-  </nav>
-  <div class="nav-drawer" id="navDrawer">
-    <a href="index.html">🏠 Accueil</a><a href="catalogue.html">🛒 Catalogue</a><a href="galerie.html">🖼️ Galerie</a><a href="blog.html">📝 Blog</a><a href="a-propos.html">ℹ️ À Propos</a><a href="contact.html">📞 Contact</a><a href="suivi-commande.html">📦 Suivi</a>
-    <div class="drawer-cta"><a href="devis.html" class="btn-ghost">Devis gratuit</a><a href="rendez-vous.html" class="btn-primary">📅 Prendre rendez-vous</a></div>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Header / TopNavBar -->
+<!-- SITE NAV UNIFIED -->
+<style>
+.site-nav-wrapper{position:sticky;top:0;z-index:100;background:rgba(16,22,34,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(17,82,212,.2);}
+.site-nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.5rem;}
+.site-nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:#fff;}
+.site-nav-logo .icon{width:40px;height:40px;background:#1152d4;border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.site-nav-logo span.material-symbols-outlined{font-size:22px;color:#fff;}
+.site-nav-logo strong{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;color:#fff;}
+.site-nav-links{display:flex;align-items:center;gap:1.5rem;}
+.site-nav-links a{font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:500;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s;}
+.site-nav-links a:hover,.site-nav-links a.active{color:#fff;}
+.site-nav-links a.active{color:#5b8fff;}
+.site-nav-actions{display:flex;align-items:center;gap:.5rem;}
+.site-nav-cart{position:relative;width:38px;height:38px;background:rgba(17,82,212,.15);border-radius:9px;display:flex;align-items:center;justify-content:center;text-decoration:none;border:none;cursor:pointer;}
+.site-nav-cart .material-symbols-outlined{font-size:20px;color:#5b8fff;}
+.site-nav-cart .badge{position:absolute;top:-5px;right:-5px;background:#dc2626;color:#fff;font-size:10px;font-weight:700;border-radius:9999px;padding:1px 5px;}
+.site-nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;}
+.site-nav-hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s;}
+.site-nav-mobile{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,12,22,.98);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;}
+.site-nav-mobile.open{display:flex;}
+.site-nav-mobile a{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:600;color:#fff;text-decoration:none;padding:.5rem 2rem;border-radius:12px;transition:background .2s;}
+.site-nav-mobile a:hover{background:rgba(17,82,212,.2);}
+.site-nav-mobile .close-btn{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;}
+@media(max-width:768px){
+  .site-nav-links{display:none;}
+  .site-nav-hamburger{display:flex;}
+}
+</style>
+<nav class="site-nav-wrapper">
+  <div class="site-nav-inner">
+    <a class="site-nav-logo" href="index.html">
+      <div class="icon"><span class="material-symbols-outlined">directions_car</span></div>
+      <strong>Garage la Chapelle</strong>
+    </a>
+    <div class="site-nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="catalogue.html">Catalogue</a>
+      <a href="devis.html">Devis</a>
+      <a href="rendez-vous.html">Rendez-vous</a>
+      <a href="contact.html">Contact</a>
+      <a href="a-propos.html">À Propos</a>
+      <a href="blog.html">Blog</a>
+      <a href="galerie.html">Galerie</a>
+    </div>
+    <div class="site-nav-actions">
+      <a class="site-nav-cart" href="panier.html" title="Mon panier">
+        <span class="material-symbols-outlined">shopping_cart</span>
+        <span class="badge">2</span>
+      </a>
+      <button class="site-nav-hamburger" onclick="document.getElementById('mobile-nav').classList.toggle('open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
-  <div class="page-content"><section class='page-hero'>
-  <span class='tag'>Espace achat</span>
-  <h1>Mon panier</h1>
-</section>
-<div class='content-section'>
-  <div class='grid-2'>
-    <div>
-      <h2 style='color:#fff;font-size:1.2rem;margin-bottom:20px'>Articles (2)</h2>
-      <div class='card' style='margin-bottom:16px;display:flex;gap:16px;align-items:center'>
-        <div style='width:60px;height:60px;background:rgba(17,82,212,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0'>🔧</div>
-        <div style='flex:1'><h3 style='font-size:.95rem'>Alternateur Valeo — Renault Clio IV</h3><p style='color:var(--brand-light);font-weight:600'>89 €</p></div>
-        <button style='background:rgba(230,51,51,.15);border:1px solid rgba(230,51,51,.3);color:#e88;border-radius:6px;padding:6px 12px;cursor:pointer;font-size:.82rem' onclick='this.closest(&quot;.card&quot;).remove()'>✕</button>
-      </div>
-      <div class='card' style='display:flex;gap:16px;align-items:center'>
-        <div style='width:60px;height:60px;background:rgba(17,82,212,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0'>🛑</div>
-        <div style='flex:1'><h3 style='font-size:.95rem'>Plaquettes frein Brembo — BMW Série 3</h3><p style='color:var(--brand-light);font-weight:600'>65 €</p></div>
-        <button style='background:rgba(230,51,51,.15);border:1px solid rgba(230,51,51,.3);color:#e88;border-radius:6px;padding:6px 12px;cursor:pointer;font-size:.82rem' onclick='this.closest(&quot;.card&quot;).remove()'>✕</button>
-      </div>
-      <div style='margin-top:20px'><a href='catalogue.html' style='color:var(--brand-light);text-decoration:none;font-size:.88rem'>← Continuer mes achats</a></div>
-    </div>
-    <div>
-      <div class='card'>
-        <h3>Récapitulatif</h3>
-        <div style='display:flex;justify-content:space-between;margin:16px 0;color:var(--text-soft);font-size:.9rem'><span>Sous-total</span><span>154 €</span></div>
-        <div style='display:flex;justify-content:space-between;margin-bottom:16px;color:var(--text-soft);font-size:.9rem'><span>Livraison</span><span>Gratuite</span></div>
-        <div style='display:flex;justify-content:space-between;padding-top:16px;border-top:1px solid rgba(255,255,255,.07);font-weight:700;color:#fff;font-size:1.1rem'><span>Total TTC</span><span>154 €</span></div>
-        <button class='btn-primary' style='width:100%;padding:14px;margin-top:20px;font-size:1rem' onclick='alert(&quot;✅ Commande confirmée ! Numéro : GLC-2024-00124&quot;)'>✅ Passer la commande</button>
-        <p style='color:var(--text-soft);font-size:.78rem;text-align:center;margin-top:12px'>🔒 Paiement sécurisé · Garantie satisfait</p>
-      </div>
-      <div class='card' style='margin-top:16px'><h3>🎁 Code promo</h3><div style='display:flex;gap:10px;margin-top:12px'><input type='text' placeholder='GARAGE10' style='flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px;color:var(--text);font-family:var(--font)'><button class='btn-ghost' onclick='alert(&quot;Code valide : -10€ appliqué !&quot;)'>Appliquer</button></div></div>
-    </div>
-  </div>
-</div></div>
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <div class="footer-brand"><div class="logo-text">Garage <span>la Chapelle</span></div><p>Votre expert automobile à Paris 18ème depuis 20 ans.</p></div>
-      <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="catalogue.html">Catalogue</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="blog.html">Blog</a></li></ul></div>
-      <div class="footer-col"><h4>Services</h4><ul><li><a href="rendez-vous.html">Rendez-vous</a></li><li><a href="devis.html">Devis gratuit</a></li><li><a href="suivi-commande.html">Suivi commande</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div class="footer-col footer-contact"><h4>Contact</h4><li><span class="icon">📍</span>12 Rue de la Paix, 75018 Paris</li><li><span class="icon">📞</span><a href="tel:+33123456789">01 23 45 67 89</a></li></div>
-    </div>
-    <div class="footer-bottom"><p>© 2024 Garage la Chapelle.</p><div class="footer-links"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div></div>
-  </footer>
-  <script src="assets/js/nav.js"></script>
-</body>
-</html>
+</nav>
+<div id="mobile-nav" class="site-nav-mobile">
+  <button class="close-btn" onclick="document.getElementById('mobile-nav').classList.remove('open')">✕</button>
+  <a href="index.html">Accueil</a>
+  <a href="catalogue.html">Catalogue</a>
+  <a href="devis.html">Devis</a>
+  <a href="rendez-vous.html">Rendez-vous</a>
+  <a href="contact.html">Contact</a>
+  <a href="a-propos.html">À Propos</a>
+  <a href="blog.html">Blog</a>
+  <a href="galerie.html">Galerie</a>
+  <a href="panier.html">Mon Panier</a>
+  <a href="suivi-commande.html">Suivi de commande</a>
+</div>
+<!-- END SITE NAV -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<div class="flex flex-col lg:flex-row gap-8">
+<!-- Left Column: Cart Items -->
+<div class="flex-grow space-y-6">
+<div class="flex items-center justify-between">
+<h2 class="text-3xl font-bold tracking-tight">Mon Panier <span class="text-slate-500 dark:text-slate-400 font-normal text-lg">(2 articles)</span></h2>
+<a class="text-primary hover:underline flex items-center gap-1 text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                        Continuer mes achats
+                    </a>
+</div>
+<!-- Cart List -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+<!-- Item 1 -->
+<div class="p-6 border-b border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row gap-6 items-center">
+<div class="w-32 h-32 bg-slate-100 dark:bg-slate-800 rounded-lg flex-shrink-0 bg-cover bg-center" data-alt="Alternateur automobile neuf pour Peugeot 208" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA2somsI2yiX5OGXzVzKBhP5F2WHC2gOHA2VCzSG-Qne0G75BwHZscsPtYeCL8ZVVHhVaqpzNkr_2ZEPRu1XEwRHhuazi_W7i__XPZiv870GnnbXUW16WhEBoF8ccF5grlp--wp6O3aJ48NpkdVKcX2a17HNUpKhw0F53OupCMuP37ZsEZlrog9bPia0stu8mVNkAEYf8bG-t4F9Xjh8ROkc2VNvj3DPcbsaModctjAtDkcONWlyYtI0NzgYcNG_620YKcKWsA8N4XR')"></div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-lg font-semibold">Alternateur pour Peugeot 208</h3>
+<button class="text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-4">Référence: ALT-P208-85</p>
+<div class="flex justify-between items-center">
+<div class="flex items-center border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
+<button class="px-3 py-1 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">-</button>
+<span class="px-4 py-1 text-sm font-medium border-x border-slate-200 dark:border-slate-700">1</span>
+<button class="px-3 py-1 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">+</button>
+</div>
+<span class="text-xl font-bold">85,00 €</span>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-6 flex flex-col sm:flex-row gap-6 items-center">
+<div class="w-32 h-32 bg-slate-100 dark:bg-slate-800 rounded-lg flex-shrink-0 bg-cover bg-center" data-alt="Phare avant gauche pour Renault Clio IV" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDlH_8HjcHt1diW1uyWnz-C8YWXq1OdIkAVesXTmsapmYngmJUBgs3oqBxRC4nXfhoKWPwOKG_I25CiacSv0YZVCzLC8B9cPDM79xBhiAit8f6HWJzAdcHcGDOwKtsDGwEPNzE0X5TrUZAwCfMy0tTy_x9WgsbnZYbJN6mDsUAdOgwQJDgXTPNuzygT72Badhby0fQOTibAmAXBcGSJQPR1MEd7tqVia8_aB1e0-yJ29H3JhgR9oIlyV5mY3_0ll5g3uMl5TLbRxoTk')"></div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-lg font-semibold">Phare avant gauche pour Renault Clio IV</h3>
+<button class="text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-4">Référence: PH-RCLIO4-120</p>
+<div class="flex justify-between items-center">
+<div class="flex items-center border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
+<button class="px-3 py-1 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">-</button>
+<span class="px-4 py-1 text-sm font-medium border-x border-slate-200 dark:border-slate-700">1</span>
+<button class="px-3 py-1 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">+</button>
+</div>
+<span class="text-xl font-bold">120,00 €</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Delivery Options -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6">
+<h3 class="text-lg font-bold mb-4">Options de livraison</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<label class="relative flex items-center p-4 border border-primary bg-primary/5 rounded-xl cursor-pointer">
+<input checked="" class="text-primary focus:ring-primary h-5 w-5" name="delivery" type="radio"/>
+<div class="ml-4">
+<p class="font-bold text-sm">Livraison à domicile</p>
+<p class="text-xs text-slate-500">Sous 3-5 jours ouvrés (+ 9,90 €)</p>
+</div>
+<span class="material-symbols-outlined ml-auto text-primary">local_shipping</span>
+</label>
+<label class="relative flex items-center p-4 border border-slate-200 dark:border-slate-800 rounded-xl cursor-pointer hover:border-primary/50 transition-colors">
+<input class="text-primary focus:ring-primary h-5 w-5" name="delivery" type="radio"/>
+<div class="ml-4">
+<p class="font-bold text-sm">Retrait en magasin</p>
+<p class="text-xs text-slate-500">Disponible sous 2h (Gratuit)</p>
+</div>
+<span class="material-symbols-outlined ml-auto text-slate-400">store</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Right Column: Summary -->
+<div class="w-full lg:w-96">
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 sticky top-24">
+<h3 class="text-xl font-bold mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">Résumé de la commande</h3>
+<div class="space-y-4 mb-6">
+<div class="flex justify-between text-slate-600 dark:text-slate-400">
+<span>Sous-total</span>
+<span>205,00 €</span>
+</div>
+<div class="flex justify-between text-slate-600 dark:text-slate-400">
+<span>Frais de livraison</span>
+<span class="text-green-500 font-medium">Offerts</span>
+</div>
+<div class="flex justify-between text-slate-600 dark:text-slate-400">
+<span>TVA (20%)</span>
+<span>34,17 €</span>
+</div>
+<div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-between items-end">
+<span class="text-lg font-bold uppercase tracking-wide">Total</span>
+<span class="text-3xl font-black text-primary">205,00 €</span>
+</div>
+</div>
+<div class="mb-6 pt-6 border-t border-slate-100 dark:border-slate-800">
+<h4 class="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-4">Paiement express</h4>
+<div class="grid grid-cols-1 gap-3">
+<a class="w-full bg-black text-white rounded-lg py-3 flex items-center justify-center gap-2 hover:bg-zinc-900 transition-colors border border-zinc-800" href="#"><svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.05 20.28c-.96.78-2.1 1.24-3.23 1.24-1.23 0-2.09-.4-2.82-.4-.74 0-1.68.41-2.85.41-1.4 0-2.81-.84-3.83-2.19-2.08-2.73-1.6-6.86.41-9.2 1-.36 2.1-.56 3.23-.56 1.22 0 2.22.42 2.87.42.64 0 1.95-.51 3.39-.51 1.1 0 2.44.41 3.23 1.24-2.11 1.24-1.77 4.1.4 5.25-.6 1.48-1.42 2.94-2.42 3.74zm-3.66-13.06c0-1.28.53-2.52 1.4-3.41.87-.9 2.15-1.54 3.4-1.54.1 1.28-.43 2.51-1.3 3.41-.87.9-2.13 1.54-3.5 1.54z"></path></svg><span class="font-medium">Apple Pay</span></a>
+<a class="w-full bg-white text-slate-900 rounded-lg py-3 flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors border border-slate-200" href="#"><svg class="w-5 h-5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.92 3.16-1.84 4.12-1.16 1.16-2.92 2.36-6 2.36-4.84 0-8.68-3.92-8.68-8.76s3.84-8.76 8.68-8.76c2.64 0 4.52 1.04 5.96 2.4l2.32-2.32C18.64 1.36 16 0 12.48 0 5.6 0 0 5.6 0 12.48S5.6 24.96 12.48 24.96c3.76 0 6.6-1.24 8.8-3.52 2.28-2.28 2.96-5.48 2.96-8.12 0-.64-.04-1.28-.12-1.88h-11.64z" fill="#4285F4"></path></svg><span class="font-medium">Google Pay</span></a>
+</div>
+</div><a class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 rounded-lg flex items-center justify-center gap-2 transition-all mb-4" href="#"><span class="material-symbols-outlined">lock</span> Procéder au paiement</a>
+<p class="text-[10px] text-center text-slate-500 uppercase tracking-widest">Paiement sécurisé par SSL</p>
+<div class="mt-8 grid grid-cols-4 gap-2 opacity-50 grayscale hover:grayscale-0 transition-all">
+<div class="h-8 bg-slate-200 dark:bg-slate-800 rounded flex items-center justify-center"><span class="text-[10px] font-bold">VISA</span></div>
+<div class="h-8 bg-slate-200 dark:bg-slate-800 rounded flex items-center justify-center"><span class="text-[10px] font-bold">MC</span></div>
+<div class="h-8 bg-slate-200 dark:bg-slate-800 rounded flex items-center justify-center"><span class="text-[10px] font-bold">PP</span></div>
+<div class="h-8 bg-slate-200 dark:bg-slate-800 rounded flex items-center justify-center"><span class="text-[10px] font-bold">CB</span></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-900 mt-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-2 text-primary" href="#">
+<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 48 48">
+<path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z"></path>
+</svg>
+<span class="font-bold">Garage la Chapelle</span>
+</a>
+<p class="text-sm text-slate-500">© 2024 Garage la Chapelle. Tous droits réservés.</p>
+</div>
+<!-- Certifié Qualité Pro Badge -->
+<div class="flex items-center gap-4 bg-white dark:bg-slate-900 px-6 py-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+<div class="bg-primary/10 p-2 rounded-full">
+<span class="material-symbols-outlined text-primary text-3xl">verified</span>
+</div>
+<div>
+<p class="text-xs uppercase tracking-widest font-bold text-slate-400">Badge Officiel</p>
+<p class="font-bold text-primary">Certifié Qualité Pro</p>
+</div>
+</div>
+<div class="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-4 text-sm font-medium">
+<a class="hover:text-primary transition-colors" href="#">À Propos</a>
+<a class="hover:text-primary transition-colors" href="galerie.html">Galerie</a>
+<a class="hover:text-primary transition-colors" href="blog.html">Blog</a>
+<a class="hover:text-primary transition-colors" href="contact.html">Contact</a>
+<a class="hover:text-primary transition-colors" href="#">Mentions Légales</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
+

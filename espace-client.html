@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Client — Garage la Chapelle</title>
+    <meta name="description" content="Connectez-vous à votre espace client — Garage la Chapelle Paris 18">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <style>
+        .page-hero {
+            background: linear-gradient(135deg, #0a0a14 0%, #111130 50%, #0a0a14 100%);
+            padding: calc(var(--nav-h) + 60px) 5% 60px;
+            text-align: center;
+        }
+
+        .page-hero .tag {
+            display: inline-block;
+            background: rgba(17, 82, 212, .15);
+            color: var(--brand-light);
+            font-size: .8rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            border-radius: 100px;
+            padding: 5px 16px;
+            margin-bottom: 12px;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .page-hero p {
+            color: var(--text-soft);
+            font-size: 1rem;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 48px 5%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Auth card */
+        .auth-card {
+            background: linear-gradient(135deg, rgba(22, 33, 62, .8), rgba(10, 10, 20, .8));
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 460px;
+            margin: 0 auto;
+        }
+
+        .auth-tabs {
+            display: flex;
+            background: rgba(255, 255, 255, .04);
+            border-radius: 10px;
+            padding: 4px;
+            margin-bottom: 28px;
+        }
+
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: .9rem;
+            font-weight: 600;
+            color: var(--text-soft);
+            transition: all .25s;
+            font-family: var(--font);
+            border: none;
+            background: none;
+        }
+
+        .auth-tab.active {
+            background: var(--brand);
+            color: #fff;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text-soft);
+            font-size: .84rem;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 8px;
+            padding: 12px 14px;
+            color: var(--text);
+            font-family: var(--font);
+            font-size: .9rem;
+            transition: all .25s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--brand);
+            background: rgba(17, 82, 212, .08);
+        }
+
+        .auth-error {
+            background: rgba(230, 51, 51, .12);
+            border: 1px solid rgba(230, 51, 51, .3);
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: .85rem;
+            color: #e88;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .auth-divider {
+            text-align: center;
+            color: var(--text-soft);
+            font-size: .82rem;
+            margin: 16px 0;
+            position: relative;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: rgba(255, 255, 255, .08);
+        }
+
+        .auth-divider::before {
+            left: 0;
+        }
+
+        .auth-divider::after {
+            right: 0;
+        }
+
+        .google-btn {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 8px;
+            color: #fff;
+            font-family: var(--font);
+            font-size: .9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all .25s;
+        }
+
+        .google-btn:hover {
+            background: rgba(255, 255, 255, .1);
+        }
+
+        .google-icon {
+            font-size: 18px;
+        }
+
+        /* Dashboard */
+        #dashboard {
+            display: none;
+        }
+
+        .dash-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .dash-welcome {
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .dash-welcome span {
+            color: var(--brand-light);
+        }
+
+        .dash-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(22, 33, 62, .8), rgba(10, 10, 20, .8));
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .stat-icon {
+            font-size: 28px;
+            width: 48px;
+            height: 48px;
+            background: rgba(17, 82, 212, .15);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .stat-label {
+            color: var(--text-soft);
+            font-size: .78rem;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        /* Sections dashboard */
+        .dash-section {
+            background: linear-gradient(135deg, rgba(22, 33, 62, .6), rgba(10, 10, 20, .6));
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .dash-section h3 {
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .order-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .order-row:last-child {
+            border-bottom: none;
+        }
+
+        .order-num-label {
+            color: var(--brand-light);
+            font-size: .85rem;
+            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .order-desc {
+            color: var(--text-soft);
+            font-size: .82rem;
+            flex: 1;
+        }
+
+        .order-status {
+            font-size: .75rem;
+            font-weight: 700;
+            border-radius: 100px;
+            padding: 4px 12px;
+        }
+
+        .status-done {
+            background: rgba(37, 211, 102, .12);
+            color: #25d366;
+        }
+
+        .status-progress {
+            background: rgba(255, 165, 0, .12);
+            color: orange;
+        }
+
+        .status-pending {
+            background: rgba(255, 255, 255, .07);
+            color: var(--text-soft);
+        }
+
+        .rdv-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .rdv-row:last-child {
+            border-bottom: none;
+        }
+
+        /* Profil */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .profile-field {
+            background: rgba(255, 255, 255, .03);
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .profile-field label {
+            color: var(--text-soft);
+            font-size: .75rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .profile-field span {
+            color: #fff;
+            font-size: .9rem;
+            font-weight: 500;
+        }
+
+        /* Loader */
+        .loader {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-soft);
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border: 3px solid rgba(255, 255, 255, .1);
+            border-top-color: var(--brand);
+            border-radius: 50%;
+            animation: spin .8s linear infinite;
+            margin-bottom: 12px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        @media(max-width:900px) {
+            .dash-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width:600px) {
+            .dash-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <div class="logo-icon">🔧</div>
+            <div class="logo-text">Garage <span>la Chapelle</span></div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="catalogue.html">Catalogue</a></li>
+            <li><a href="galerie.html">Galerie</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="a-propos.html">À Propos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-cta">
+            <a href="devis.html" class="btn-ghost">Devis gratuit</a>
+            <a href="rendez-vous.html" class="btn-primary">📅 Rendez-vous</a>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+    <div class="nav-drawer" id="navDrawer">
+        <a href="index.html">🏠 Accueil</a><a href="catalogue.html">🛒 Catalogue</a><a href="galerie.html">🖼️
+            Galerie</a><a href="blog.html">📝 Blog</a><a href="a-propos.html">ℹ️ À Propos</a><a href="contact.html">📞
+            Contact</a><a href="espace-client.html">👤 Mon compte</a>
+        <div class="drawer-cta"><a href="devis.html" class="btn-ghost">Devis gratuit</a><a href="rendez-vous.html"
+                class="btn-primary">📅 Prendre rendez-vous</a></div>
+    </div>
+
+    <div class="page-content">
+        <section class="page-hero">
+            <span class="tag">Espace client</span>
+            <h1 id="heroTitle">Mon compte</h1>
+            <p id="heroSub">Connectez-vous pour accéder à vos rendez-vous, commandes et informations personnelles.</p>
+        </section>
+
+        <!-- Loader initial -->
+        <div class="section" id="loaderSection">
+            <div class="loader">
+                <div class="spinner"></div><br>Chargement...
+            </div>
+        </div>
+
+        <!-- Formulaire Auth -->
+        <div class="section" id="authSection" style="display:none">
+            <div class="auth-card">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" id="tabLogin" onclick="switchTab('login')">Connexion</button>
+                    <button class="auth-tab" id="tabRegister" onclick="switchTab('register')">Inscription</button>
+                </div>
+
+                <!-- Connexion -->
+                <div id="loginForm">
+                    <div class="form-group"><label>Email</label><input type="email" id="loginEmail"
+                            placeholder="jean@exemple.fr"></div>
+                    <div class="form-group"><label>Mot de passe</label><input type="password" id="loginPwd"
+                            placeholder="••••••••"></div>
+                    <div class="auth-error" id="loginError"></div>
+                    <button class="btn-primary" style="width:100%;padding:13px;font-size:.95rem" id="loginBtn">Se
+                        connecter</button>
+                    <p style="text-align:center;margin-top:12px;font-size:.82rem;color:var(--text-soft)">
+                        <a href="#" id="forgotLink" style="color:var(--brand-light)">Mot de passe oublié ?</a>
+                    </p>
+                    <div class="auth-divider">ou</div>
+                    <button class="google-btn" id="googleLoginBtn">
+                        <span class="google-icon">🔵</span> Continuer avec Google
+                    </button>
+                </div>
+
+                <!-- Inscription -->
+                <div id="registerForm" style="display:none">
+                    <div class="form-group"><label>Prénom & Nom</label><input type="text" id="regName"
+                            placeholder="Jean Dupont"></div>
+                    <div class="form-group"><label>Email</label><input type="email" id="regEmail"
+                            placeholder="jean@exemple.fr"></div>
+                    <div class="form-group"><label>Téléphone</label><input type="tel" id="regPhone"
+                            placeholder="06 12 34 56 78"></div>
+                    <div class="form-group"><label>Mot de passe</label><input type="password" id="regPwd"
+                            placeholder="Min. 6 caractères"></div>
+                    <div class="auth-error" id="regError"></div>
+                    <button class="btn-primary" style="width:100%;padding:13px;font-size:.95rem" id="regBtn">Créer mon
+                        compte</button>
+                    <div class="auth-divider">ou</div>
+                    <button class="google-btn" id="googleRegBtn">
+                        <span class="google-icon">🔵</span> S'inscrire avec Google
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard client -->
+        <div class="section" id="dashboard">
+            <div class="dash-header">
+                <div>
+                    <p class="dash-welcome">Bonjour, <span id="userDisplayName">Client</span> 👋</p>
+                    <p style="color:var(--text-soft);font-size:.85rem" id="userEmail2"></p>
+                </div>
+                <button class="btn-ghost" id="logoutBtn">🚪 Déconnexion</button>
+            </div>
+
+            <!-- Stats -->
+            <div class="dash-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div>
+                        <div class="stat-label">Commandes</div>
+                        <div class="stat-value" id="statOrders">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📅</div>
+                    <div>
+                        <div class="stat-label">Rendez-vous</div>
+                        <div class="stat-value" id="statRdv">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔧</div>
+                    <div>
+                        <div class="stat-label">Réparations</div>
+                        <div class="stat-value" id="statRep">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Commandes récentes -->
+            <div class="dash-section">
+                <h3>📦 Mes commandes récentes</h3>
+                <div id="ordersList">
+                    <div style="color:var(--text-soft);font-size:.88rem;text-align:center;padding:20px">
+                        Aucune commande pour le moment. <a href="catalogue.html" style="color:var(--brand-light)">Voir
+                            le catalogue</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rendez-vous -->
+            <div class="dash-section">
+                <h3>📅 Mes rendez-vous</h3>
+                <div id="rdvList">
+                    <div style="color:var(--text-soft);font-size:.88rem;text-align:center;padding:20px">
+                        Aucun rendez-vous. <a href="rendez-vous.html" style="color:var(--brand-light)">Prendre
+                            rendez-vous</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profil -->
+            <div class="dash-section">
+                <h3>👤 Mon profil</h3>
+                <div class="profile-grid">
+                    <div class="profile-field"><label>Nom complet</label><span id="profName">—</span></div>
+                    <div class="profile-field"><label>Email</label><span id="profEmail">—</span></div>
+                    <div class="profile-field"><label>Téléphone</label><span id="profPhone">—</span></div>
+                    <div class="profile-field"><label>Membre depuis</label><span id="profSince">—</span></div>
+                </div>
+                <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
+                    <a href="rendez-vous.html" class="btn-primary">📅 Nouveau rendez-vous</a>
+                    <a href="devis.html" class="btn-ghost">📋 Demander un devis</a>
+                    <a href="suivi-commande.html" class="btn-ghost">📦 Suivi commande</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo-text">Garage <span>la Chapelle</span></div>
+                <p>Votre expert automobile à Paris 18ème depuis 20 ans.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="catalogue.html">Catalogue</a></li>
+                    <li><a href="galerie.html">Galerie</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="rendez-vous.html">Rendez-vous</a></li>
+                    <li><a href="devis.html">Devis gratuit</a></li>
+                    <li><a href="suivi-commande.html">Suivi commande</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-contact">
+                <h4>Contact</h4>
+                <li><span class="icon">📍</span>12 Rue de la Paix, 75018 Paris</li>
+                <li><span class="icon">📞</span><a href="tel:+33123456789">01 23 45 67 89</a></li>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Garage la Chapelle. Tous droits réservés.</p>
+            <div class="footer-links"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK (compat version - easier setup) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="assets/js/nav.js"></script>
+    <script>
+        // ============================================================
+        // 🔥 FIREBASE CONFIGURATION
+        // 👉 Remplace ces valeurs par tes clés Firebase :
+        //    1. Va sur https://console.firebase.google.com
+        //    2. Crée un projet "garage-la-chapelle"
+        //    3. Ajoute une app Web et copie firebaseConfig ici
+        // ============================================================
+        const firebaseConfig = {
+            apiKey: "VOTRE_API_KEY",
+            authDomain: "VOTRE_PROJECT.firebaseapp.com",
+            projectId: "VOTRE_PROJECT_ID",
+            storageBucket: "VOTRE_PROJECT.appspot.com",
+            messagingSenderId: "VOTRE_SENDER_ID",
+            appId: "VOTRE_APP_ID"
+        };
+
+        // Vérification : si Firebase n'est pas configuré, mode démo
+        const FIREBASE_CONFIGURED = firebaseConfig.apiKey !== "VOTRE_API_KEY";
+
+        if (FIREBASE_CONFIGURED) {
+            firebase.initializeApp(firebaseConfig);
+        }
+
+        const auth = FIREBASE_CONFIGURED ? firebase.auth() : null;
+        const db = FIREBASE_CONFIGURED ? firebase.firestore() : null;
+
+        // ============================================================
+        // UI helpers
+        // ============================================================
+        function showSection(id) {
+            ['loaderSection', 'authSection', 'dashboard'].forEach(s => {
+                document.getElementById(s).style.display = s === id ? 'block' : 'none';
+            });
+        }
+
+        function switchTab(tab) {
+            const isLogin = tab === 'login';
+            document.getElementById('loginForm').style.display = isLogin ? 'block' : 'none';
+            document.getElementById('registerForm').style.display = isLogin ? 'none' : 'block';
+            document.getElementById('tabLogin').classList.toggle('active', isLogin);
+            document.getElementById('tabRegister').classList.toggle('active', !isLogin);
+        }
+
+        function showError(id, msg) {
+            const el = document.getElementById(id);
+            el.textContent = msg; el.style.display = 'block';
+            setTimeout(() => el.style.display = 'none', 5000);
+        }
+
+        function fmtDate(ts) {
+            if (!ts) return '—';
+            const d = ts.toDate ? ts.toDate() : new Date(ts);
+            return d.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' });
+        }
+
+        // ============================================================
+        // Dashboard
+        // ============================================================
+        async function loadDashboard(user) {
+            document.getElementById('heroTitle').textContent = 'Mon espace client';
+            document.getElementById('heroSub').textContent = '';
+            showSection('dashboard');
+
+            const displayName = user.displayName || user.email.split('@')[0];
+            document.getElementById('userDisplayName').textContent = displayName;
+            document.getElementById('userEmail2').textContent = user.email;
+            document.getElementById('profEmail').textContent = user.email;
+            document.getElementById('profName').textContent = user.displayName || '—';
+            document.getElementById('profSince').textContent = user.metadata?.creationTime
+                ? new Date(user.metadata.creationTime).toLocaleDateString('fr-FR') : '—';
+
+            if (!db) { loadLocalDashboard(user); return; }
+
+            // Charger données Firestore
+            try {
+                // Profil utilisateur
+                const profDoc = await db.collection('users').doc(user.uid).get();
+                if (profDoc.exists) {
+                    const p = profDoc.data();
+                    document.getElementById('profPhone').textContent = p.phone || '—';
+                    document.getElementById('profName').textContent = p.name || displayName;
+                }
+
+                // Commandes
+                const ordersSnap = await db.collection('orders')
+                    .where('uid', '==', user.uid).orderBy('createdAt', 'desc').limit(5).get();
+                renderOrders(ordersSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+                document.getElementById('statOrders').textContent = ordersSnap.size;
+
+                // Rendez-vous
+                const rdvSnap = await db.collection('appointments')
+                    .where('uid', '==', user.uid).orderBy('date', 'desc').limit(3).get();
+                renderRdv(rdvSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+                document.getElementById('statRdv').textContent = rdvSnap.size;
+
+            } catch (err) {
+                console.warn('Firestore non disponible, mode démo.', err);
+                loadLocalDashboard(user);
+            }
+        }
+
+        // Mode démo (sans Firestore) — afficher commandes localStorage
+        function loadLocalDashboard(user) {
+            const storedOrders = JSON.parse(localStorage.getItem('glc_order_history') || '[]');
+            // Simuler des données pour la démo
+            const demoOrders = [
+                { id: 'GLC-2025-' + Math.floor(10000 + Math.random() * 90000), desc: 'Plaquettes frein Brembo — BMW Série 3', status: 'done', date: new Date().toLocaleDateString('fr-FR') },
+                { id: 'GLC-2025-' + Math.floor(10000 + Math.random() * 90000), desc: 'Compresseur AC Denso', status: 'progress', date: new Date().toLocaleDateString('fr-FR') },
+            ];
+            renderOrders([...storedOrders, ...demoOrders]);
+            document.getElementById('statOrders').textContent = demoOrders.length;
+            document.getElementById('statRdv').textContent = '1';
+            document.getElementById('statRep').textContent = '3';
+            // RDV démo
+            renderRdv([
+                { prestation: 'Entretien régulier / Vidange', date: '12/03/2025', slot: '10h30', status: 'pending' }
+            ]);
+        }
+
+        function renderOrders(orders) {
+            const el = document.getElementById('ordersList');
+            if (!orders || orders.length === 0) return;
+            el.innerHTML = '';
+            orders.forEach(o => {
+                const statusLabel = o.status === 'done' ? 'Livré' : o.status === 'progress' ? 'En cours' : 'En attente';
+                const statusClass = o.status === 'done' ? 'status-done' : o.status === 'progress' ? 'status-progress' : 'status-pending';
+                const row = document.createElement('div');
+                row.className = 'order-row';
+                row.innerHTML = `
+        <span class="order-num-label">${o.id}</span>
+        <span class="order-desc">${o.desc || o.description || '—'}</span>
+        <span class="order-status ${statusClass}">${statusLabel}</span>
+        <a href="suivi-commande.html?num=${o.id}" style="color:var(--brand-light);font-size:.82rem;white-space:nowrap">Suivre →</a>`;
+                el.appendChild(row);
+            });
+        }
+
+        function renderRdv(rdvs) {
+            const el = document.getElementById('rdvList');
+            if (!rdvs || rdvs.length === 0) return;
+            el.innerHTML = '';
+            rdvs.forEach(r => {
+                const row = document.createElement('div');
+                row.className = 'rdv-row';
+                row.innerHTML = `
+        <div>
+          <div style="color:#fff;font-size:.88rem;font-weight:600">${r.prestation || r.type || 'Rendez-vous'}</div>
+          <div style="color:var(--text-soft);font-size:.78rem">${r.date || '—'} ${r.slot ? '· ' + r.slot : ''}</div>
+        </div>
+        <span class="order-status status-pending">Confirmé</span>`;
+                el.appendChild(row);
+            });
+        }
+
+        // ============================================================
+        // Auth events
+        // ============================================================
+        if (FIREBASE_CONFIGURED) {
+            // Observer d'état
+            auth.onAuthStateChanged(user => {
+                if (user) { loadDashboard(user); }
+                else { showSection('authSection'); }
+            });
+
+            // Connexion email
+            document.getElementById('loginBtn').addEventListener('click', async () => {
+                const email = document.getElementById('loginEmail').value.trim();
+                const pwd = document.getElementById('loginPwd').value;
+                if (!email || !pwd) { showError('loginError', '⚠️ Email et mot de passe requis.'); return; }
+                try {
+                    await auth.signInWithEmailAndPassword(email, pwd);
+                } catch (e) {
+                    const msgs = { 'auth/user-not-found': 'Email introuvable.', 'auth/wrong-password': 'Mot de passe incorrect.', 'auth/invalid-email': 'Email invalide.' };
+                    showError('loginError', '❌ ' + (msgs[e.code] || e.message));
+                }
+            });
+
+            // Inscription email
+            document.getElementById('regBtn').addEventListener('click', async () => {
+                const name = document.getElementById('regName').value.trim();
+                const email = document.getElementById('regEmail').value.trim();
+                const phone = document.getElementById('regPhone').value.trim();
+                const pwd = document.getElementById('regPwd').value;
+                if (!name || !email || !pwd) { showError('regError', '⚠️ Remplissez tous les champs.'); return; }
+                if (pwd.length < 6) { showError('regError', '⚠️ Mot de passe trop court (6 car. min).'); return; }
+                try {
+                    const cred = await auth.createUserWithEmailAndPassword(email, pwd);
+                    await cred.user.updateProfile({ displayName: name });
+                    // Sauvegarder profil dans Firestore
+                    await db.collection('users').doc(cred.user.uid).set({ name, email, phone, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+                } catch (e) {
+                    const msgs = { 'auth/email-already-in-use': 'Email déjà utilisé.', 'auth/invalid-email': 'Email invalide.', 'auth/weak-password': 'Mot de passe trop faible.' };
+                    showError('regError', '❌ ' + (msgs[e.code] || e.message));
+                }
+            });
+
+            // Google Auth
+            const googleProvider = new firebase.auth.GoogleAuthProvider();
+            ['googleLoginBtn', 'googleRegBtn'].forEach(id => {
+                document.getElementById(id).addEventListener('click', async () => {
+                    try { await auth.signInWithPopup(googleProvider); }
+                    catch (e) { showError('loginError', '❌ ' + e.message); }
+                });
+            });
+
+            // Mot de passe oublié
+            document.getElementById('forgotLink').addEventListener('click', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value.trim();
+                if (!email) { showError('loginError', '⚠️ Entrez votre email d\'abord.'); return; }
+                try {
+                    await auth.sendPasswordResetEmail(email);
+                    showError('loginError', '✅ Email de réinitialisation envoyé !');
+                    document.getElementById('loginError').style.background = 'rgba(37,211,102,.1)';
+                    document.getElementById('loginError').style.color = '#25d366';
+                } catch (e) { showError('loginError', '❌ ' + e.message); }
+            });
+
+            // Déconnexion
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                auth.signOut();
+            });
+
+        } else {
+            // MODE DÉMO (Firebase non configuré)
+            showSection('authSection');
+
+            document.getElementById('loginBtn').addEventListener('click', () => {
+                const email = document.getElementById('loginEmail').value.trim();
+                const pwd = document.getElementById('loginPwd').value;
+                if (!email || !pwd) { showError('loginError', '⚠️ Remplissez tous les champs.'); return; }
+                // Simuler connexion
+                loadDashboard({ email, displayName: email.split('@')[0], uid: 'demo', metadata: { creationTime: Date.now() } });
+            });
+
+            document.getElementById('regBtn').addEventListener('click', () => {
+                const name = document.getElementById('regName').value.trim();
+                const email = document.getElementById('regEmail').value.trim();
+                if (!name || !email) { showError('regError', '⚠️ Remplissez tous les champs.'); return; }
+                loadDashboard({ email, displayName: name, uid: 'demo', metadata: { creationTime: Date.now() } });
+            });
+
+            ['googleLoginBtn', 'googleRegBtn'].forEach(id => {
+                document.getElementById(id).addEventListener('click', () => {
+                    loadDashboard({ email: 'demo@gmail.com', displayName: 'Utilisateur Google', uid: 'demo', metadata: { creationTime: Date.now() } });
+                });
+            });
+
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                showSection('authSection');
+                document.getElementById('heroTitle').textContent = 'Mon compte';
+                document.getElementById('heroSub').textContent = 'Connectez-vous pour accéder à vos rendez-vous, commandes et informations personnelles.';
+            });
+        }
+    </script>
+</body>
+
+</html>

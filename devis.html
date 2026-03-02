@@ -1,106 +1,324 @@
 ﻿<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demande de Devis Gratuit — Garage la Chapelle</title>
-  <meta name="description" content="Obtenez un devis gratuit pour l'entretien ou la réparation de votre véhicule — Garage la Chapelle">
-  <link rel="stylesheet" href="assets/css/global.css">
-  <style>
-    .page-hero{background:linear-gradient(135deg,#0a0a14 0%,#111130 50%,#0a0a14 100%);padding:calc(var(--nav-h) + 60px) 5% 60px;text-align:center;}
-    .page-hero .tag{display:inline-block;background:rgba(17,82,212,.15);color:var(--brand-light);font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:100px;padding:5px 16px;margin-bottom:12px;}
-    .page-hero h1{font-size:clamp(1.8rem,4vw,3rem);color:#fff;font-weight:700;margin-bottom:14px;}
-    .page-hero p{color:var(--text-soft);font-size:1.05rem;max-width:600px;margin:0 auto 28px;}
-    .page-hero .actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-    .content-section{padding:64px 5%;max-width:1200px;margin:0 auto;}
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-    .card{background:linear-gradient(135deg,rgba(22,33,62,.8),rgba(10,10,20,.8));border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:28px 24px;transition:all .25s ease;}
-    .card:hover{transform:translateY(-4px);border-color:rgba(17,82,212,.4);}
-    .card h3{color:#fff;font-size:1rem;margin-bottom:8px;}
-    .card p{color:var(--text-soft);font-size:.88rem;line-height:1.6;}
-    .form-group{margin-bottom:20px;}
-    .form-group label{display:block;color:var(--text-soft);font-size:.88rem;margin-bottom:6px;font-weight:500;}
-    .form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:12px 14px;color:var(--text);font-family:var(--font);font-size:.9rem;transition:all .25s ease;}
-    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--brand);background:rgba(17,82,212,.08);}
-    .form-group select option{background:#1a1a2e;}
-    .form-group textarea{resize:vertical;min-height:120px;}
-    @media(max-width:900px){.grid-3{grid-template-columns:1fr 1fr;}.grid-2{grid-template-columns:1fr;}}
-    @media(max-width:600px){.grid-3{grid-template-columns:1fr;}.page-hero .actions{flex-direction:column;align-items:center;}}
-  </style>
+
+<html class="dark" lang="fr"><head>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Demande de devis - Garage de la Chapelle</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "accent": "#ef4444",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "surface": "#1a2233",
+                        "border": "#2d3a54"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Space Grotesk', sans-serif; }
+        .form-input-custom {
+            @apply w-full bg-surface border border-border rounded-lg p-4 text-slate-100 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all;
+        }
+    </style>
 </head>
-<body>
-  <nav class="navbar">
-    <a href="index.html" class="nav-logo"><div class="logo-icon">🔧</div><div class="logo-text">Garage <span>la Chapelle</span></div></a>
-    <ul class="nav-links">
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="catalogue.html">Catalogue</a></li>
-      <li><a href="galerie.html">Galerie</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="a-propos.html">À Propos</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <div class="nav-cta">
-      <a href="devis.html" class="btn-ghost">Devis gratuit</a>
-      <a href="rendez-vous.html" class="btn-primary">📅 Rendez-vous</a>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Navigation -->
+<!-- SITE NAV UNIFIED -->
+<style>
+.site-nav-wrapper{position:sticky;top:0;z-index:100;background:rgba(16,22,34,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(17,82,212,.2);}
+.site-nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.5rem;}
+.site-nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:#fff;}
+.site-nav-logo .icon{width:40px;height:40px;background:#1152d4;border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.site-nav-logo span.material-symbols-outlined{font-size:22px;color:#fff;}
+.site-nav-logo strong{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;color:#fff;}
+.site-nav-links{display:flex;align-items:center;gap:1.5rem;}
+.site-nav-links a{font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:500;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s;}
+.site-nav-links a:hover,.site-nav-links a.active{color:#fff;}
+.site-nav-links a.active{color:#5b8fff;}
+.site-nav-actions{display:flex;align-items:center;gap:.5rem;}
+.site-nav-cart{position:relative;width:38px;height:38px;background:rgba(17,82,212,.15);border-radius:9px;display:flex;align-items:center;justify-content:center;text-decoration:none;border:none;cursor:pointer;}
+.site-nav-cart .material-symbols-outlined{font-size:20px;color:#5b8fff;}
+.site-nav-cart .badge{position:absolute;top:-5px;right:-5px;background:#dc2626;color:#fff;font-size:10px;font-weight:700;border-radius:9999px;padding:1px 5px;}
+.site-nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;}
+.site-nav-hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s;}
+.site-nav-mobile{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,12,22,.98);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;}
+.site-nav-mobile.open{display:flex;}
+.site-nav-mobile a{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:600;color:#fff;text-decoration:none;padding:.5rem 2rem;border-radius:12px;transition:background .2s;}
+.site-nav-mobile a:hover{background:rgba(17,82,212,.2);}
+.site-nav-mobile .close-btn{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;}
+@media(max-width:768px){
+  .site-nav-links{display:none;}
+  .site-nav-hamburger{display:flex;}
+}
+</style>
+<nav class="site-nav-wrapper">
+  <div class="site-nav-inner">
+    <a class="site-nav-logo" href="index.html">
+      <div class="icon"><span class="material-symbols-outlined">directions_car</span></div>
+      <strong>Garage la Chapelle</strong>
+    </a>
+    <div class="site-nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="catalogue.html">Catalogue</a>
+      <a href="devis.html">Devis</a>
+      <a href="rendez-vous.html">Rendez-vous</a>
+      <a href="contact.html">Contact</a>
+      <a href="a-propos.html">À Propos</a>
+      <a href="blog.html">Blog</a>
+      <a href="galerie.html">Galerie</a>
     </div>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
-  </nav>
-  <div class="nav-drawer" id="navDrawer">
-    <a href="index.html">🏠 Accueil</a><a href="catalogue.html">🛒 Catalogue</a><a href="galerie.html">🖼️ Galerie</a><a href="blog.html">📝 Blog</a><a href="a-propos.html">ℹ️ À Propos</a><a href="contact.html">📞 Contact</a><a href="suivi-commande.html">📦 Suivi commande</a>
-    <div class="drawer-cta"><a href="devis.html" class="btn-ghost">Devis gratuit</a><a href="rendez-vous.html" class="btn-primary">📅 Prendre rendez-vous</a></div>
+    <div class="site-nav-actions">
+      <a class="site-nav-cart" href="panier.html" title="Mon panier">
+        <span class="material-symbols-outlined">shopping_cart</span>
+        <span class="badge">2</span>
+      </a>
+      <button class="site-nav-hamburger" onclick="document.getElementById('mobile-nav').classList.toggle('open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
-  <div class="page-content"><section class="page-hero">
-  <span class="tag">Gratuit &amp; Sans engagement</span>
-  <h1>Demande de devis personnalisé</h1>
-  <p>Obtenez une estimation précise sous 24h. Nos experts vous répondent rapidement.</p>
+</nav>
+<div id="mobile-nav" class="site-nav-mobile">
+  <button class="close-btn" onclick="document.getElementById('mobile-nav').classList.remove('open')">✕</button>
+  <a href="index.html">Accueil</a>
+  <a href="catalogue.html">Catalogue</a>
+  <a href="devis.html">Devis</a>
+  <a href="rendez-vous.html">Rendez-vous</a>
+  <a href="contact.html">Contact</a>
+  <a href="a-propos.html">À Propos</a>
+  <a href="blog.html">Blog</a>
+  <a href="galerie.html">Galerie</a>
+  <a href="panier.html">Mon Panier</a>
+  <a href="suivi-commande.html">Suivi de commande</a>
+</div>
+<!-- END SITE NAV -->
+<main class="pb-20">
+<!-- Hero Section -->
+<section class="relative h-[400px] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-b from-primary/20 to-background-dark z-10"></div>
+<img alt="Professional car mechanic workshop" class="absolute inset-0 w-full h-full object-cover opacity-40" data-alt="Modern dark garage workshop with neon highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIIPZeBN9f_tBud-aOtcxHF-Mr906K74gRMLqy9TAb0gsfQgr4HgXlXokiN9cYEDqyZUzffczffeSzFVxNYW08TESFO7yxRh24weGMzj-Kl8RkpchC6CkY6yMyCtkSk4rdS1trinwUmfxKkiqcgKpDl4DKRLkt4po35pgkTax4UWoicO161k7sjn-zkVZAVrKJDZ9CF_ZqxKR12FxxiuIbZnYAwCMqgpjCSAxAvXabpLHEaldmuB1mDt8vXdfuOMtoH0NjcWmW-0Wi"/>
+<div class="relative z-20 text-center max-w-3xl px-6">
+<span class="inline-block px-4 py-1 bg-primary/20 text-primary border border-primary/30 rounded-full text-sm font-bold mb-6">SERVICES PREMIUM</span>
+<h2 class="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Demande de devis <span class="text-primary text-glow">personnalisé</span></h2>
+<p class="text-slate-400 text-lg md:text-xl leading-relaxed">
+                    Obtenez une estimation précise pour l'entretien ou la réparation de votre véhicule. Nos experts vous répondent sous 24h. Gratuit et sans engagement.
+                </p>
+</div>
 </section>
-<div class="content-section">
-  <div class="grid-2">
-    <div>
-      <div class="card" style="margin-bottom:24px">
-        <h3>🚗 Informations du véhicule</h3><br>
-        <div class="form-group"><label>Marque</label><input type="text" placeholder="ex: Peugeot"></div>
-        <div class="form-group"><label>Modèle</label><input type="text" placeholder="ex: 308"></div>
-        <div class="form-group"><label>Année</label><input type="number" placeholder="2019"></div>
-        <div class="form-group"><label>Kilométrage</label><input type="text" placeholder="ex: 72 000 km"></div>
-        <div class="form-group"><label>Immatriculation (optionnel)</label><input type="text" placeholder="AB-123-CD"></div>
-      </div>
-      <div class="card">
-        <h3>🔧 Votre demande</h3><br>
-        <div class="form-group"><label>Type de prestation</label><select><option>Entretien / Vidange</option><option>Diagnostique électronique</option><option>Freins</option><option>Climatisation</option><option>Pneus</option><option>Carrosserie</option><option>Autre (préciser)</option></select></div>
-        <div class="form-group"><label>Description détaillée</label><textarea placeholder="Décrivez le problème constaté, les bruits entendus, les témoins allumés..."></textarea></div>
-        <div class="form-group"><label>Photos (optionnel)</label><div style="border:2px dashed rgba(255,255,255,.15);border-radius:8px;padding:24px;text-align:center;color:var(--text-soft);font-size:.85rem;cursor:pointer;">📎 Cliquez ou glissez vos fichiers ici<br><small>JPG, PNG ou PDF (max 5 Mo)</small></div></div>
-      </div>
-    </div>
-    <div>
-      <div class="card" style="margin-bottom:24px">
-        <h3>👤 Vos coordonnées</h3><br>
-        <div class="form-group"><label>Nom complet</label><input type="text" placeholder="Jean Dupont"></div>
-        <div class="form-group"><label>Téléphone</label><input type="tel" placeholder="06 12 34 56 78"></div>
-        <div class="form-group"><label>Email</label><input type="email" placeholder="jean@exemple.fr"></div>
-        <div class="form-group"><label>Contact préféré</label><select><option>Email</option><option>Téléphone</option><option>Les deux</option></select></div>
-        <div class="form-group"><label>Disponibilités pour rappel</label><input type="text" placeholder="ex: matin avant 10h"></div>
-        <p style="font-size:.8rem;color:var(--text-soft);margin-bottom:20px">En envoyant ce formulaire, vous acceptez notre <a href="#" style="color:var(--brand-light)">politique de confidentialité</a>.</p>
-        <button class="btn-primary" style="width:100%;padding:14px;font-size:1rem" onclick="alert('✅ Votre demande de devis a été envoyée ! Nous vous répondons sous 24h.')">📨 Envoyer ma demande</button>
-      </div>
-      <div class="card">
-        <h3>📍 Informations pratiques</h3>
-        <p style="margin-top:12px">12 Rue de la Paix, 75018 Paris<br><br>📞 01 23 45 67 89<br>✉️ contact@garagelachapelle.fr<br><br>🕐 Lun-Ven : 8h30 – 19h00<br>🕐 Sam : 9h00 – 17h00</p>
-        <br><a href="rendez-vous.html" class="btn-primary" style="display:block;text-align:center">📅 Prendre rendez-vous</a>
-      </div>
-    </div>
-  </div>
-</div></div>
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <div class="footer-brand"><div class="logo-text">Garage <span>la Chapelle</span></div><p>Votre expert automobile de confiance à Paris 18ème.</p></div>
-      <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="catalogue.html">Catalogue</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="blog.html">Blog</a></li></ul></div>
-      <div class="footer-col"><h4>Services</h4><ul><li><a href="rendez-vous.html">Rendez-vous</a></li><li><a href="devis.html">Devis gratuit</a></li><li><a href="suivi-commande.html">Suivi commande</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div class="footer-col footer-contact"><h4>Contact</h4><li><span class="icon">📍</span>12 Rue de la Paix, 75018 Paris</li><li><span class="icon">📞</span><a href="tel:+33123456789">01 23 45 67 89</a></li></div>
-    </div>
-    <div class="footer-bottom"><p>© 2024 Garage la Chapelle. Tous droits réservés.</p><div class="footer-links"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div></div>
-  </footer>
-  <script src="assets/js/nav.js"></script>
-</body>
-</html>
+<!-- Form Section -->
+<section class="max-w-4xl mx-auto px-6 -mt-16 relative z-30">
+<form class="space-y-8">
+<!-- Section 1: Vehicle -->
+<div class="bg-surface border border-border p-8 rounded-xl shadow-2xl">
+<div class="flex items-center gap-3 mb-8 border-b border-border pb-4">
+<span class="material-symbols-outlined text-primary">minor_crash</span>
+<h3 class="text-xl font-bold">1. Informations du véhicule</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-sm font-medium text-slate-400">Marque</label>
+<input class="form-input-custom" placeholder="ex: Peugeot, BMW..." type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-slate-400">Modèle</label>
+<input class="form-input-custom" placeholder="ex: 3008, Série 3..." type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-slate-400">Année de mise en circulation</label>
+<input class="form-input-custom" placeholder="2022" type="number"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-slate-400">Kilométrage actuel</label>
+<input class="form-input-custom" placeholder="ex: 45 000 km" type="text"/>
+</div>
+<div class="md:col-span-2 space-y-2">
+<label class="text-sm font-medium text-slate-400">Plaque d'immatriculation</label>
+<input class="form-input-custom uppercase tracking-widest font-mono" placeholder="AA-123-BB" type="text"/>
+</div>
+</div>
+</div>
+<!-- Section 2: Type & Description -->
+<div class="bg-surface border border-border p-8 rounded-xl shadow-2xl">
+<div class="flex items-center gap-3 mb-8 border-b border-border pb-4">
+<span class="material-symbols-outlined text-primary">build</span>
+<h3 class="text-xl font-bold">2. Votre demande</h3>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="request_type" type="radio"/>
+<div class="h-full p-4 border border-border rounded-lg flex flex-col items-center gap-3 text-center peer-checked:border-primary peer-checked:bg-primary/10 transition-all">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-xs font-bold uppercase">Mécanique</span>
+</div>
+</label>
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="request_type" type="radio"/>
+<div class="h-full p-4 border border-border rounded-lg flex flex-col items-center gap-3 text-center peer-checked:border-primary peer-checked:bg-primary/10 transition-all">
+<span class="material-symbols-outlined">format_paint</span>
+<span class="text-xs font-bold uppercase">Carrosserie</span>
+</div>
+</label>
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="request_type" type="radio"/>
+<div class="h-full p-4 border border-border rounded-lg flex flex-col items-center gap-3 text-center peer-checked:border-primary peer-checked:bg-primary/10 transition-all">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-xs font-bold uppercase">Entretien</span>
+</div>
+</label>
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="request_type" type="radio"/>
+<div class="h-full p-4 border border-border rounded-lg flex flex-col items-center gap-3 text-center peer-checked:border-primary peer-checked:bg-primary/10 transition-all">
+<span class="material-symbols-outlined">search</span>
+<span class="text-xs font-bold uppercase">Pièces</span>
+</div>
+</label>
+</div>
+<div class="space-y-4">
+<label class="text-sm font-medium text-slate-400">Description détaillée de votre besoin</label>
+<textarea class="form-input-custom resize-none" placeholder="Expliquez-nous les symptômes ou listez les pièces nécessaires..." rows="4"></textarea>
+</div>
+<div class="mt-8">
+<label class="text-sm font-medium text-slate-400 block mb-4">Documents ou photos (Carte grise, impact, pièce...)</label>
+<div class="border-2 border-dashed border-border rounded-xl p-8 flex flex-col items-center justify-center text-slate-400 hover:border-primary hover:bg-primary/5 transition-all cursor-pointer group">
+<span class="material-symbols-outlined text-4xl mb-2 group-hover:scale-110 transition-transform">cloud_upload</span>
+<p class="font-medium">Cliquez ou glissez vos fichiers ici</p>
+<p class="text-xs mt-1 italic">JPG, PNG ou PDF (max 5 Mo)</p>
+</div>
+</div>
+</div>
+<!-- Section 3: Contact Info -->
+<div class="bg-surface border border-border p-8 rounded-xl shadow-2xl">
+<div class="flex items-center gap-3 mb-8 border-b border-border pb-4">
+<span class="material-symbols-outlined text-primary">contact_mail</span>
+<h3 class="text-xl font-bold">3. Vos coordonnées</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-sm font-medium text-slate-400">Nom complet</label>
+<input class="form-input-custom" placeholder="Jean Dupont" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-slate-400">Téléphone</label>
+<input class="form-input-custom" placeholder="06 00 00 00 00" type="tel"/>
+</div>
+<div class="md:col-span-2 space-y-2">
+<label class="text-sm font-medium text-slate-400">Email</label>
+<input class="form-input-custom" placeholder="jean.dupont@email.com" type="email"/>
+</div>
+</div>
+<div class="mt-8 p-4 bg-background-dark rounded-lg border border-border">
+<p class="text-sm font-medium mb-4 text-slate-300">Méthode de contact préférée :</p>
+<div class="flex gap-6">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="rounded border-border bg-surface text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm">Email</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="rounded border-border bg-surface text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm">Téléphone</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="rounded border-border bg-surface text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm">SMS</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Submit -->
+<div class="pt-6">
+<button class="w-full bg-accent hover:bg-accent/90 text-white font-bold py-5 rounded-xl text-xl shadow-lg shadow-accent/20 transition-all flex items-center justify-center gap-3" type="submit">
+<span class="material-symbols-outlined">send</span>
+                        ENVOYER MA DEMANDE DE DEVIS
+                    </button>
+<p class="text-center text-slate-500 text-xs mt-4">
+                        En envoyant ce formulaire, vous acceptez notre politique de confidentialité des données.
+                    </p>
+</div>
+</form>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background-dark border-t border-border pt-16 pb-8">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+<div class="space-y-6">
+<div class="flex items-center gap-3">
+<div class="bg-primary p-2 rounded-lg">
+<span class="material-symbols-outlined text-white text-xl">directions_car</span>
+</div>
+<h3 class="text-lg font-bold tracking-tight text-white uppercase">Garage <span class="text-primary">De La Chapelle</span></h3>
+</div>
+<p class="text-slate-400 text-sm leading-relaxed">
+                    Votre partenaire de confiance pour l'entretien, la réparation et la vente de véhicules toutes marques depuis plus de 15 ans.
+                </p>
+<div class="flex gap-4">
+<a aria-label="Facebook" class="w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined text-sm">facebook</span></a>
+<a aria-label="Instagram" class="w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined text-sm">camera</span></a>
+</div>
+</div>
+<div class="space-y-6">
+<h4 class="font-bold text-white border-b border-primary/30 pb-2 inline-block">Contact</h4>
+<ul class="space-y-4 text-slate-400 text-sm">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">location_on</span>
+<span>123 Avenue de la République,<br/>75011 Paris, France</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-lg">call</span>
+<span>01 44 55 66 77</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-lg">mail</span>
+<span>contact@garage-lachapelle.fr</span>
+</li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="font-bold text-white border-b border-primary/30 pb-2 inline-block">Nous trouver</h4>
+<div class="rounded-lg overflow-hidden h-32 bg-surface border border-border relative grayscale">
+<img alt="Location Map" class="w-full h-full object-cover" data-location="Paris, France" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDD1p2d1W0LRp3akpZXQt6ZiuO5nJ80lYDhLZU3NUAKH5TTcKczuOLxAWuAe-ULsw5KQs7Ssaiq8nBd45p2vcOECuFiXBOmNFtOuYwG77aivL3grvpkkotHtchr5U7u3hGcBLsLS8AEUQV3Oza5YStE0Fde8Gl9G3OEsswse0EFqhc8etMHNkLm2ROsfWzFUWASZTadd2dcYvA7xiUZ_fOyV1MlpzYJmKPOgsb16D51k3zwMM5GpXC2iFubTTnQ9yJ2JcX6XvNy2Sy-"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<a class="bg-primary text-white px-3 py-1 rounded text-xs font-bold uppercase tracking-wider" href="#">Ouvrir Maps</a>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<h4 class="font-bold text-white border-b border-primary/30 pb-2 inline-block">Newsletter</h4>
+<p class="text-slate-400 text-sm">Recevez nos offres et conseils d'entretien.</p>
+<div class="flex gap-2">
+<input class="bg-surface border border-border rounded-lg px-3 py-2 text-sm flex-1 outline-none focus:border-primary" placeholder="Votre email" type="email"/>
+<button class="bg-primary text-white p-2 rounded-lg">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-xs">
+<p>© 2024 Garage de la Chapelle. Tous droits réservés.</p><div class="flex items-center gap-2 text-primary font-bold text-[10px] tracking-widest uppercase">
+<span class="material-symbols-outlined text-base">verified_user</span>
+<span>Certifié Qualité Pro</span>
+</div>
+<div class="flex gap-6">
+<a aria-label="Facebook" class="hover:text-slate-300" href="#"><span class="material-symbols-outlined text-sm">facebook</span></a>
+<a aria-label="Instagram" class="hover:text-slate-300" href="#"><span class="material-symbols-outlined text-sm">camera</span></a>
+<a class="hover:text-slate-300" href="#">CGU</a>
+</div>
+</div>
+</footer>
+</body></html>
+

@@ -1,87 +1,301 @@
 ﻿<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>À Propos — Garage la Chapelle</title>
-  <meta name="description" content="Découvrez l'histoire et l'équipe du Garage la Chapelle, expert automobile à Paris 18">
-  <link rel="stylesheet" href="assets/css/global.css">
-  <style>
-    .page-hero{background:linear-gradient(135deg,#0a0a14 0%,#111130 50%,#0a0a14 100%);padding:calc(var(--nav-h) + 60px) 5% 60px;text-align:center;}
-    .page-hero .tag{display:inline-block;background:rgba(17,82,212,.15);color:var(--brand-light);font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:100px;padding:5px 16px;margin-bottom:12px;}
-    .page-hero h1{font-size:clamp(1.8rem,4vw,3rem);color:#fff;font-weight:700;margin-bottom:14px;}
-    .page-hero p{color:var(--text-soft);font-size:1.05rem;max-width:600px;margin:0 auto 28px;}
-    .page-hero .actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-    .content-section{padding:64px 5%;max-width:1200px;margin:0 auto;}
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-    .card{background:linear-gradient(135deg,rgba(22,33,62,.8),rgba(10,10,20,.8));border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:28px 24px;transition:all .25s ease;}
-    .card:hover{transform:translateY(-4px);border-color:rgba(17,82,212,.4);}
-    .card h3{color:#fff;font-size:1rem;margin-bottom:8px;}
-    .card p{color:var(--text-soft);font-size:.88rem;line-height:1.6;}
-    .form-group{margin-bottom:20px;}
-    .form-group label{display:block;color:var(--text-soft);font-size:.88rem;margin-bottom:6px;font-weight:500;}
-    .form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:12px 14px;color:var(--text);font-family:var(--font);font-size:.9rem;transition:all .25s ease;}
-    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--brand);background:rgba(17,82,212,.08);}
-    .form-group select option{background:#1a1a2e;}
-    .form-group textarea{resize:vertical;min-height:120px;}
-    @media(max-width:900px){.grid-3{grid-template-columns:1fr 1fr;}.grid-2{grid-template-columns:1fr;}}
-    @media(max-width:600px){.grid-3{grid-template-columns:1fr;}.page-hero .actions{flex-direction:column;align-items:center;}}
-  </style>
+
+<html class="dark" lang="fr"><head>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>À Propos | Garage de la Chapelle - Expertise &amp; Tradition Automobile</title>
+<meta content="Découvrez l'histoire du Garage la Chapelle, nos valeurs d'expertise, de transparence et d'éco-responsabilité, ainsi que notre équipe technique passionnée." name="description"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "accent-red": "#e11d48",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"],
+                        "sans": ["Noto Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
 </head>
-<body>
-  <nav class="navbar">
-    <a href="index.html" class="nav-logo"><div class="logo-icon">🔧</div><div class="logo-text">Garage <span>la Chapelle</span></div></a>
-    <ul class="nav-links">
-      <li><a href="index.html">Accueil</a></li><li><a href="catalogue.html">Catalogue</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="blog.html">Blog</a></li><li><a href="a-propos.html">À Propos</a></li><li><a href="contact.html">Contact</a></li>
-    </ul>
-    <div class="nav-cta"><a href="devis.html" class="btn-ghost">Devis gratuit</a><a href="rendez-vous.html" class="btn-primary">📅 Rendez-vous</a></div>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
-  </nav>
-  <div class="nav-drawer" id="navDrawer">
-    <a href="index.html">🏠 Accueil</a><a href="catalogue.html">🛒 Catalogue</a><a href="galerie.html">🖼️ Galerie</a><a href="blog.html">📝 Blog</a><a href="a-propos.html">ℹ️ À Propos</a><a href="contact.html">📞 Contact</a><a href="suivi-commande.html">📦 Suivi</a>
-    <div class="drawer-cta"><a href="devis.html" class="btn-ghost">Devis gratuit</a><a href="rendez-vous.html" class="btn-primary">📅 Prendre rendez-vous</a></div>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Navigation -->
+<!-- SITE NAV UNIFIED -->
+<style>
+.site-nav-wrapper{position:sticky;top:0;z-index:100;background:rgba(16,22,34,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(17,82,212,.2);}
+.site-nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.5rem;}
+.site-nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:#fff;}
+.site-nav-logo .icon{width:40px;height:40px;background:#1152d4;border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.site-nav-logo span.material-symbols-outlined{font-size:22px;color:#fff;}
+.site-nav-logo strong{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;color:#fff;}
+.site-nav-links{display:flex;align-items:center;gap:1.5rem;}
+.site-nav-links a{font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:500;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s;}
+.site-nav-links a:hover,.site-nav-links a.active{color:#fff;}
+.site-nav-links a.active{color:#5b8fff;}
+.site-nav-actions{display:flex;align-items:center;gap:.5rem;}
+.site-nav-cart{position:relative;width:38px;height:38px;background:rgba(17,82,212,.15);border-radius:9px;display:flex;align-items:center;justify-content:center;text-decoration:none;border:none;cursor:pointer;}
+.site-nav-cart .material-symbols-outlined{font-size:20px;color:#5b8fff;}
+.site-nav-cart .badge{position:absolute;top:-5px;right:-5px;background:#dc2626;color:#fff;font-size:10px;font-weight:700;border-radius:9999px;padding:1px 5px;}
+.site-nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;}
+.site-nav-hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s;}
+.site-nav-mobile{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,12,22,.98);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;}
+.site-nav-mobile.open{display:flex;}
+.site-nav-mobile a{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:600;color:#fff;text-decoration:none;padding:.5rem 2rem;border-radius:12px;transition:background .2s;}
+.site-nav-mobile a:hover{background:rgba(17,82,212,.2);}
+.site-nav-mobile .close-btn{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;}
+@media(max-width:768px){
+  .site-nav-links{display:none;}
+  .site-nav-hamburger{display:flex;}
+}
+</style>
+<nav class="site-nav-wrapper">
+  <div class="site-nav-inner">
+    <a class="site-nav-logo" href="index.html">
+      <div class="icon"><span class="material-symbols-outlined">directions_car</span></div>
+      <strong>Garage la Chapelle</strong>
+    </a>
+    <div class="site-nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="catalogue.html">Catalogue</a>
+      <a href="devis.html">Devis</a>
+      <a href="rendez-vous.html">Rendez-vous</a>
+      <a href="contact.html">Contact</a>
+      <a href="a-propos.html">À Propos</a>
+      <a href="blog.html">Blog</a>
+      <a href="galerie.html">Galerie</a>
+    </div>
+    <div class="site-nav-actions">
+      <a class="site-nav-cart" href="panier.html" title="Mon panier">
+        <span class="material-symbols-outlined">shopping_cart</span>
+        <span class="badge">2</span>
+      </a>
+      <button class="site-nav-hamburger" onclick="document.getElementById('mobile-nav').classList.toggle('open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
-  <div class="page-content"><section class='page-hero'>
-  <span class='tag'>Notre histoire</span>
-  <h1>Garage la Chapelle depuis 2003</h1>
-  <p>Votre garage de confiance dans le 18ème arrondissement de Paris depuis plus de 20 ans.</p>
-  <div class='actions'>
-    <a href='contact.html' class='btn-primary'>📞 Nous contacter</a>
-    <a href='rendez-vous.html' class='btn-ghost'>📅 Prendre rendez-vous</a>
-  </div>
+</nav>
+<div id="mobile-nav" class="site-nav-mobile">
+  <button class="close-btn" onclick="document.getElementById('mobile-nav').classList.remove('open')">✕</button>
+  <a href="index.html">Accueil</a>
+  <a href="catalogue.html">Catalogue</a>
+  <a href="devis.html">Devis</a>
+  <a href="rendez-vous.html">Rendez-vous</a>
+  <a href="contact.html">Contact</a>
+  <a href="a-propos.html">À Propos</a>
+  <a href="blog.html">Blog</a>
+  <a href="galerie.html">Galerie</a>
+  <a href="panier.html">Mon Panier</a>
+  <a href="suivi-commande.html">Suivi de commande</a>
+</div>
+<!-- END SITE NAV -->
+<main class="flex-1">
+<!-- Hero Section -->
+<div class="px-4 md:px-20 py-8">
+<div class="relative overflow-hidden rounded-xl min-h-[400px] flex flex-col justify-end bg-slate-800 group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Intérieur d'un atelier mécanique moderne et propre" style='background-image: linear-gradient(0deg, rgba(16, 22, 34, 0.9) 0%, rgba(16, 22, 34, 0.2) 60%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDViddx2F8JQq23hS5YZb8X4SPgRW-BUJHgbQ0VFudzpoBRUp6jn-0wbOHzVQPqQhTaWwX-xqawnuoyHSYdzNYfT0AtF6O7LGXu12ejsDBGjjKy0R2HBNMiVXy5qr6Rk0V35Ms6EiO4C2kbQXVFEPESMuiz2ejBT4NAntkWPx4_dDaGm-YRDQbZbYw1_w_7vweurafnkYvvpO7342Hx7PUfMRK-AwctJkhzIKGR7TfF3hdW4gcc1ZhlYS5YG3iR1hoZsEPqg374GrMr");'>
+</div>
+<div class="relative p-8 md:p-12 z-10">
+<h1 class="text-white text-4xl md:text-6xl font-black leading-tight tracking-tight mb-4">L'Excellence Mécanique<br/><span class="text-primary">Depuis 20 Ans</span></h1>
+<p class="text-slate-300 text-lg max-w-2xl">Plus qu'un simple garage, un partenaire de confiance pour votre mobilité et votre sécurité au quotidien.</p>
+</div>
+</div>
+</div>
+<!-- Notre Histoire -->
+<section class="px-4 md:px-20 py-16 grid md:grid-cols-2 gap-12 items-center">
+<div>
+<div class="inline-flex items-center gap-2 text-primary font-bold mb-4">
+<span class="h-px w-8 bg-primary"></span>
+<span class="uppercase tracking-widest text-xs">Héritage</span>
+</div>
+<h2 class="text-3xl font-black mb-6">Notre Histoire</h2>
+<div class="space-y-4 text-slate-600 dark:text-slate-400">
+<p>Fondé en 2004 par Jean-Pierre Chapelle, le garage est né d'une vision simple : offrir une alternative transparente et experte aux concessions traditionnelles.</p>
+<p>Ce qui a commencé comme un petit atelier de quartier s'est transformé en un centre technique de pointe, sans jamais perdre l'esprit artisanal et la proximité avec nos clients qui font notre réputation aujourd'hui.</p>
+<p>Aujourd'hui, nous entretenons plus de 2000 véhicules par an, des modèles de collection aux motorisations hybrides et électriques les plus récentes.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-primary/10 p-6 rounded-xl border border-primary/20 text-center">
+<p class="text-4xl font-bold text-primary mb-1">20+</p>
+<p class="text-sm font-medium">Années d'expérience</p>
+</div>
+<div class="bg-accent-red/10 p-6 rounded-xl border border-accent-red/20 text-center">
+<p class="text-4xl font-bold text-accent-red mb-1">15k</p>
+<p class="text-sm font-medium">Clients satisfaits</p>
+</div>
+<div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700 col-span-2 flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">verified_user</span>
+<p class="text-sm font-medium italic">"La confiance se gagne à chaque tour de clé." — J.P. Chapelle</p>
+</div>
+</div>
 </section>
-<div class='content-section'>
-  <div class='grid-2' style='margin-bottom:48px;align-items:center'>
-    <div>
-      <h2 style='color:#fff;font-size:1.8rem;margin-bottom:20px'>Notre mission : votre tranquillité</h2>
-      <p style='color:var(--text-soft);line-height:1.8;margin-bottom:16px'>Fondé en 2003 par Mohammed Fédilak, mécanicien passionné et diplômé, le Garage la Chapelle s'est imposé comme la référence automobile du 18ème arrondissement de Paris.</p>
-      <p style='color:var(--text-soft);line-height:1.8;margin-bottom:16px'>Notre engagement : transparence totale sur les prix, qualité d'intervention irréprochable et respect des délais annoncés. Nous croyons qu'un client bien informé est un client serein.</p>
-      <p style='color:var(--text-soft);line-height:1.8'>Agréé RTA, certifié pour les fluides frigorigènes R134a et R1234yf, nous disposons des outils de diagnostic les plus récents pour tous véhicules toutes marques.</p>
-    </div>
-    <div style='display:grid;grid-template-columns:1fr 1fr;gap:16px'>
-      <div class='card' style='text-align:center'><div style='font-size:2rem;font-weight:700;color:var(--brand-light)'>20+</div><div style='color:var(--text-soft);font-size:.88rem;margin-top:4px'>Ans d'expérience</div></div>
-      <div class='card' style='text-align:center'><div style='font-size:2rem;font-weight:700;color:var(--brand-light)'>5000+</div><div style='color:var(--text-soft);font-size:.88rem;margin-top:4px'>Clients satisfaits</div></div>
-      <div class='card' style='text-align:center'><div style='font-size:2rem;font-weight:700;color:var(--brand-light)'>4.9★</div><div style='color:var(--text-soft);font-size:.88rem;margin-top:4px'>Note Google</div></div>
-      <div class='card' style='text-align:center'><div style='font-size:2rem;font-weight:700;color:var(--brand-light)'>50+</div><div style='color:var(--text-soft);font-size:.88rem;margin-top:4px'>Marques traitées</div></div>
-    </div>
-  </div>
-  <h2 style='color:#fff;font-size:1.4rem;margin-bottom:24px;text-align:center'>Notre équipe</h2>
-  <div class='grid-3'>
-    <div class='card' style='text-align:center'><div style='width:64px;height:64px;border-radius:50%;background:var(--brand);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;margin:0 auto 16px'>MF</div><h3>Mohammed Fédilak</h3><p>Fondateur &amp; Chef mécanicien<br>20 ans d'expérience</p></div>
-    <div class='card' style='text-align:center'><div style='width:64px;height:64px;border-radius:50%;background:rgba(17,82,212,.4);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;margin:0 auto 16px'>KM</div><h3>Karim Meziani</h3><p>Technicien électronique<br>Spécialiste diagnostic</p></div>
-    <div class='card' style='text-align:center'><div style='width:64px;height:64px;border-radius:50%;background:rgba(230,51,51,.3);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;margin:0 auto 16px'>SB</div><h3>Sophie Beaumont</h3><p>Responsable accueil<br>Gestion des devis</p></div>
-  </div>
-</div></div>
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <div class="footer-brand"><div class="logo-text">Garage <span>la Chapelle</span></div><p>Votre expert automobile à Paris 18ème depuis 20 ans.</p></div>
-      <div class="footer-col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="catalogue.html">Catalogue</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="blog.html">Blog</a></li></ul></div>
-      <div class="footer-col"><h4>Services</h4><ul><li><a href="rendez-vous.html">Rendez-vous</a></li><li><a href="devis.html">Devis gratuit</a></li><li><a href="suivi-commande.html">Suivi commande</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div class="footer-col footer-contact"><h4>Contact</h4><li><span class="icon">📍</span>12 Rue de la Paix, 75018 Paris</li><li><span class="icon">📞</span><a href="tel:+33123456789">01 23 45 67 89</a></li></div>
-    </div>
-    <div class="footer-bottom"><p>© 2024 Garage la Chapelle.</p><div class="footer-links"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div></div>
-  </footer>
-  <script src="assets/js/nav.js"></script>
-</body>
-</html>
+<!-- Nos Valeurs -->
+<section class="px-4 md:px-20 py-16 bg-slate-50 dark:bg-slate-900/50">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-black mb-4">Nos Valeurs Fondamentales</h2>
+<p class="text-slate-500 max-w-xl mx-auto">Trois piliers qui guident chacune de nos interventions techniques.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-background-light dark:bg-background-dark p-8 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+<span class="material-symbols-outlined text-primary text-4xl mb-4">psychology</span>
+<h3 class="text-xl font-bold mb-3">Expertise</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Nos techniciens sont formés en continu aux nouvelles technologies pour diagnostiquer et réparer avec une précision chirurgicale.</p>
+</div>
+<div class="bg-background-light dark:bg-background-dark p-8 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+<span class="material-symbols-outlined text-primary text-4xl mb-4">visibility</span>
+<h3 class="text-xl font-bold mb-3">Transparence</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Pas de mauvaise surprise. Chaque devis est expliqué en détail et aucune réparation n'est engagée sans votre accord explicite.</p>
+</div>
+<div class="bg-background-light dark:bg-background-dark p-8 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+<span class="material-symbols-outlined text-primary text-4xl mb-4">eco</span>
+<h3 class="text-xl font-bold mb-3">Éco-responsabilité</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Gestion rigoureuse des déchets, recyclage des huiles et promotion de solutions de mobilité douce pour préserver notre environnement.</p>
+</div>
+</div>
+</section>
+<!-- L'Équipe Technique -->
+<section class="px-4 md:px-20 py-20">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+<div class="max-w-xl">
+<h2 class="text-3xl font-black mb-4">L'Équipe Technique</h2>
+<p class="text-slate-600 dark:text-slate-400">Une équipe de passionnés, certifiés et experts dans leurs domaines respectifs, du diagnostic moteur à la carrosserie de précision.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Membre 1 -->
+<div class="group">
+<div class="relative aspect-square rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover transition-transform group-hover:scale-110" data-alt="Portrait d'un mécanicien expert souriant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8iWqbCurDSZ-BQkiptVx-3WSeoiW1bmlLYPdXK9vG9HGb-33lL5xFP0XIo4lcK7t5edu2HYMba3LsvqHn3CCWxuiX7euMLJZ0FFfz8cNE7cue882SyFHiC7AHRehc7wC_t5ahnywXUFrx-jlPAcEAgbbTUQoJtuur1WMdIRhvFnF0b5_PTmj6JMHmNAp6E92oYKkXuadgp1h7f2Jd3befAUs7JqdQiny6AvYu8qMaAHY5lGcmOjAcEnMeoHoPIp9ATfng4OmUbKyM"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<h4 class="font-bold text-lg">Marc Morel</h4>
+<p class="text-primary text-sm font-medium">Chef d'Atelier - Expert Diag</p>
+</div>
+<!-- Membre 2 -->
+<div class="group">
+<div class="relative aspect-square rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover transition-transform group-hover:scale-110" data-alt="Portrait d'une mécanicienne spécialisée électronique" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbzvg7YSeh87iGCTrTDsdgp4TFOmjHdbaXFLzuqZVgsmeD-meXA79UeTzjWy2BwanXHVLa679y28dLliMhBn2rAAsGXCK0BmGEC6VMSjMui_L0Gev4Geny6VZo-K1AKoSY8j5eHDRMC0BZc4r8giSZyKKGvAwOdWHRFnpJ5B1KvblsNh7AnGaK_RB3ETuOAW6vzBWJqSkgUjg_FTsT7-45W015-N5VtB15budBPXD0dO1f6cxzgrdDlHugUdR0Xx63ruC5J7cUHJz0"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<h4 class="font-bold text-lg">Léa Dubois</h4>
+<p class="text-primary text-sm font-medium">Spécialiste Électronique</p>
+</div>
+<!-- Membre 3 -->
+<div class="group">
+<div class="relative aspect-square rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover transition-transform group-hover:scale-110" data-alt="Technicien automobile travaillant sur un moteur" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD8zYs5BMZfwTcXNK79XbQcjSo35XXoo08R4sXX8oOtzezyAG3iMhqOOuzo-VMy81XzkDUU22nkHuM6gadqKoluGzVIsl-Fx0kqGk2eQLPoVl1DrKNGe4i6G3qO-txYg1lHxEW2pfkBx62zosWGCgm7VU3VmXm1qWMJEqSK38xpW5byDZwoh1iwopRPnNAzugt9RHhU-YCWUf0F8ijv4vSL4NOYL3RpTCboVYlFK4L0N0N4S35ANPo9c0VTBt1Nto-ECccdLay6FyI"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<h4 class="font-bold text-lg">Thomas Leroy</h4>
+<p class="text-primary text-sm font-medium">Expert Motoriste</p>
+</div>
+<!-- Membre 4 -->
+<div class="group">
+<div class="relative aspect-square rounded-xl overflow-hidden mb-4">
+<div class="w-full h-full bg-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-slate-600">person_add</span>
+</div>
+</div>
+<h4 class="font-bold text-lg">Rejoignez-nous</h4>
+<p class="text-primary text-sm font-medium">Postes ouverts</p>
+</div>
+</div>
+</section>
+<!-- Engagement Qualité -->
+<section class="px-4 md:px-20 py-16 bg-primary/5 border-y border-primary/10">
+<div class="flex flex-col md:flex-row gap-12 items-center">
+<div class="flex-1">
+<h2 class="text-3xl font-black mb-6">Engagement Qualité &amp; Satisfaction</h2>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-accent-red">check_circle</span>
+<span>Pièces de rechange d'origine ou de qualité équivalente certifiée.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-accent-red">check_circle</span>
+<span>Garantie constructeur préservée sur tous les modèles récents.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-accent-red">check_circle</span>
+<span>Contrôle qualité rigoureux avant chaque restitution de véhicule.</span>
+</li>
+</ul>
+</div>
+<div class="flex-shrink-0">
+<div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-xl border-2 border-primary rotate-3 flex flex-col items-center text-center max-w-[280px]">
+<span class="material-symbols-outlined text-primary text-6xl mb-4">verified</span>
+<p class="text-primary font-black text-2xl mb-1 uppercase tracking-tighter">Certifié Qualité Pro</p>
+<p class="text-xs font-bold text-slate-500 uppercase tracking-widest">Standard International</p>
+<div class="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700 w-full">
+<p class="text-[10px] text-slate-400">N° d'accréditation: GC-78442-2024</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-100 dark:bg-slate-900 px-6 md:px-20 py-12">
+<div class="grid md:grid-cols-4 gap-10 mb-10">
+<div class="col-span-1 md:col-span-2">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">precision_manufacturing</span>
+<h2 class="text-lg font-bold">Garage de la Chapelle</h2>
+</div>
+<p class="text-slate-500 text-sm max-w-sm">Votre centre d'entretien automobile de référence. Expertise technique, accueil personnalisé et transparence totale.</p>
+</div>
+<div>
+<h4 class="font-bold mb-6">Contact</h4>
+<ul class="text-sm text-slate-500 space-y-3">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">location_on</span> 12 Rue de l'Artisanat, Paris</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">call</span> 01 23 45 67 89</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">mail</span> contact@garage-chapelle.fr</li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6">Horaires</h4>
+<ul class="text-sm text-slate-500 space-y-2">
+<li class="flex justify-between"><span>Lun - Ven</span> <span>08h00 - 19h00</span></li>
+<li class="flex justify-between"><span>Samedi</span> <span>09h00 - 13h00</span></li>
+<li class="flex justify-between text-accent-red font-bold"><span>Dimanche</span> <span>Fermé</span></li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 bg-slate-200 dark:bg-slate-800 px-3 py-1 rounded text-[10px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm text-primary">stars</span>
+                            Certifié Qualité Pro
+                        </div>
+<p class="text-[12px] text-slate-500">© 2024 Garage de la Chapelle. Tous droits réservés.</p>
+</div>
+<div class="flex gap-4">
+<a class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">share</span>
+</a>
+<a class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">thumb_up</span>
+</a>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>
+
