@@ -1,88 +1,101 @@
-# 🚗 Garage la Chapelle - Application Mobile Web
+# LearnHub – Plateforme d'apprentissage
 
-Application web mobile progressive (PWA-ready) pour le Garage la Chapelle, inspirée directement des designs Stitch. Interface mobile-first avec navigation bottom bar et design system cohérent.
+Application Next.js 14 avec Supabase Auth, modules, leçons et quiz.
 
-## 📱 Aperçu
+## Stack technique
 
-Application mobile complète avec 11 pages interconnectées, design dark mode premium basé sur le système de design Stitch.
+- **Next.js 14** (App Router, TypeScript)
+- **Supabase** (Auth + PostgreSQL)
+- **Tailwind CSS**
+- **Vercel** (déploiement)
 
-## 🗂️ Structure des Pages
-
-| Page | Fichier | Description |
-|------|---------|-------------|
-| Accueil | `index.html` | Hero, services, avis clients, actions rapides |
-| Catalogue | `catalogue.html` | Pièces avec recherche, filtres, panier |
-| Rendez-vous | `rendez-vous.html` | Wizard 4 étapes : service → date → infos → confirmation |
-| Devis | `devis.html` | Formulaire de demande de devis gratuit |
-| Contact | `contact.html` | Méthodes de contact, carte, formulaire |
-| Blog | `blog.html` | Articles, conseils auto, newsletter |
-| Galerie | `galerie.html` | Grille photo avec lightbox |
-| Panier | `panier.html` | Gestion panier, livraison, paiement |
-| Suivi commande | `suivi-commande.html` | Timeline de suivi en temps réel |
-| Espace Client | `espace-client.html` | Profil, véhicules, historique, connexion |
-| À Propos | `a-propos.html` | Histoire, valeurs, équipe |
-
-## 🎨 Design System (Stitch)
-
-- **Thème** : Dark mode exclusif
-- **Couleur principale** : `#1152d4` (bleu primaire)
-- **Police** : Space Grotesk (Google Fonts)
-- **Bordures** : Radius 12px (round-8)
-- **Navigation** : Bottom navigation bar (5 onglets)
-- **Animations** : Micro-animations, transitions fluides
-
-## 🚀 Lancement
-
-Ouvrez simplement `index.html` dans votre navigateur. Aucun serveur requis.
-
-Pour une expérience optimale, visualisez en mode mobile (F12 → mode device) avec une largeur de 390px.
-
-## 📋 Fonctionnalités
-
-- ✅ Navigation mobile fluide (bottom navbar)
-- ✅ Prise de RDV interactive (wizard 4 étapes)
-- ✅ Calendrier de disponibilités
-- ✅ Catalogue pièces avec recherche + filtres
-- ✅ Panier d'achat avec options livraison
-- ✅ Suivi de commande avec timeline
-- ✅ Espace client (login/profil/véhicules)
-- ✅ Galerie avec lightbox
-- ✅ Contact direct (téléphone, WhatsApp, email, maps)
-- ✅ Blog avec articles
-- ✅ Bouton WhatsApp flottant
-- ✅ 100% responsive (mobile-first)
-
-## 🛠️ Technologies
-
-- HTML5 sémantique
-- CSS3 custom properties (no framework)
-- JavaScript vanilla
-- Google Fonts (Space Grotesk)
-- Material Symbols Outlined (Google Icons)
-
-## 📁 Structure
+## Structure du projet
 
 ```
-garage-la-chapelle/
-├── index.html          # Accueil
-├── catalogue.html      # Catalogue pièces
-├── rendez-vous.html    # Prise de RDV
-├── devis.html          # Demande de devis
-├── contact.html        # Contact
-├── blog.html           # Blog & conseils
-├── galerie.html        # Galerie photos
-├── panier.html         # Panier d'achat
-├── suivi-commande.html # Suivi commande
-├── espace-client.html  # Espace client
-├── a-propos.html       # À propos
-├── blog-freins.html    # Article blog
-├── blog-article.html   # Article blog
-└── assets/
-    └── css/
-        ├── global.css
-        └── mobile.css  # Design system mobile
+app/
+├── (auth)/
+│   ├── login/          → Page de connexion
+│   └── signup/         → Page d'inscription
+├── (dashboard)/
+│   ├── layout.tsx      → Layout protégé (vérifie l'auth)
+│   ├── dashboard/      → Tableau de bord (liste des modules)
+│   ├── modules/[id]/   → Page d'un module (liste des leçons)
+│   ├── lessons/[id]/   → Page d'une leçon (contenu + marquer terminé)
+│   └── quiz/[id]/      → Quiz interactif
+components/
+├── ui/Button.tsx
+├── ui/Card.tsx
+├── Navbar.tsx
+└── ProgressBar.tsx
+lib/
+├── supabase/client.ts  → Client côté navigateur
+├── supabase/server.ts  → Client côté serveur (Server Components)
+└── types.ts            → Types TypeScript générés
+middleware.ts           → Protection des routes
+supabase/
+└── migrations/001_initial_schema.sql
 ```
 
----
+## Tables Supabase
 
-*Projet généré à partir des designs Stitch - Garage la Chapelle*
+| Table | Description |
+|-------|-------------|
+| `profiles` | Profil utilisateur (lié à `auth.users`) |
+| `modules` | Modules de cours |
+| `lessons` | Leçons (appartiennent à un module) |
+| `quizzes` | Quiz (questions en JSONB) |
+| `user_progress` | Progression par utilisateur/leçon |
+
+## Démarrage local
+
+### 1. Cloner et installer
+
+```bash
+git clone <repo-url>
+cd <repo>
+npm install
+```
+
+### 2. Configurer Supabase
+
+1. Créez un projet sur [supabase.com](https://supabase.com)
+2. Dans l'éditeur SQL, exécutez `supabase/migrations/001_initial_schema.sql`
+3. Copiez `.env.local.example` vers `.env.local` :
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGci...
+```
+
+### 3. Lancer en développement
+
+```bash
+npm run dev
+# http://localhost:3000
+```
+
+## Déploiement sur Vercel
+
+1. Importez le dépôt sur [vercel.com/new](https://vercel.com/new)
+2. Ajoutez les variables d'environnement :
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+3. Cliquez **Deploy**
+
+Dans Supabase → Authentication → URL Configuration, ajoutez :
+```
+https://votre-app.vercel.app/**
+```
+
+## Format des questions de quiz (JSONB)
+
+```json
+[
+  {
+    "id": "q1",
+    "question": "Quelle balise HTML crée un lien ?",
+    "options": ["<div>", "<a>", "<p>", "<span>"],
+    "correct_answer": 1
+  }
+]
+```
