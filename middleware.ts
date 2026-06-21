@@ -32,7 +32,11 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   const publicPaths = ['/login', '/signup']
-  const isPublicPath = publicPaths.some((p) => pathname.startsWith(p))
+  // Les routes /api/webhooks/* sont publiques (appelées par des services tiers)
+  // mais protégées par leur propre mécanisme (HMAC) — ne pas rediriger vers /login.
+  const isPublicPath =
+    publicPaths.some((p) => pathname.startsWith(p)) ||
+    pathname.startsWith('/api/webhooks/')
 
   if (!user && !isPublicPath && pathname !== '/') {
     return NextResponse.redirect(new URL('/login', request.url))
