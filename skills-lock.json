@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "skills": {
+    "commissaire-aux-comptes": {
+      "source": "romainsimon/paperasse",
+      "sourceType": "github",
+      "skillPath": "commissaire-aux-comptes/SKILL.md",
+      "computedHash": "a19f4e03bfa9d9c363adeda08c20fff15c52e0186167512de8103b21fb62a673"
+    },
+    "comptable": {
+      "source": "romainsimon/paperasse",
+      "sourceType": "github",
+      "skillPath": "comptable/SKILL.md",
+      "computedHash": "a8dfbe7aca5f59d60c76da20d312606010b7410eaed85a6e4eae8aaaf40259ea"
+    },
+    "controleur-fiscal": {
+      "source": "romainsimon/paperasse",
+      "sourceType": "github",
+      "skillPath": "controleur-fiscal/SKILL.md",
+      "computedHash": "0fb6079cf1546f24bed01f9ddf51a48d1ea64a4ef1da6ff024218c3599fa447a"
+    },
+    "fiscaliste": {
+      "source": "romainsimon/paperasse",
+      "sourceType": "github",
+      "skillPath": "fiscaliste/SKILL.md",
+      "computedHash": "af3510acefbd879ad8e047e2b148f1070b1022df242bc6ce9792781497531727"
+    },
+    "notaire": {
+      "source": "romainsimon/paperasse",
+      "sourceType": "github",
+      "skillPath": "notaire/SKILL.md",
+      "computedHash": "9a6eb70e12b1929d023834630739e12454ce606654bc2f58c8fa9911f1a9f085"
+    },
+    "syndic": {
+      "source": "romainsimon/paperasse",
+      "sourceType": "github",
+      "skillPath": "syndic/SKILL.md",
+      "computedHash": "3126da004ff76ce0db17348bd0b9833d0e4517bbcdcbb475f6abd0ec9a81e402"
+    }
+  }
+}
