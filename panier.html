@@ -86,52 +86,23 @@
 
     <div class="cart-layout">
       <div>
-        <!-- ITEMS -->
-        <div class="cart-item" id="item1">
-          <img class="cart-item-img"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSKPUBBIjAMQa8LfUWbT3sQUH-yFsrEDlbHlGm3P3xXLAJEpfCJXb_bqW0JkmDGZJiUibbBkLqQ6UqKHqHqr5v8x0VdMK-7yO16sNcXM9sMPsJjqTMqaLJvTcqF5hNWpEIRjKVjp_YA"
-            alt="Alt." />
-          <div class="cart-item-info">
-            <div class="cart-item-name">Alternateur — Peugeot 208</div>
-            <div class="cart-item-ref">Réf: ALT-P208-85</div>
-            <div class="cart-item-price">169,90 €</div>
-            <div class="qty-controls" style="margin-top:.5rem;">
-              <button class="qty-btn" onclick="changeQty('item1',-1)">−</button>
-              <span class="qty-value" id="item1-qty">1</span>
-              <button class="qty-btn" onclick="changeQty('item1',1)">+</button>
-              <button style="margin-left:auto;background:none;border:none;color:var(--accent-red);cursor:pointer;"
-                onclick="removeItem('item1')"><span class="material-symbols-outlined"
-                  style="font-size:18px">delete</span></button>
-            </div>
-          </div>
-        </div>
-        <div class="cart-item" id="item2">
-          <img class="cart-item-img"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuClvEq3U8HHGQ_BYfStAeSYLzJDT-G1Dss_iBT4J_2GMN3_UG3jFq3bDZ-yC43PjmTQ8eTHsZxm44sazMUkf4B9X0q_hnZQ-V4ZlHlLWXpmXJkRMjmBrK_rEBHGSqHm1llGf4MhK5l3A"
-            alt="Phare" />
-          <div class="cart-item-info">
-            <div class="cart-item-name">Phare avant gauche — Renault Clio IV</div>
-            <div class="cart-item-ref">Réf: PH-RCLIO4-120</div>
-            <div class="cart-item-price">119,90 €</div>
-            <div class="qty-controls" style="margin-top:.5rem;">
-              <button class="qty-btn" onclick="changeQty('item2',-1)">−</button>
-              <span class="qty-value" id="item2-qty">1</span>
-              <button class="qty-btn" onclick="changeQty('item2',1)">+</button>
-              <button style="margin-left:auto;background:none;border:none;color:var(--accent-red);cursor:pointer;"
-                onclick="removeItem('item2')"><span class="material-symbols-outlined"
-                  style="font-size:18px">delete</span></button>
-            </div>
-          </div>
+        <!-- ITEMS (rendered dynamically from localStorage) -->
+        <div id="cart-items-container"></div>
+
+        <div id="empty-cart" style="display:none;text-align:center;padding:2rem 1rem;color:var(--text-2);">
+          <span class="material-symbols-outlined" style="font-size:48px;display:block;margin-bottom:.75rem;color:var(--border)">shopping_cart</span>
+          <p style="font-weight:600;margin-bottom:.5rem;">Votre panier est vide</p>
+          <a href="catalogue.html" style="color:var(--primary-light);font-size:.9rem;">Découvrir notre catalogue →</a>
         </div>
 
         <!-- Promo -->
-        <div style="display:flex;gap:.5rem;margin-bottom:1rem;">
+        <div id="promo-block" style="display:none;flex-direction:row;gap:.5rem;margin-bottom:1rem;">
           <input type="text" id="promo-input" class="form-input" placeholder="Code promo" style="flex:1" />
           <button class="btn-secondary" style="padding:.75rem 1rem;white-space:nowrap;" onclick="applyPromo()">Appliquer</button>
         </div>
       </div>
 
-      <div class="cart-sidebar">
+      <div class="cart-sidebar" style="display:none">
         <!-- DELIVERY -->
         <div class="form-block">
           <h3>Livraison</h3>
@@ -173,31 +144,89 @@
   </main>
 
   <script>
-    function selectDel(el) { 
-      document.querySelectorAll('.delivery-opt').forEach(o => o.classList.remove('selected')); 
-      el.classList.add('selected'); 
+    function selectDel(el) {
+      document.querySelectorAll('.delivery-opt').forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
       updateCart();
     }
-    function changeQty(id, delta) {
-      const el = document.getElementById(id + '-qty');
-      const nv = Math.max(1, parseInt(el.textContent) + delta);
-      el.textContent = nv;
-      updateCart();
-      refreshBadge();
+
+    function getCart() {
+      return JSON.parse(localStorage.getItem('cartItems') || '[]');
     }
-    function removeItem(id) {
+
+    function saveCart(cart) {
+      localStorage.setItem('cartItems', JSON.stringify(cart));
+      // update badge on all nav elements
+      const count = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+      document.querySelectorAll('.cart-pill .badge, .header-btn .cart-badge').forEach(b => b.textContent = count);
+    }
+
+    function renderCart() {
+      const cart = getCart();
+      const container = document.getElementById('cart-items-container');
+      const emptyEl = document.getElementById('empty-cart');
+      const sidebar = document.querySelector('.cart-sidebar');
+      const promoBlock = document.getElementById('promo-block');
+
+      if (cart.length === 0) {
+        container.innerHTML = '';
+        if (emptyEl) emptyEl.style.display = 'block';
+        if (sidebar) sidebar.style.display = 'none';
+        if (promoBlock) promoBlock.style.display = 'none';
+        return;
+      }
+
+      if (emptyEl) emptyEl.style.display = 'none';
+      if (sidebar) sidebar.style.display = '';
+      if (promoBlock) promoBlock.style.display = 'flex';
+
+      container.innerHTML = cart.map((item, idx) => `
+        <div class="cart-item" data-ref="${escHtml(item.ref)}">
+          <img class="cart-item-img" src="${escHtml(item.img)}" alt="${escHtml(item.name)}" />
+          <div class="cart-item-info">
+            <div class="cart-item-name">${escHtml(item.name)}</div>
+            <div class="cart-item-ref">Réf: ${escHtml(item.ref)}</div>
+            <div class="cart-item-price">${escHtml(item.price)}</div>
+            <div class="qty-controls" style="margin-top:.5rem;">
+              <button class="qty-btn" onclick="changeQty('${escHtml(item.ref)}',-1)">−</button>
+              <span class="qty-value">${item.qty}</span>
+              <button class="qty-btn" onclick="changeQty('${escHtml(item.ref)}',1)">+</button>
+              <button style="margin-left:auto;background:none;border:none;color:var(--accent-red);cursor:pointer;"
+                onclick="removeItem('${escHtml(item.ref)}')"><span class="material-symbols-outlined" style="font-size:18px">delete</span></button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      updateCart();
+    }
+
+    function escHtml(str) {
+      return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function changeQty(ref, delta) {
+      const cart = getCart();
+      const item = cart.find(i => i.ref === ref);
+      if (!item) return;
+      item.qty = Math.max(1, item.qty + delta);
+      saveCart(cart);
+      renderCart();
+    }
+
+    function removeItem(ref) {
       if (confirm('Retirer cet article du panier ?')) {
-        document.getElementById(id).remove();
-        updateCart();
-        refreshBadge();
+        const cart = getCart().filter(i => i.ref !== ref);
+        saveCart(cart);
+        renderCart();
       }
     }
 
     // Promo codes database
     const PROMO_CODES = {
-      'NOEL10': { discount: 10, type: 'percent' }, // 10% off
-      'GARAGE15': { discount: 15, type: 'percent' }, // 15% off
-      'LIVRAISON': { discount: 9.90, type: 'fixed' } // Free shipping
+      'NOEL10': { discount: 10, type: 'percent' },
+      'GARAGE15': { discount: 15, type: 'percent' },
+      'LIVRAISON': { discount: 9.90, type: 'fixed' }
     };
 
     let currentPromo = null;
@@ -223,92 +252,49 @@
     }
 
     function updateCart() {
-      // Calculate subtotal from items
       let subtotal = 0;
-      document.querySelectorAll('.cart-item').forEach(el => {
+      document.querySelectorAll('#cart-items-container .cart-item').forEach(el => {
         const priceEl = el.querySelector('.cart-item-price');
         const qtyEl = el.querySelector('.qty-value');
         if (priceEl && qtyEl) {
-          const price = parsePrice(priceEl.textContent);
-          const qty = parseInt(qtyEl.textContent);
-          subtotal += price * qty;
+          subtotal += parsePrice(priceEl.textContent) * parseInt(qtyEl.textContent);
         }
       });
 
-      // Get delivery cost
       const selectedDel = document.querySelector('.delivery-opt.selected');
       let deliveryCost = 9.90;
       if (selectedDel) {
         const priceEl = selectedDel.querySelector('.del-price');
-        if (priceEl && priceEl.textContent.includes('Gratuit')) {
-          deliveryCost = 0;
-        } else if (priceEl) {
-          deliveryCost = parsePrice(priceEl.textContent);
-        }
+        if (priceEl && priceEl.textContent.includes('Gratuit')) deliveryCost = 0;
+        else if (priceEl) deliveryCost = parsePrice(priceEl.textContent);
       }
 
-      // Calculate discount
       let discount = 0;
       if (currentPromo) {
-        if (currentPromo.type === 'percent') {
-          discount = (subtotal + deliveryCost) * currentPromo.discount / 100;
-        } else if (currentPromo.type === 'fixed') {
-          discount = Math.min(currentPromo.discount, subtotal + deliveryCost);
-        }
+        if (currentPromo.type === 'percent') discount = (subtotal + deliveryCost) * currentPromo.discount / 100;
+        else if (currentPromo.type === 'fixed') discount = Math.min(currentPromo.discount, subtotal + deliveryCost);
       }
 
-      // Calculate total
       const total = Math.max(0, subtotal + deliveryCost - discount);
-
-      // Update summary
       const summaryRows = document.querySelectorAll('.order-summary .summary-row');
-      // persist count for other pages
-      const cnt = document.querySelectorAll('.cart-item').length;
-      localStorage.setItem('cartCount', cnt);
       if (summaryRows.length >= 4) {
         summaryRows[0].querySelector('.value').textContent = formatPrice(subtotal) + ' €';
         summaryRows[1].querySelector('.value').textContent = formatPrice(deliveryCost) + ' €';
         summaryRows[2].querySelector('.value').textContent = '– ' + formatPrice(discount) + ' €';
         summaryRows[3].querySelector('.value').textContent = formatPrice(total) + ' €';
       }
-
-      // Update pay button
       const payBtn = document.getElementById('pay-amount');
       if (payBtn) payBtn.textContent = formatPrice(total) + ' €';
     }
 
-    function refreshBadge() {
-      let count = document.querySelectorAll('.cart-item').length;
-      if (count === 0) {
-        const stored = parseInt(localStorage.getItem('cartCount')||'0',10);
-        if (stored>0) count = stored;
-      }
-      document.querySelectorAll('.cart-pill .badge, .header-btn .cart-badge').forEach(b=>b.textContent=count);
-    }
+    document.addEventListener('DOMContentLoaded', renderCart);
 
-    // Function to sync cart state with localStorage
-    function syncCartState() {
-      const stored = parseInt(localStorage.getItem('cartCount')||'0', 10);
-      if (stored === 0) {
-        document.querySelectorAll('.cart-item').forEach(el => el.remove());
-      }
-      updateCart();
-      refreshBadge();
-    }
-
-    // Run on initial page load
-    document.addEventListener('DOMContentLoaded', syncCartState);
-    
-    // Also run when page becomes visible again (from cache or tab switch)
     window.addEventListener('pageshow', (event) => {
-      if (event.persisted) {
-        syncCartState();
-      }
+      if (event.persisted) renderCart();
     });
 
     function parsePrice(text) {
-      // Expects strings like "299,70 €"
-      return parseFloat(text.replace(/[^0-9,]/g, '').replace(',', '.')) || 0;
+      return parseFloat(String(text).replace(/[^0-9,]/g, '').replace(',', '.')) || 0;
     }
 
     function formatPrice(num) {
@@ -316,33 +302,16 @@
     }
 
     function placeOrder() {
-      // Read total from the summary to keep values in sync
       const totalEl = document.querySelector('.order-summary .total .value');
       let total = 0;
       if (totalEl) total = parsePrice(totalEl.textContent);
 
-      // Generate simple order id: CMD-YYYY-NNNN
       const now = new Date();
-      const year = now.getFullYear();
-      const rnd = Math.floor(Math.random() * 9000) + 1000;
-      const orderId = `CMD-${year}-${rnd}`;
+      const orderId = `CMD-${now.getFullYear()}-${Math.floor(Math.random() * 9000) + 1000}`;
 
-      // Read cart items
-      const items = [];
-      document.querySelectorAll('.cart-item').forEach(el => {
-        const nameEl = el.querySelector('.cart-item-name');
-        const priceEl = el.querySelector('.cart-item-price');
-        const qtyEl = el.querySelector('.qty-value');
-        if (nameEl && priceEl && qtyEl) {
-          items.push({
-            name: nameEl.textContent,
-            price: priceEl.textContent,
-            qty: parseInt(qtyEl.textContent)
-          });
-        }
-      });
+      const cart = getCart();
+      const items = cart.map(item => ({ name: item.name, price: item.price, qty: item.qty }));
 
-      // Read selected delivery option
       const selectedDel = document.querySelector('.delivery-opt.selected');
       let delivery = 'Livraison à domicile';
       let deliveryPrice = '9,90';
@@ -353,21 +322,18 @@
         if (priceEl) deliveryPrice = priceEl.textContent.includes('Gratuit') ? '0' : priceEl.textContent.replace(/[^0-9,]/g, '');
       }
 
-      // Build URL params
       const params = new URLSearchParams({
         order: orderId,
         total: formatPrice(total),
         items: JSON.stringify(items),
-        delivery: delivery,
-        deliveryPrice: deliveryPrice
+        delivery,
+        deliveryPrice
       });
-      // open confirmation in a new tab so panier reste ouvert
       window.open('confirmation-commande.html?' + params.toString(), '_blank');
-      // reset cart UI
-      document.querySelectorAll('.cart-item').forEach(el=>el.remove());
+      saveCart([]);
       currentPromo = null;
       document.getElementById('promo-input').value = '';
-      updateCart();
+      renderCart();
     }
   </script>
 </body>
