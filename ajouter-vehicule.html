@@ -17,6 +17,7 @@
 
 <body>
     <script src="assets/js/nav.js" data-page="profile"></script>
+    <script src="assets/js/vehicules-data.js"></script>
 
     <main class="page-content">
         <div class="page-title-block">
@@ -33,16 +34,28 @@
                     <option>Peugeot</option>
                     <option>Renault</option>
                     <option>Citroën</option>
+                    <option>Dacia</option>
                     <option>Volkswagen</option>
+                    <option>Audi</option>
                     <option>BMW</option>
                     <option>Mercedes</option>
-                    <option>Toyota</option>
+                    <option>Opel</option>
                     <option>Ford</option>
+                    <option>Fiat</option>
+                    <option>Toyota</option>
+                    <option>Nissan</option>
+                    <option>Kia</option>
+                    <option>Hyundai</option>
+                    <option>Seat</option>
+                    <option>Skoda</option>
                     <option>Autre</option>
                 </select>
             </div>
-            <div class="form-group"><label class="form-label">Modèle *</label><input type="text" class="form-input"
-                    id="veh-model" placeholder="208, Clio, Golf…" /></div>
+            <div class="form-group">
+                <label class="form-label">Modèle *</label>
+                <select class="form-select" id="veh-model-select" style="display:none;margin-bottom:.4rem;"></select>
+                <input type="text" class="form-input" id="veh-model" placeholder="208, Clio, Golf…" />
+            </div>
             <div class="form-group"><label class="form-label">Année *</label><input type="number" class="form-input"
                     id="veh-year" placeholder="2020" min="1980" max="2026" /></div>
             <div class="form-group"><label class="form-label">Kilométrage</label><input type="number" class="form-input"
@@ -70,6 +83,11 @@
         </button>
 
         <script>
+            setupModelPicker(
+                document.getElementById('veh-brand'),
+                document.getElementById('veh-model-select'),
+                document.getElementById('veh-model'));
+
             function addVehicle() {
                 const brand = document.getElementById('veh-brand').value;
                 const model = document.getElementById('veh-model').value.trim();
