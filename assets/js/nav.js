@@ -23,7 +23,7 @@
   const pages = [
     { id: 'home', href: 'index.html', icon: 'home', label: 'Accueil' },
     { id: 'catalogue', href: 'catalogue.html', icon: 'inventory_2', label: 'Catalogue' },
-    { id: 'rdv', href: 'rendez-vous.html', icon: 'calendar_month', label: 'RDV' },
+    { id: 'rdv', href: 'mes-rendez-vous.html', icon: 'calendar_month', label: 'Mes RDV' },
     { id: 'blog', href: 'blog.html', icon: 'article', label: 'Blog' },
     { id: 'profile', href: 'espace-client.html', icon: 'person', label: 'Profil' },
   ];
