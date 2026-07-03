@@ -62,8 +62,11 @@
 
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-config.js"></script>
   <script>
-    const PRODUCTS = [
+    // Liste de secours si la base de données est injoignable
+    const FALLBACK_PRODUCTS = [
       { name: 'Kit freins avant Peugeot 208', ref: 'KF-P208-AV', compat: 'Peugeot 208 2012-2022', price: '89,90 €', cat: 'freinage', img: 'assets/img/piece-freins.svg' },
       { name: 'Alternateur Peugeot 208 1.2 PureTech', ref: 'ALT-P208-85', compat: 'PureTech 82ch 2012→', price: '169,90 €', cat: 'electricite', img: 'assets/img/piece-alternateur.svg' },
       { name: 'Phare avant gauche Renault Clio IV', ref: 'PH-RCLIO4-120', compat: 'Clio IV 2012-2019', price: '119,90 €', cat: 'eclairage', img: 'assets/img/piece-phare.svg' },
@@ -78,17 +81,44 @@
       { name: 'Kit distribution + pompe à eau VW Golf VII', ref: 'DIS-VWG7-TDI', compat: '1.6/2.0 TDI 2012-2020', price: '189,90 €', cat: 'moteur', img: 'assets/img/piece-distribution.svg' },
     ];
 
+    let PRODUCTS = FALLBACK_PRODUCTS;
+
+    async function loadProductsFromDb() {
+      const sb = window.getSupabaseClient && window.getSupabaseClient();
+      if (!sb) return;
+      try {
+        const { data, error } = await sb
+          .from('products')
+          .select('name, ref, compat, price, category, img')
+          .order('created_at', { ascending: false });
+        if (error || !data || data.length === 0) return;
+        PRODUCTS = data.map(p => ({
+          name: p.name,
+          ref: p.ref,
+          compat: p.compat,
+          price: Number(p.price).toFixed(2).replace('.', ',') + ' €',
+          cat: p.category,
+          img: p.img,
+        }));
+        renderProducts();
+        filterProducts();
+      } catch (e) { /* base injoignable : on garde la liste de secours */ }
+    }
+
+    const escHtml = (s) => String(s ?? '').replace(/[&<>"']/g,
+      c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
     function renderProducts() {
       const list = document.getElementById('products-list');
       list.innerHTML = PRODUCTS.map((p, i) => `
-        <div class="product-card-h" data-cat="${p.cat}">
-          <img src="${p.img}" alt="${p.name}" loading="lazy" />
+        <div class="product-card-h" data-cat="${escHtml(p.cat)}">
+          <img src="${escHtml(p.img)}" alt="${escHtml(p.name)}" loading="lazy" />
           <div class="info">
-            <span class="pname">${p.name}</span>
-            <span class="pref">Réf: ${p.ref}</span>
-            <span class="pcompat">${p.compat}</span>
+            <span class="pname">${escHtml(p.name)}</span>
+            <span class="pref">Réf: ${escHtml(p.ref)}</span>
+            <span class="pcompat">${escHtml(p.compat)}</span>
             <div class="price-row">
-              <span class="pprice">${p.price}</span>
+              <span class="pprice">${escHtml(p.price)}</span>
               <button class="padd" onclick="addProduct(event, ${i})">+ Panier</button>
             </div>
           </div>
@@ -132,6 +162,7 @@
     }
 
     renderProducts();
+    loadProductsFromDb();
   </script>
 </body>
 

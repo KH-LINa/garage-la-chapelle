@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#101622" />
+  <title>Espace Pro — Garage de la Chapelle</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="assets/css/mobile.css" />
+  <style>
+    .admin-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      padding: .2rem .6rem;
+      border-radius: 999px;
+      font-size: .68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .admin-badge.role-admin {
+      background: rgba(225, 29, 72, .15);
+      border: 1px solid rgba(225, 29, 72, .4);
+      color: #fb7185;
+    }
+
+    .admin-badge.role-collaborateur {
+      background: rgba(16, 185, 129, .15);
+      border: 1px solid rgba(16, 185, 129, .4);
+      color: #34d399;
+    }
+
+    .admin-badge.role-pending {
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid var(--border);
+      color: var(--text-2);
+    }
+
+    .admin-product {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: .75rem;
+      display: flex;
+      gap: .75rem;
+      margin-bottom: .5rem;
+      align-items: center;
+    }
+
+    .admin-product.inactive {
+      opacity: .5;
+    }
+
+    .admin-product img {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .admin-product .p-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .admin-product .p-name {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .admin-product .p-meta {
+      font-size: .72rem;
+      color: var(--text-2);
+    }
+
+    .admin-product .p-actions {
+      display: flex;
+      gap: .35rem;
+      flex-shrink: 0;
+    }
+
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .2s, border-color .2s;
+    }
+
+    .icon-btn:hover {
+      border-color: var(--border-p);
+      background: var(--bg-card2);
+    }
+
+    .icon-btn .material-symbols-outlined {
+      font-size: 17px;
+      color: var(--text-2);
+    }
+
+    .icon-btn.danger .material-symbols-outlined {
+      color: var(--accent-red);
+    }
+
+    .staff-row {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .75rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: .5rem;
+      flex-wrap: wrap;
+    }
+
+    .staff-row .s-info {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .staff-row .s-name {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .staff-row .s-email {
+      font-size: .74rem;
+      color: var(--text-2);
+    }
+
+    .staff-row select {
+      width: auto;
+      padding: .45rem .75rem;
+    }
+
+    .form-2col {
+      display: grid;
+      gap: 0 1rem;
+    }
+
+    @media (min-width: 700px) {
+      .form-2col {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .admin-layout {
+        display: grid;
+        grid-template-columns: 420px 1fr;
+        gap: 2rem;
+        align-items: start;
+      }
+
+      .admin-form-col {
+        position: sticky;
+        top: calc(var(--top-nav-h) + 1rem);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <script src="assets/js/nav.js" data-page="admin"></script>
+
+  <main class="page-content">
+
+    <!-- ══ VUE CONNEXION ══ -->
+    <div id="auth-view" style="display:none;max-width:440px;margin:0 auto;">
+      <div class="page-title-block" style="text-align:center;">
+        <div style="font-size:3rem;margin-bottom:.5rem">🔐</div>
+        <h1>Espace Pro</h1>
+        <p>Réservé à l'équipe du garage — gestion du catalogue de pièces.</p>
+      </div>
+
+      <div id="auth-alert" class="alert error" style="display:none;">
+        <span class="material-symbols-outlined">error</span><span id="auth-alert-msg"></span>
+      </div>
+      <div id="auth-info" class="alert info" style="display:none;">
+        <span class="material-symbols-outlined">info</span><span id="auth-info-msg"></span>
+      </div>
+
+      <div class="form-block">
+        <h3 id="auth-title">Connexion</h3>
+        <div class="form-group" id="grp-fullname" style="display:none;">
+          <label class="form-label" for="auth-fullname">Nom complet</label>
+          <input type="text" class="form-input" id="auth-fullname" placeholder="Prénom Nom" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="auth-email">Email</label>
+          <input type="email" class="form-input" id="auth-email" placeholder="votre@email.fr" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="auth-password">Mot de passe</label>
+          <input type="password" class="form-input" id="auth-password" placeholder="••••••••" />
+        </div>
+        <button class="btn-primary btn-full" id="auth-submit" onclick="submitAuth()">
+          <span class="material-symbols-outlined">login</span>
+          <span id="auth-submit-label">Se connecter</span>
+        </button>
+        <button class="btn-secondary btn-full" style="margin-top:.5rem;" onclick="toggleSignup()">
+          <span id="auth-toggle-label">Créer un compte collaborateur</span>
+        </button>
+        <p style="font-size:.72rem;color:var(--text-3);margin-top:.75rem;text-align:center;">
+          Les nouveaux comptes doivent être validés par l'administrateur avant d'accéder à la gestion.
+        </p>
+      </div>
+    </div>
+
+    <!-- ══ VUE EN ATTENTE ══ -->
+    <div id="pending-view" style="display:none;max-width:440px;margin:0 auto;text-align:center;">
+      <div class="empty-state">
+        <span class="material-symbols-outlined">hourglass_top</span>
+        <h3>Compte en attente de validation</h3>
+        <p>Votre compte a bien été créé, mais l'administrateur doit l'approuver avant que vous puissiez gérer le
+          catalogue.</p>
+        <button class="btn-secondary" style="margin-top:1rem;" onclick="doLogout()">
+          <span class="material-symbols-outlined">logout</span> Se déconnecter
+        </button>
+      </div>
+    </div>
+
+    <!-- ══ VUE HORS-LIGNE ══ -->
+    <div id="offline-view" style="display:none;max-width:440px;margin:0 auto;">
+      <div class="alert error">
+        <span class="material-symbols-outlined">cloud_off</span>
+        <span>Impossible de joindre le serveur d'authentification. Vérifiez votre connexion internet puis rechargez la
+          page.</span>
+      </div>
+    </div>
+
+    <!-- ══ VUE GESTION ══ -->
+    <div id="admin-view" style="display:none;">
+      <div class="page-title-block" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+        <div>
+          <h1>Espace Pro</h1>
+          <p><span id="whoami"></span> · <span class="admin-badge" id="whoami-role"></span></p>
+        </div>
+        <button class="btn-secondary" onclick="doLogout()">
+          <span class="material-symbols-outlined">logout</span> Déconnexion
+        </button>
+      </div>
+
+      <div id="admin-alert" class="alert success" style="display:none;">
+        <span class="material-symbols-outlined">check_circle</span><span id="admin-alert-msg"></span>
+      </div>
+
+      <div class="admin-layout">
+        <!-- FORMULAIRE PIÈCE -->
+        <div class="admin-form-col">
+          <div class="form-block">
+            <h3 id="product-form-title">➕ Ajouter une pièce</h3>
+            <input type="hidden" id="prod-id" />
+            <div class="form-group">
+              <label class="form-label" for="prod-name">Nom de la pièce *</label>
+              <input type="text" class="form-input" id="prod-name" placeholder="Kit freins avant Peugeot 208" />
+            </div>
+            <div class="form-2col">
+              <div class="form-group">
+                <label class="form-label" for="prod-ref">Référence *</label>
+                <input type="text" class="form-input" id="prod-ref" placeholder="KF-P208-AV" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="prod-price">Prix TTC (€) *</label>
+                <input type="number" step="0.01" min="0" class="form-input" id="prod-price" placeholder="89.90" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="prod-compat">Compatibilité</label>
+              <input type="text" class="form-input" id="prod-compat" placeholder="Peugeot 208 2012-2022" />
+            </div>
+            <div class="form-2col">
+              <div class="form-group">
+                <label class="form-label" for="prod-category">Catégorie *</label>
+                <select class="form-select" id="prod-category">
+                  <option value="moteur">Moteur</option>
+                  <option value="freinage">Freinage</option>
+                  <option value="electricite">Électricité</option>
+                  <option value="eclairage">Éclairage</option>
+                  <option value="pneumatiques">Pneumatiques</option>
+                  <option value="transmission">Transmission</option>
+                  <option value="suspension">Suspension</option>
+                  <option value="confort">Confort</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="prod-img">Visuel</label>
+                <select class="form-select" id="prod-img">
+                  <option value="assets/img/piece-freins.svg">Freinage</option>
+                  <option value="assets/img/piece-alternateur.svg">Alternateur</option>
+                  <option value="assets/img/piece-phare.svg">Éclairage</option>
+                  <option value="assets/img/piece-revision.svg">Kit révision</option>
+                  <option value="assets/img/piece-pneu.svg">Pneu</option>
+                  <option value="assets/img/piece-embrayage.svg">Embrayage</option>
+                  <option value="assets/img/piece-batterie.svg">Batterie</option>
+                  <option value="assets/img/piece-amortisseur.svg">Suspension</option>
+                  <option value="assets/img/piece-bougies.svg">Allumage</option>
+                  <option value="assets/img/piece-filtre.svg">Filtration</option>
+                  <option value="assets/img/piece-essuie-glace.svg">Essuie-glaces</option>
+                  <option value="assets/img/piece-distribution.svg">Distribution</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn-primary btn-full" id="product-save-btn" onclick="saveProduct()">
+              <span class="material-symbols-outlined">save</span>
+              <span id="product-save-label">Ajouter la pièce</span>
+            </button>
+            <button class="btn-secondary btn-full" id="product-cancel-btn" style="display:none;margin-top:.5rem;"
+              onclick="resetProductForm()">Annuler la modification</button>
+          </div>
+        </div>
+
+        <!-- LISTE DES PIÈCES -->
+        <div>
+          <div class="section-header">
+            <span class="section-title">Catalogue (<span id="product-count">0</span> pièces)</span>
+            <span class="section-link" style="cursor:pointer;" onclick="loadProducts()">↻ Actualiser</span>
+          </div>
+          <div class="search-bar">
+            <span class="material-symbols-outlined">search</span>
+            <input type="text" id="admin-search" placeholder="Filtrer les pièces…" oninput="renderProducts()" />
+          </div>
+          <div id="admin-products"></div>
+
+          <!-- ÉQUIPE (admin uniquement) -->
+          <div id="team-section" style="display:none;margin-top:2rem;">
+            <div class="section-header"><span class="section-title">👥 Équipe & rôles</span></div>
+            <p style="font-size:.8rem;color:var(--text-2);margin-bottom:.75rem;">
+              Les comptes « en attente » doivent être passés en <strong>collaborateur</strong> pour accéder à la
+              gestion du catalogue.
+            </p>
+            <div id="staff-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-config.js"></script>
+  <script>
+    let sb = null;
+    let currentProfile = null;
+    let products = [];
+
+    const esc = (s) => String(s ?? '').replace(/[&<>"']/g,
+      c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const fmtPrice = (n) => Number(n).toFixed(2).replace('.', ',') + ' €';
+
+    function show(viewId) {
+      ['auth-view', 'pending-view', 'offline-view', 'admin-view']
+        .forEach(id => document.getElementById(id).style.display = id === viewId ? '' : 'none');
+    }
+
+    function flash(msg) {
+      const box = document.getElementById('admin-alert');
+      document.getElementById('admin-alert-msg').textContent = msg;
+      box.style.display = 'flex';
+      setTimeout(() => { box.style.display = 'none'; }, 3000);
+    }
+
+    function authError(msg) {
+      const box = document.getElementById('auth-alert');
+      document.getElementById('auth-alert-msg').textContent = msg;
+      box.style.display = msg ? 'flex' : 'none';
+    }
+
+    function authInfo(msg) {
+      const box = document.getElementById('auth-info');
+      document.getElementById('auth-info-msg').textContent = msg;
+      box.style.display = msg ? 'flex' : 'none';
+    }
+
+    // ── Auth ─────────────────────────────────────────
+    let signupMode = false;
+
+    function toggleSignup() {
+      signupMode = !signupMode;
+      document.getElementById('grp-fullname').style.display = signupMode ? '' : 'none';
+      document.getElementById('auth-title').textContent = signupMode ? 'Créer un compte' : 'Connexion';
+      document.getElementById('auth-submit-label').textContent = signupMode ? "S'inscrire" : 'Se connecter';
+      document.getElementById('auth-toggle-label').textContent =
+        signupMode ? '← Retour à la connexion' : 'Créer un compte collaborateur';
+      authError('');
+      authInfo('');
+    }
+
+    async function submitAuth() {
+      const email = document.getElementById('auth-email').value.trim();
+      const password = document.getElementById('auth-password').value;
+      if (!email || !password) { authError('Email et mot de passe requis.'); return; }
+      authError('');
+
+      if (signupMode) {
+        const fullName = document.getElementById('auth-fullname').value.trim();
+        const { error } = await sb.auth.signUp({
+          email, password,
+          options: { data: { full_name: fullName } }
+        });
+        if (error) { authError(traduireErreur(error.message)); return; }
+        authInfo('Compte créé ! Vérifiez votre boîte mail pour confirmer votre adresse, puis connectez-vous. ' +
+          "L'administrateur devra ensuite valider votre accès.");
+        toggleSignup();
+      } else {
+        const { error } = await sb.auth.signInWithPassword({ email, password });
+        if (error) { authError(traduireErreur(error.message)); return; }
+        await route();
+      }
+    }
+
+    function traduireErreur(msg) {
+      const map = {
+        'Invalid login credentials': 'Identifiants incorrects.',
+        'Email not confirmed': 'Email non confirmé — vérifiez votre boîte mail.',
+        'User already registered': 'Un compte existe déjà avec cet email.',
+        'Password should be at least 6 characters.': 'Le mot de passe doit contenir au moins 6 caractères.',
+      };
+      return map[msg] || msg;
+    }
+
+    async function doLogout() {
+      await sb.auth.signOut();
+      currentProfile = null;
+      show('auth-view');
+    }
+
+    // ── Routage selon session/rôle ───────────────────
+    async function route() {
+      const { data: { session } } = await sb.auth.getSession();
+      if (!session) { show('auth-view'); return; }
+
+      const { data: profile, error } = await sb
+        .from('staff_profiles').select('*').eq('id', session.user.id).single();
+      if (error || !profile) { show('auth-view'); return; }
+
+      currentProfile = profile;
+      if (profile.role === 'pending') { show('pending-view'); return; }
+
+      document.getElementById('whoami').textContent = profile.full_name || profile.email;
+      const roleEl = document.getElementById('whoami-role');
+      roleEl.textContent = profile.role;
+      roleEl.className = 'admin-badge role-' + profile.role;
+      document.getElementById('team-section').style.display = profile.role === 'admin' ? '' : 'none';
+
+      show('admin-view');
+      await loadProducts();
+      if (profile.role === 'admin') await loadStaff();
+    }
+
+    // ── Produits ─────────────────────────────────────
+    async function loadProducts() {
+      const { data, error } = await sb.from('products').select('*').order('created_at', { ascending: false });
+      if (error) { flash('Erreur de chargement : ' + error.message); return; }
+      products = data || [];
+      renderProducts();
+    }
+
+    function renderProducts() {
+      const q = document.getElementById('admin-search').value.toLowerCase();
+      const list = products.filter(p =>
+        !q || `${p.name} ${p.ref} ${p.category} ${p.compat}`.toLowerCase().includes(q));
+      document.getElementById('product-count').textContent = products.length;
+      document.getElementById('admin-products').innerHTML = list.map(p => `
+        <div class="admin-product ${p.active ? '' : 'inactive'}">
+          <img src="${esc(p.img)}" alt="" />
+          <div class="p-info">
+            <div class="p-name">${esc(p.name)}</div>
+            <div class="p-meta">${esc(p.ref)} · ${esc(p.category)} · ${fmtPrice(p.price)}
+              ${p.active ? '' : ' · <strong style="color:var(--accent-red)">masqué</strong>'}</div>
+          </div>
+          <div class="p-actions">
+            <button class="icon-btn" title="${p.active ? 'Masquer du catalogue' : 'Republier'}"
+              onclick="toggleActive('${p.id}', ${!p.active})">
+              <span class="material-symbols-outlined">${p.active ? 'visibility_off' : 'visibility'}</span>
+            </button>
+            <button class="icon-btn" title="Modifier" onclick="editProduct('${p.id}')">
+              <span class="material-symbols-outlined">edit</span>
+            </button>
+            <button class="icon-btn danger" title="Supprimer" onclick="deleteProduct('${p.id}')">
+              <span class="material-symbols-outlined">delete</span>
+            </button>
+          </div>
+        </div>`).join('') ||
+        '<p style="font-size:.85rem;color:var(--text-2);padding:1rem 0;">Aucune pièce ne correspond au filtre.</p>';
+    }
+
+    function editProduct(id) {
+      const p = products.find(x => x.id === id);
+      if (!p) return;
+      document.getElementById('prod-id').value = p.id;
+      document.getElementById('prod-name').value = p.name;
+      document.getElementById('prod-ref').value = p.ref;
+      document.getElementById('prod-price').value = p.price;
+      document.getElementById('prod-compat').value = p.compat;
+      document.getElementById('prod-category').value = p.category;
+      document.getElementById('prod-img').value = p.img;
+      document.getElementById('product-form-title').textContent = '✏️ Modifier la pièce';
+      document.getElementById('product-save-label').textContent = 'Enregistrer';
+      document.getElementById('product-cancel-btn').style.display = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function resetProductForm() {
+      ['prod-id', 'prod-name', 'prod-ref', 'prod-price', 'prod-compat'].forEach(id =>
+        document.getElementById(id).value = '');
+      document.getElementById('prod-category').value = 'moteur';
+      document.getElementById('prod-img').value = 'assets/img/piece-revision.svg';
+      document.getElementById('product-form-title').textContent = '➕ Ajouter une pièce';
+      document.getElementById('product-save-label').textContent = 'Ajouter la pièce';
+      document.getElementById('product-cancel-btn').style.display = 'none';
+    }
+
+    async function saveProduct() {
+      const id = document.getElementById('prod-id').value;
+      const record = {
+        name: document.getElementById('prod-name').value.trim(),
+        ref: document.getElementById('prod-ref').value.trim().toUpperCase(),
+        price: parseFloat(document.getElementById('prod-price').value),
+        compat: document.getElementById('prod-compat').value.trim(),
+        category: document.getElementById('prod-category').value,
+        img: document.getElementById('prod-img').value,
+      };
+      if (!record.name || !record.ref || isNaN(record.price)) {
+        flash('Nom, référence et prix sont obligatoires.');
+        return;
+      }
+      const { error } = id
+        ? await sb.from('products').update(record).eq('id', id)
+        : await sb.from('products').insert(record);
+      if (error) {
+        flash(error.code === '23505' ? 'Cette référence existe déjà.' : 'Erreur : ' + error.message);
+        return;
+      }
+      flash(id ? 'Pièce modifiée ✔' : 'Pièce ajoutée au catalogue ✔');
+      resetProductForm();
+      await loadProducts();
+    }
+
+    async function toggleActive(id, active) {
+      const { error } = await sb.from('products').update({ active }).eq('id', id);
+      if (error) { flash('Erreur : ' + error.message); return; }
+      flash(active ? 'Pièce republiée ✔' : 'Pièce masquée du catalogue ✔');
+      await loadProducts();
+    }
+
+    async function deleteProduct(id) {
+      if (!confirm('Supprimer définitivement cette pièce ? (Vous pouvez aussi simplement la masquer.)')) return;
+      const { error } = await sb.from('products').delete().eq('id', id);
+      if (error) { flash('Erreur : ' + error.message); return; }
+      flash('Pièce supprimée ✔');
+      await loadProducts();
+    }
+
+    // ── Équipe (admin) ───────────────────────────────
+    async function loadStaff() {
+      const { data, error } = await sb.from('staff_profiles').select('*').order('created_at');
+      if (error) return;
+      document.getElementById('staff-list').innerHTML = (data || []).map(s => `
+        <div class="staff-row">
+          <div class="s-info">
+            <div class="s-name">${esc(s.full_name || '(sans nom)')}
+              ${s.id === currentProfile.id ? ' <span style="color:var(--text-3);font-weight:400">(vous)</span>' : ''}</div>
+            <div class="s-email">${esc(s.email)}</div>
+          </div>
+          <span class="admin-badge role-${esc(s.role)}">${esc(s.role)}</span>
+          ${s.id !== currentProfile.id ? `
+          <select class="form-select" onchange="changeRole('${s.id}', this.value)">
+            <option value="pending" ${s.role === 'pending' ? 'selected' : ''}>En attente</option>
+            <option value="collaborateur" ${s.role === 'collaborateur' ? 'selected' : ''}>Collaborateur</option>
+            <option value="admin" ${s.role === 'admin' ? 'selected' : ''}>Admin</option>
+          </select>` : ''}
+        </div>`).join('');
+    }
+
+    async function changeRole(id, role) {
+      const { error } = await sb.from('staff_profiles').update({ role }).eq('id', id);
+      if (error) { flash('Erreur : ' + error.message); return; }
+      flash('Rôle mis à jour ✔');
+      await loadStaff();
+    }
+
+    // ── Init ─────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', async () => {
+      sb = window.getSupabaseClient();
+      if (!sb) { show('offline-view'); return; }
+      try {
+        await route();
+      } catch (e) {
+        show('offline-view');
+      }
+    });
+  </script>
+</body>
+
+</html>
