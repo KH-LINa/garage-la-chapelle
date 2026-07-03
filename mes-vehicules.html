@@ -3,8 +3,11 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Mes Véhicules — Garage la Chapelle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#101622" />
+    <title>Mes Véhicules — Garage de la Chapelle</title>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" />
     <link rel="stylesheet"
@@ -83,7 +86,7 @@
 </head>
 
 <body>
-    <script src="assets/js/nav.js" data-page="profile" data-cart="2"></script>
+    <script src="assets/js/nav.js" data-page="profile"></script>
 
     <main class="page-content">
 
@@ -92,47 +95,12 @@
             <p>Gérez votre parc automobile et consultez l'historique de vos entretiens.</p>
         </div>
 
-        <!-- RAPPEL URGENT -->
-        <div class="alert error" style="margin-bottom:1rem;">
-            <span class="material-symbols-outlined">warning</span>
-            <span>Votre <strong>Renault Clio</strong> nécessite une révision — date dépassée. <a href="rendez-vous.html"
-                    style="color:inherit;text-decoration:underline">Prendre RDV →</a></span>
-        </div>
+        <div class="vehicles-grid" id="vehicles-grid"></div>
 
-        <div class="vehicles-grid">
-            <!-- Véhicule 1 -->
-            <div class="veh-card">
-                <div class="veh-img"
-                    style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBFR9A87pbYZHkHxMv0h2HQ87qcVamP8kRRQ9Lcx0AOQGGzyoOAU-3OolKi64kEL7LeoSn4NyENVK5kSP1N4CdnZjQOSLpa4-PX4pyRX0Xqj-s2JiuUEP8EZtkurOdI0OXj_SjvBSvLZitnXrD3EbX0An9j9N5ebfSof4Jrmrjmp3fgf_6rxwqJNuExU16b8apDp2x_G1WTgIPFKoHCGBTjuzO9R0tIYc_-LsvZzhVZOfnDnVqYnfnszV6GstINSi2MfIKwvDbzK-G6')">
-                    <div class="veh-badge" style="background:var(--primary);color:#fff">Premium</div>
-                </div>
-                <div class="veh-body">
-                    <div class="veh-title">Audi A3</div>
-                    <div class="veh-plate">AB-123-CD</div>
-                    <div class="veh-meta"><span class="material-symbols-outlined"
-                            style="font-size:14px;color:var(--accent-green)">event_available</span>Dernière révision :
-                        12/03/2023</div>
-                    <button class="btn-secondary btn-full"><span class="material-symbols-outlined">history</span> Voir
-                        l'historique</button>
-                </div>
-            </div>
-
-            <!-- Véhicule 2 -->
-            <div class="veh-card">
-                <div class="veh-img"
-                    style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBU9UDwkjlSFeYpgBdmg81WjgMUyZ7j5m0LdTo8bEmGlP6nS2jJ-ZxmKOXMXJHTpiIGoyFJ47Am-8KZckg6opXyey65xI_tMhlhcChCWB2TbrCLq4R1PTqDgQ236CEYBiur95R9VVO0M8lY5SLDLaIE5cOmUcMG62Qz8Sgw35VyyrjycGWkATD-bswf73V-c5OLSteputFFbwqA7sTHugxO5YSkdsEznQEffXZAIlmTURPxNVAsLKYqjQZRGltgpGsBaiOiNWmpg3up')">
-                    <div class="veh-badge" style="background:var(--accent-red);color:#fff">Entretien requis</div>
-                </div>
-                <div class="veh-body">
-                    <div class="veh-title">Renault Clio</div>
-                    <div class="veh-plate">EF-456-GH</div>
-                    <div class="veh-meta"><span class="material-symbols-outlined"
-                            style="font-size:14px;color:var(--accent-red)">warning</span>Dernière révision : 10/11/2022
-                        <span style="color:var(--accent-red)">(dépassée)</span></div>
-                    <a class="btn-primary btn-full" href="rendez-vous.html"><span
-                            class="material-symbols-outlined">calendar_month</span> Prendre RDV</a>
-                </div>
-            </div>
+        <div id="no-vehicles" class="empty-state" style="display:none;">
+            <span class="material-symbols-outlined">directions_car</span>
+            <h3>Aucun véhicule enregistré</h3>
+            <p>Ajoutez votre premier véhicule pour suivre vos entretiens.</p>
         </div>
 
         <!-- ADD VEHICLE -->
@@ -146,6 +114,53 @@
         </a>
 
     </main>
+
+    <script>
+        const VEH_IMAGES = ['assets/img/vehicule-berline.svg', 'assets/img/vehicule-citadine.svg'];
+
+        function renderVehicles() {
+            const vehicles = GLC.getVehicles();
+            const grid = document.getElementById('vehicles-grid');
+            document.getElementById('no-vehicles').style.display = vehicles.length ? 'none' : 'flex';
+
+            grid.innerHTML = vehicles.map((v, i) => `
+                <div class="veh-card">
+                    <div class="veh-img" style="background-image:url('${VEH_IMAGES[i % VEH_IMAGES.length]}')">
+                        <div class="veh-badge" style="background:var(--primary);color:#fff">${v.year || ''}</div>
+                    </div>
+                    <div class="veh-body">
+                        <div class="veh-title">${v.brand} ${v.model}</div>
+                        <div class="veh-plate">${v.plate || '—'}</div>
+                        <div class="veh-meta">
+                            <span class="material-symbols-outlined" style="font-size:14px;color:var(--primary-light)">speed</span>
+                            ${v.km ? v.km + ' km' : 'Kilométrage non renseigné'}
+                        </div>
+                        <div class="veh-meta">
+                            <span class="material-symbols-outlined" style="font-size:14px;color:var(--accent-green)">event_available</span>
+                            ${v.lastService || 'Aucune intervention enregistrée'}
+                        </div>
+                        <div style="display:flex;gap:.5rem;">
+                            <a class="btn-primary btn-full" href="rendez-vous.html" style="flex:1;">
+                                <span class="material-symbols-outlined">calendar_month</span> Prendre RDV</a>
+                            <button class="btn-secondary" style="padding:.75rem;" aria-label="Supprimer"
+                                onclick="removeVehicle(${i})">
+                                <span class="material-symbols-outlined" style="color:var(--accent-red)">delete</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>`).join('');
+        }
+
+        function removeVehicle(index) {
+            if (!confirm('Supprimer ce véhicule ?')) return;
+            const vehicles = GLC.getVehicles();
+            vehicles.splice(index, 1);
+            GLC.saveVehicles(vehicles);
+            renderVehicles();
+        }
+
+        document.addEventListener('DOMContentLoaded', renderVehicles);
+    </script>
 </body>
 
 </html>

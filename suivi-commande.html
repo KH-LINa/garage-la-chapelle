@@ -3,8 +3,11 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Suivi de commande — Garage la Chapelle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#101622" />
+  <title>Suivi de commande — Garage de la Chapelle</title>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" />
   <link rel="stylesheet"
@@ -56,7 +59,7 @@
 </head>
 
 <body>
-  <script src="assets/js/nav.js" data-page="tracking" data-cart="2"></script>
+  <script src="assets/js/nav.js" data-page="tracking"></script>
 
   <main class="page-content">
 
@@ -69,7 +72,7 @@
     <!-- SEARCH -->
     <div class="form-block" style="margin-bottom:1rem;">
       <div style="display:flex;gap:.5rem;">
-        <input type="text" class="form-input" placeholder="N° de commande…" value="CMD-2026-0342" style="flex:1;" />
+        <input type="text" class="form-input" id="order-search" placeholder="N° de commande…" style="flex:1;" />
         <button class="btn-primary" style="padding:.75rem 1rem;">
           <span class="material-symbols-outlined">search</span>
         </button>
@@ -79,10 +82,10 @@
     <!-- ORDER STATUS -->
     <div class="tracking-hero">
       <span class="lbl">Commande N°</span>
-      <div class="val">CMD-2026-0342</div>
+      <div class="val" id="order-id">CMD-2026-0342</div>
       <div class="pill"><span class="dot"></span>Commande en cours de préparation</div>
       <div style="margin-top:.75rem;font-size:.8rem;color:rgba(255,255,255,.75)">
-        Livraison estimée : <strong style="color:#fff">Vendredi 28 mars 2026</strong>
+        Livraison estimée : <strong style="color:#fff" id="delivery-est">sous 3 à 5 jours ouvrés</strong>
       </div>
     </div>
 
@@ -132,21 +135,23 @@
       <div>
         <div class="info-card">
           <h3><span class="material-symbols-outlined">inventory_2</span> Détails commande</h3>
-          <div class="info-row"><span class="material-symbols-outlined">category</span><span
-              class="info-label">Alternateur</span><span class="info-value">169,90 €</span></div>
-          <div class="info-row"><span class="material-symbols-outlined">category</span><span class="info-label">Phare
-              avant</span><span class="info-value">119,90 €</span></div>
-          <div class="info-row"><span class="material-symbols-outlined">local_shipping</span><span
-              class="info-label">Livraison</span><span class="info-value">9,90 €</span></div>
-          <div class="info-row" style="padding-top:.75rem;margin-top:.25rem;border-top:1px solid var(--border)">
-            <span class="material-symbols-outlined">receipt</span><span class="info-label">Total</span>
-            <span class="info-value" style="font-weight:800;color:var(--primary-light)">299,70 €</span>
+          <div id="order-details">
+            <div class="info-row"><span class="material-symbols-outlined">category</span><span
+                class="info-label">Alternateur</span><span class="info-value">169,90 €</span></div>
+            <div class="info-row"><span class="material-symbols-outlined">category</span><span class="info-label">Phare
+                avant</span><span class="info-value">119,90 €</span></div>
+            <div class="info-row"><span class="material-symbols-outlined">local_shipping</span><span
+                class="info-label">Livraison</span><span class="info-value">9,90 €</span></div>
+            <div class="info-row" style="padding-top:.75rem;margin-top:.25rem;border-top:1px solid var(--border)">
+              <span class="material-symbols-outlined">receipt</span><span class="info-label">Total</span>
+              <span class="info-value" style="font-weight:800;color:var(--primary-light)">299,70 €</span>
+            </div>
           </div>
         </div>
         <div style="display:flex;gap:.75rem;">
           <a class="btn-secondary" href="contact.html" style="flex:1;justify-content:center;"><span
               class="material-symbols-outlined">headset_mic</span> Assistance</a>
-          <a class="btn-primary" href="https://wa.me/33123456789?text=Commande%20CMD-2026-0342" target="_blank"
+          <a class="btn-primary" id="wa-link" href="https://wa.me/33238000000?text=Commande" target="_blank"
             style="flex:1;justify-content:center;background:#25d366"><span class="material-symbols-outlined">chat</span>
             WhatsApp</a>
         </div>
@@ -154,6 +159,37 @@
     </div>
 
   </main>
+
+  <script>
+    // Affiche la dernière commande réelle passée sur le site (sinon démo)
+    document.addEventListener('DOMContentLoaded', () => {
+      let order = null;
+      try { order = JSON.parse(localStorage.getItem('glc_lastOrder') || 'null'); } catch (e) { /* ignore */ }
+      if (!order) return;
+
+      document.getElementById('order-id').textContent = order.id;
+      document.getElementById('order-search').placeholder = order.id;
+      document.getElementById('wa-link').href =
+        'https://wa.me/33238000000?text=' + encodeURIComponent('Commande ' + order.id);
+
+      if (order.delivery && order.delivery.includes('Retrait')) {
+        document.getElementById('delivery-est').textContent = 'retrait à l\'atelier sous 2h';
+      }
+
+      const rows = order.items.map(item => `
+        <div class="info-row"><span class="material-symbols-outlined">category</span><span
+            class="info-label">${item.name}${item.qty > 1 ? ' ×' + item.qty : ''}</span><span
+            class="info-value">${item.price}</span></div>`).join('');
+      const deliveryRow = `
+        <div class="info-row"><span class="material-symbols-outlined">local_shipping</span><span
+            class="info-label">${order.delivery}</span><span class="info-value">${order.deliveryPrice === '0,00' ? 'Gratuit' : order.deliveryPrice + ' €'}</span></div>`;
+      const totalRow = `
+        <div class="info-row" style="padding-top:.75rem;margin-top:.25rem;border-top:1px solid var(--border)">
+          <span class="material-symbols-outlined">receipt</span><span class="info-label">Total</span>
+          <span class="info-value" style="font-weight:800;color:var(--primary-light)">${order.total} €</span></div>`;
+      document.getElementById('order-details').innerHTML = rows + deliveryRow + totalRow;
+    });
+  </script>
 </body>
 
 </html>

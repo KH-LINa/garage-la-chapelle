@@ -1,0 +1,18 @@
+{
+  "name": "Garage de la Chapelle",
+  "short_name": "Garage Chapelle",
+  "description": "Garage de la Chapelle à Ingré (45) — révision, freinage, diagnostic, pneumatiques. Prise de RDV et devis en ligne.",
+  "lang": "fr",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#101622",
+  "theme_color": "#101622",
+  "icons": [
+    {
+      "src": "assets/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

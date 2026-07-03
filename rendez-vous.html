@@ -3,9 +3,12 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Rendez-vous en ligne — Garage la Chapelle</title>
-  <meta name="description" content="Prenez rendez-vous en ligne chez Garage la Chapelle. Rapide et simple." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#101622" />
+  <title>Rendez-vous en ligne — Garage de la Chapelle</title>
+  <meta name="description" content="Prenez rendez-vous en ligne chez Garage de la Chapelle. Rapide et simple." />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" />
   <link rel="stylesheet"
@@ -31,7 +34,7 @@
       justify-content: center;
       font-size: 0.65rem;
       font-weight: 800;
-      color: var(--text-muted);
+      color: var(--text-3);
       transition: all 0.3s;
       flex-shrink: 0;
     }
@@ -62,7 +65,7 @@
     .step-label {
       font-size: 0.78rem;
       font-weight: 700;
-      color: var(--text-primary);
+      color: var(--text);
       margin-bottom: 0.75rem;
     }
 
@@ -85,7 +88,7 @@
 
     .svc-option .material-symbols-outlined {
       font-size: 24px;
-      color: var(--text-muted);
+      color: var(--text-3);
       display: block;
       margin-bottom: 0.3rem;
     }
@@ -93,7 +96,7 @@
     .svc-option .svc-name {
       font-size: 0.82rem;
       font-weight: 700;
-      color: var(--text-secondary);
+      color: var(--text-2);
       display: block;
     }
 
@@ -107,7 +110,7 @@
     }
 
     .svc-option.selected .svc-name {
-      color: var(--text-primary);
+      color: var(--text);
     }
 
     .month-nav {
@@ -131,13 +134,13 @@
 
     .month-nav button .material-symbols-outlined {
       font-size: 18px;
-      color: var(--text-secondary);
+      color: var(--text-2);
     }
 
     .month-nav .month-title {
       font-size: 0.92rem;
       font-weight: 700;
-      color: var(--text-primary);
+      color: var(--text);
     }
 
     .confirm-card {
@@ -171,15 +174,15 @@
 </head>
 
 <body>
-  <script src="assets/js/nav.js" data-page="rdv" data-cart="2"></script>
+  <script src="assets/js/nav.js" data-page="rdv"></script>
 
   <main class="page-content">
 
     <!-- STEP INDICATOR -->
     <div class="step-indicator">
-      <div class="step-dot done" id="s1">✓</div>
-      <div class="step-line done" id="l1"></div>
-      <div class="step-dot active" id="s2">2</div>
+      <div class="step-dot active" id="s1">1</div>
+      <div class="step-line" id="l1"></div>
+      <div class="step-dot" id="s2">2</div>
       <div class="step-line" id="l2"></div>
       <div class="step-dot" id="s3">3</div>
       <div class="step-line" id="l3"></div>
@@ -187,7 +190,7 @@
     </div>
 
     <!-- STEP 1 : CHOISIR UN SERVICE -->
-    <div id="step1-content" style="display:none;">
+    <div id="step1-content">
       <div class="page-title-block">
         <h1>Choisissez un service</h1>
         <p>Sélectionnez le type d'intervention souhaité.</p>
@@ -224,7 +227,7 @@
     </div>
 
     <!-- STEP 2 : CHOISIR UNE DATE -->
-    <div id="step2-content">
+    <div id="step2-content" style="display:none;">
       <div class="page-title-block">
         <h1>Choisissez une date</h1>
         <p>Sélectionnez un jour disponible pour votre rendez-vous.</p>
@@ -232,40 +235,14 @@
 
       <div class="form-block">
         <div class="month-nav">
-          <button><span class="material-symbols-outlined">chevron_left</span></button>
-          <span class="month-title">Mars 2026</span>
-          <button><span class="material-symbols-outlined">chevron_right</span></button>
+          <button type="button" id="month-prev" onclick="changeMonth(-1)" aria-label="Mois précédent"><span
+              class="material-symbols-outlined">chevron_left</span></button>
+          <span class="month-title" id="month-title"></span>
+          <button type="button" id="month-next" onclick="changeMonth(1)" aria-label="Mois suivant"><span
+              class="material-symbols-outlined">chevron_right</span></button>
         </div>
 
-        <div class="date-grid">
-          <div class="date-cell day-name">L</div>
-          <div class="date-cell day-name">M</div>
-          <div class="date-cell day-name">M</div>
-          <div class="date-cell day-name">J</div>
-          <div class="date-cell day-name">V</div>
-          <div class="date-cell day-name">S</div>
-          <div class="date-cell day-name">D</div>
-
-          <div class="date-cell unavailable">24</div>
-          <div class="date-cell unavailable">25</div>
-          <div class="date-cell available" onclick="selectDate(this, '26 mars')">26</div>
-          <div class="date-cell available today" onclick="selectDate(this, '27 mars')">27</div>
-          <div class="date-cell available" onclick="selectDate(this, '28 mars')">28</div>
-          <div class="date-cell unavailable">29</div>
-          <div class="date-cell unavailable">30</div>
-          <div class="date-cell available" onclick="selectDate(this, '31 mars')">31</div>
-          <div class="date-cell available" onclick="selectDate(this, '1 avr')">1</div>
-          <div class="date-cell available" onclick="selectDate(this, '2 avr')">2</div>
-          <div class="date-cell available" onclick="selectDate(this, '3 avr')">3</div>
-          <div class="date-cell available" onclick="selectDate(this, '4 avr')">4</div>
-          <div class="date-cell unavailable">5</div>
-          <div class="date-cell unavailable">6</div>
-          <div class="date-cell available" onclick="selectDate(this, '7 avr')">7</div>
-          <div class="date-cell available" onclick="selectDate(this, '8 avr')">8</div>
-          <div class="date-cell available" onclick="selectDate(this, '9 avr')">9</div>
-          <div class="date-cell available" onclick="selectDate(this, '10 avr')">10</div>
-          <div class="date-cell available" onclick="selectDate(this, '11 avr')">11</div>
-        </div>
+        <div class="date-grid" id="date-grid"></div>
       </div>
 
       <div class="form-block" id="time-block" style="display:none;">
@@ -338,22 +315,25 @@
       <div class="alert success"
         style="justify-content:center; flex-direction:column; text-align:center; padding:1.5rem;">
         <span class="material-symbols-outlined" style="font-size:48px; margin-bottom:0.75rem;">check_circle</span>
-        <strong style="font-size:1rem; color:var(--text-primary); margin-bottom:0.3rem;">Rendez-vous confirmé !</strong>
-        <span style="font-size:0.82rem; color:var(--text-secondary);">Un SMS de confirmation vous sera envoyé.</span>
+        <strong style="font-size:1rem; color:var(--text); margin-bottom:0.3rem;">Rendez-vous confirmé !</strong>
+        <span style="font-size:0.82rem; color:var(--text-2);">Un SMS de confirmation vous sera envoyé.</span>
       </div>
 
       <div class="confirm-card">
         <h3>Récapitulatif</h3>
-        <div class="confirm-row"><span class="material-symbols-outlined">precision_manufacturing</span> Diagnostic
-          complet</div>
-        <div class="confirm-row"><span class="material-symbols-outlined">calendar_month</span> Jeudi 27 mars 2026</div>
-        <div class="confirm-row"><span class="material-symbols-outlined">schedule</span> 10h00</div>
-        <div class="confirm-row"><span class="material-symbols-outlined">location_on</span> 12 Rue de l'Artisanat, Paris
+        <div class="confirm-row"><span class="material-symbols-outlined">build</span> <span
+            id="recap-service">—</span></div>
+        <div class="confirm-row"><span class="material-symbols-outlined">calendar_month</span> <span
+            id="recap-date">—</span></div>
+        <div class="confirm-row"><span class="material-symbols-outlined">schedule</span> <span id="recap-time">—</span>
         </div>
+        <div class="confirm-row"><span class="material-symbols-outlined">location_on</span> 164 Rte de la Chapelle,
+          45140 Ingré</div>
       </div>
 
       <div style="display:flex; gap:0.75rem;">
         <a class="btn-secondary" href="index.html" style="flex:1; justify-content:center;">Accueil</a>
+        <a class="btn-primary" href="mes-rendez-vous.html" style="flex:1; justify-content:center;">Mes rendez-vous</a>
       </div>
     </div>
 
@@ -362,9 +342,67 @@
 
 
   <script>
-    let currentStep = 2;
+    let currentStep = 1;
+    let selectedService = 'Diagnostic';
     let selectedDate = '';
     let selectedTime = '';
+
+    // ── Calendrier dynamique (mois courant → +2 mois, fermé le dimanche) ──
+    const MONTHS_FR = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin',
+      'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+    const DAYS_FR = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    let calMonth = today.getMonth();
+    let calYear = today.getFullYear();
+    const maxCal = new Date(today.getFullYear(), today.getMonth() + 2, 1);
+
+    function changeMonth(delta) {
+      calMonth += delta;
+      if (calMonth < 0) { calMonth = 11; calYear--; }
+      if (calMonth > 11) { calMonth = 0; calYear++; }
+      renderCalendar();
+    }
+
+    function renderCalendar() {
+      document.getElementById('month-title').textContent =
+        MONTHS_FR[calMonth].charAt(0).toUpperCase() + MONTHS_FR[calMonth].slice(1) + ' ' + calYear;
+
+      const first = new Date(calYear, calMonth, 1);
+      const nbDays = new Date(calYear, calMonth + 1, 0).getDate();
+      // lundi = colonne 0
+      const offset = (first.getDay() + 6) % 7;
+
+      let html = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
+        .map(d => `<div class="date-cell day-name">${d}</div>`).join('');
+      html += '<div class="date-cell"></div>'.repeat(offset);
+
+      for (let d = 1; d <= nbDays; d++) {
+        const date = new Date(calYear, calMonth, d);
+        const isPast = date < today;
+        const isSunday = date.getDay() === 0;
+        const isToday = date.getTime() === today.getTime();
+        if (isPast || isSunday) {
+          html += `<div class="date-cell unavailable">${d}</div>`;
+        } else {
+          const label = `${DAYS_FR[date.getDay()].charAt(0).toUpperCase() + DAYS_FR[date.getDay()].slice(1)} ${d} ${MONTHS_FR[calMonth]} ${calYear}`;
+          html += `<div class="date-cell available${isToday ? ' today' : ''}" onclick="selectDate(this, '${label}')">${d}</div>`;
+        }
+      }
+      document.getElementById('date-grid').innerHTML = html;
+
+      // bornes de navigation : pas de mois passé, max +2 mois
+      const currentCal = new Date(calYear, calMonth, 1);
+      document.getElementById('month-prev').disabled =
+        currentCal <= new Date(today.getFullYear(), today.getMonth(), 1);
+      document.getElementById('month-next').disabled = currentCal >= maxCal;
+      document.getElementById('month-prev').style.opacity =
+        document.getElementById('month-prev').disabled ? '.35' : '';
+      document.getElementById('month-next').style.opacity =
+        document.getElementById('month-next').disabled ? '.35' : '';
+    }
+
+    document.addEventListener('DOMContentLoaded', renderCalendar);
 
     function validateInfo() {
       const first = document.getElementById('inp-first');
@@ -394,11 +432,20 @@
     }
 
     function goStep(n) {
+      // étape 2 → 3 : une date et un créneau doivent être choisis
+      if (currentStep === 2 && n === 3 && (!selectedDate || !selectedTime)) {
+        alert('Veuillez choisir une date et un créneau horaire.');
+        return;
+      }
       // when moving from infos (3) to confirmation (4), validate
       if (currentStep === 3 && n === 4) {
         if (!validateInfo()) return;
         // store appointment
         saveAppointment();
+        // récapitulatif dynamique
+        document.getElementById('recap-service').textContent = selectedService;
+        document.getElementById('recap-date').textContent = selectedDate;
+        document.getElementById('recap-time').textContent = selectedTime;
       }
       document.getElementById('step' + currentStep + '-content').style.display = 'none';
       currentStep = n;
@@ -421,18 +468,22 @@
     function selectSvc(el, name) {
       document.querySelectorAll('.svc-option').forEach(s => s.classList.remove('selected'));
       el.classList.add('selected');
+      selectedService = name;
     }
 
     function selectDate(el, date) {
       document.querySelectorAll('.date-cell.available').forEach(c => c.classList.remove('selected'));
       el.classList.add('selected');
       selectedDate = date;
+      // nouveau jour = nouveau créneau à choisir
+      selectedTime = '';
+      document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
       document.getElementById('time-block').style.display = '';
       document.getElementById('btn-step2').style.display = 'flex';
     }
 
     function saveAppointment() {
-      const service = document.querySelector('.svc-option.selected .svc-name')?.textContent || '';
+      const service = selectedService;
       const first = document.getElementById('inp-first').value.trim();
       const last = document.getElementById('inp-last').value.trim();
       const phone = document.getElementById('inp-phone').value.trim();

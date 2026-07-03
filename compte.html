@@ -3,8 +3,11 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Connexion / Inscription — Garage la Chapelle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#101622" />
+    <title>Connexion / Inscription — Garage de la Chapelle</title>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" />
     <link rel="stylesheet"
@@ -14,11 +17,11 @@
         /* Specific styles for the login/register toggle */
         .auth-toggle {
             display: flex;
-            background: var(--bg-surface);
+            background: var(--bg-card);
             border-radius: 12px;
             padding: 0.25rem;
             margin-bottom: 2rem;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border);
         }
 
         .auth-toggle-btn {
@@ -64,9 +67,9 @@
             align-items: center;
             justify-content: center;
             gap: 0.75rem;
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            color: var(--text-1);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text);
             padding: 0.875rem;
             border-radius: 12px;
             font-weight: 600;
@@ -93,7 +96,7 @@
         .divider::after {
             content: '';
             flex: 1;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border);
         }
 
         .divider:not(:empty)::before {
@@ -113,7 +116,7 @@
 </head>
 
 <body>
-    <script src="assets/js/nav.js" data-page="compte" data-cart="2"></script>
+    <script src="assets/js/nav.js" data-page="compte"></script>
 
     <main class="page-content" style="max-width: 500px; margin: 0 auto; padding-top: 2rem;">
 
@@ -212,7 +215,8 @@
         <!-- COMMON ELEMENTS -->
         <div class="divider">ou</div>
 
-        <button class="google-btn" onclick="alert('Connexion avec Google non implémentée.')">
+        <button class="google-btn"
+            onclick="GLC.setUser({ name: 'Jean Dupont', email: 'jean.dupont@gmail.com' }); window.location.href='espace-client.html';">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -256,8 +260,10 @@
 
         function handleLogin(e) {
             e.preventDefault();
-            alert('✅ Connexion réussie !\n\nBienvenue dans votre espace personnel.');
-            // window.location.href = 'dashboard.html'; // Redirection future
+            const email = document.getElementById('login-email').value.trim();
+            const name = email.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+            GLC.setUser({ name, email });
+            window.location.href = 'espace-client.html';
         }
 
         function handleRegister(e) {
@@ -284,8 +290,11 @@
                 confirmPwd.setCustomValidity("");
             }
 
-            alert('✅ Votre compte a été créé avec succès !\n\nVous êtes maintenant connecté(e).');
-            // window.location.href = 'dashboard.html'; // Redirection future
+            GLC.setUser({
+                name: `${document.getElementById('reg-prenom').value.trim()} ${document.getElementById('reg-nom').value.trim()}`,
+                email: email.value.trim()
+            });
+            window.location.href = 'espace-client.html';
         }
 
         // Reset custom validity on input for confirm password & email

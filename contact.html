@@ -3,10 +3,13 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Contact — Garage la Chapelle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#101622" />
+  <title>Contact — Garage de la Chapelle</title>
   <meta name="description"
-    content="Contactez le Garage la Chapelle par téléphone, WhatsApp, email ou en venant nous rendre visite." />
+    content="Contactez le Garage de la Chapelle par téléphone, WhatsApp, email ou en venant nous rendre visite." />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" />
   <link rel="stylesheet"
@@ -15,7 +18,7 @@
 </head>
 
 <body>
-  <script src="assets/js/nav.js" data-page="contact" data-cart="2"></script>
+  <script src="assets/js/nav.js" data-page="contact"></script>
 
   <main class="page-content">
 
@@ -25,16 +28,16 @@
     </div>
 
     <!-- CONTACT METHODS -->
-    <a class="contact-method phone" href="tel:0123456789">
+    <a class="contact-method phone" href="tel:+33238000000">
       <div class="method-icon"><span class="material-symbols-outlined">call</span></div>
       <div class="method-info">
         <span class="method-label">Appel direct</span>
-        <span class="method-value">01 23 45 67 89</span>
+        <span class="method-value">02 38 00 00 00</span>
       </div>
       <span class="material-symbols-outlined" style="font-size:18px;color:var(--text-3)">chevron_right</span>
     </a>
 
-    <a class="contact-method whatsapp" href="https://wa.me/33123456789?text=Bonjour%20Garage%20la%20Chapelle%20!"
+    <a class="contact-method whatsapp" href="https://wa.me/33238000000?text=Bonjour%20Garage%20la%20Chapelle%20!"
       target="_blank">
       <div class="method-icon">
         <svg width="22" height="22" fill="#25d366" viewBox="0 0 24 24">
@@ -51,29 +54,29 @@
       <span class="material-symbols-outlined" style="font-size:18px;color:var(--text-3)">chevron_right</span>
     </a>
 
-    <a class="contact-method email" href="mailto:contact@garage-lachapelle.fr">
+    <a class="contact-method email" href="mailto:contact@garage-delachapelle.fr">
       <div class="method-icon"><span class="material-symbols-outlined">mail</span></div>
       <div class="method-info">
         <span class="method-label">Email</span>
-        <span class="method-value">contact@garage-lachapelle.fr</span>
+        <span class="method-value">contact@garage-delachapelle.fr</span>
       </div>
       <span class="material-symbols-outlined" style="font-size:18px;color:var(--text-3)">chevron_right</span>
     </a>
 
-    <a class="contact-method maps" href="https://maps.google.com/?q=12+Rue+de+la+Chapelle+Paris+18" target="_blank">
+    <a class="contact-method maps" href="https://www.google.com/maps/search/?api=1&query=164+Route+de+la+Chapelle+45140+Ingr%C3%A9" target="_blank">
       <div class="method-icon"><span class="material-symbols-outlined">location_on</span></div>
       <div class="method-info">
         <span class="method-label">Itinéraire</span>
-        <span class="method-value">12 Rue de la Chapelle, Paris 18e</span>
+        <span class="method-value">164 Rte de la Chapelle, 45140 Ingré</span>
       </div>
       <span class="material-symbols-outlined" style="font-size:18px;color:var(--text-3)">chevron_right</span>
     </a>
 
     <!-- CARTE -->
     <div class="map-container">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2620.6!2d2.3524219!3d48.8938498!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e5e9e4d8f3d%3A0x1!2s12+Rue+de+la+Chapelle%2C+75018+Paris!5e0!3m2!1sfr!2sfr!4v1"
-        allowfullscreen="" loading="lazy"></iframe>
+      <iframe title="Carte — Garage de la Chapelle, Ingré"
+        src="https://www.google.com/maps?q=164+Route+de+la+Chapelle,+45140+Ingr%C3%A9&output=embed"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
     <!-- HORAIRES -->
@@ -100,24 +103,40 @@
     <div class="form-block">
       <h3>💬 Envoyer un message</h3>
       <div class="form-group">
-        <label class="form-label">Nom *</label>
-        <input type="text" class="form-input" placeholder="Jean Dupont" />
+        <label class="form-label" for="ct-name">Nom *</label>
+        <input type="text" class="form-input" id="ct-name" placeholder="Jean Dupont" />
       </div>
       <div class="form-group">
-        <label class="form-label">Email ou téléphone *</label>
-        <input type="text" class="form-input" placeholder="06… ou @email.fr" />
+        <label class="form-label" for="ct-contact">Email ou téléphone *</label>
+        <input type="text" class="form-input" id="ct-contact" placeholder="06… ou @email.fr" />
       </div>
       <div class="form-group">
-        <label class="form-label">Message *</label>
-        <textarea class="form-textarea" placeholder="Votre question ou demande…"></textarea>
+        <label class="form-label" for="ct-message">Message *</label>
+        <textarea class="form-textarea" id="ct-message" placeholder="Votre question ou demande…"></textarea>
       </div>
-      <button class="btn-primary btn-full" onclick="alert('✅ Message envoyé ! Nous vous répondrons sous 24h.')">
+      <button class="btn-primary btn-full" onclick="sendMessage()">
         <span class="material-symbols-outlined">send</span>
         Envoyer
       </button>
     </div>
 
   </main>
+
+  <script>
+    function sendMessage() {
+      const name = document.getElementById('ct-name').value.trim();
+      const contact = document.getElementById('ct-contact').value.trim();
+      const message = document.getElementById('ct-message').value.trim();
+      if (!name || !contact || !message) {
+        alert('Veuillez remplir tous les champs obligatoires.');
+        return;
+      }
+      alert('✅ Message envoyé ! Nous vous répondrons sous 24h.');
+      document.getElementById('ct-name').value = '';
+      document.getElementById('ct-contact').value = '';
+      document.getElementById('ct-message').value = '';
+    }
+  </script>
 </body>
 
 </html>
