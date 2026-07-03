@@ -217,7 +217,7 @@
     </div>
     <div class="footer-bottom">
       <p>© ${new Date().getFullYear()} ${INFO.name} — Tous droits réservés.</p>
-      <div class="footer-links"><a href="contact.html">Mentions légales</a><a href="contact.html">Confidentialité</a></div>
+      <div class="footer-links"><a href="contact.html">Mentions légales</a><a href="contact.html">Confidentialité</a><a href="admin.html">Espace Pro</a></div>
     </div>
   `;
 

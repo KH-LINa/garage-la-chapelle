@@ -32,6 +32,7 @@ python3 -m http.server 8000
 | Connexion | `compte.html`, `creer-profil.html` | Connexion / inscription (démo) |
 | Mes véhicules | `mes-vehicules.html` | Parc de véhicules persistant + `ajouter-vehicule.html` |
 | À propos | `a-propos.html` | Histoire, valeurs, équipe |
+| **Espace Pro** | `admin.html` | Authentification admin/collaborateurs + gestion du catalogue (Supabase) |
 
 ## 🎨 Design system
 
@@ -41,9 +42,28 @@ python3 -m http.server 8000
 - **Images** : SVG locaux dans `assets/img/` (aucune dépendance à des images distantes)
 - **PWA-ready** : `manifest.webmanifest` + favicon SVG + theme-color
 
-## ⚙️ Fonctionnement
+## 🔐 Espace Pro (admin & collaborateurs)
 
-Tout l'état vit dans le `localStorage` du navigateur (site de démonstration, aucun backend) :
+La page `admin.html` (lien « Espace Pro » en bas de page) est branchée sur **Supabase**
+(projet `garage-la-chapelle`, région Paris, offre gratuite) :
+
+- **Authentification** email + mot de passe (Supabase Auth).
+- **Rôles** : `admin` (gère les pièces **et** les comptes), `collaborateur` (gère les pièces),
+  `pending` (nouveau compte en attente de validation par l'admin).
+  Le **premier compte inscrit devient automatiquement admin** ; les suivants sont `pending`
+  jusqu'à validation dans la section « Équipe & rôles ».
+- **Catalogue partagé** : les pièces sont stockées dans la table `products` ; la page
+  `catalogue.html` les charge depuis Supabase (les visiteurs voient les ajouts en temps réel),
+  avec une liste de secours embarquée si la base est injoignable.
+- **Sécurité** : la clé `publishable` exposée dans `assets/js/supabase-config.js` est prévue
+  pour ça — les droits réels sont appliqués par les policies RLS côté base (lecture publique
+  des produits actifs uniquement ; écriture réservée aux rôles admin/collaborateur).
+
+Fichiers concernés : `admin.html`, `assets/js/supabase-config.js`, `catalogue.html`.
+
+## ⚙️ Fonctionnement côté client
+
+Le reste de l'état (panier, RDV, véhicules — côté visiteurs) vit dans le `localStorage` du navigateur :
 
 | Clé | Contenu |
 |-----|---------|
