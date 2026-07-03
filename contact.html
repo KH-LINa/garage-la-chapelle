@@ -137,6 +137,16 @@
       document.getElementById('ct-message').value = '';
     }
   </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const me = GLC.userIdentity();
+      if (me) {
+        document.getElementById('ct-name').value = me.name;
+        document.getElementById('ct-contact').value = me.phone || me.email;
+      }
+    });
+  </script>
 </body>
 
 </html>

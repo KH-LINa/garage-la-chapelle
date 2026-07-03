@@ -117,9 +117,23 @@
     localStorage.setItem(VEHICLES_KEY, JSON.stringify(vehicles));
   }
 
+  /** Identité normalisée du client connecté (ou null) : {first, last, name, email, phone}. */
+  function userIdentity() {
+    const u = getUser();
+    if (!u) return null;
+    let first = u.firstName || '';
+    let last = u.lastName || '';
+    if (!first && u.name) {
+      const parts = u.name.trim().split(/\s+/);
+      first = parts.shift() || '';
+      last = parts.join(' ');
+    }
+    return { first, last, name: u.name || '', email: u.email || '', phone: u.phone || '' };
+  }
+
   window.GLC = {
     INFO, getCart, saveCart, cartCount, addToCart, clearCart, refreshBadge,
-    parsePrice, formatPrice, getUser, setUser, getVehicles, saveVehicles
+    parsePrice, formatPrice, getUser, setUser, getVehicles, saveVehicles, userIdentity
   };
 
   // ── TOP NAV (desktop) ─────────────────────────────

@@ -293,11 +293,11 @@
         </div>
         <div class="form-group">
           <label class="form-label">Email</label>
-          <input type="email" class="form-input" placeholder="jean@email.com" />
+          <input type="email" class="form-input" id="inp-email" placeholder="jean@email.com" />
         </div>
         <div class="form-group">
           <label class="form-label">Véhicule</label>
-          <input type="text" class="form-input" placeholder="Marque, modèle, année" />
+          <input type="text" class="form-input" id="inp-vehicle" placeholder="Marque, modèle, année" />
         </div>
         <div class="form-group">
           <label class="form-label">Description du problème</label>
@@ -402,7 +402,23 @@
         document.getElementById('month-next').disabled ? '.35' : '';
     }
 
-    document.addEventListener('DOMContentLoaded', renderCalendar);
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCalendar();
+      // pré-remplissage depuis le profil client et son véhicule principal
+      const me = GLC.userIdentity();
+      if (me) {
+        document.getElementById('inp-first').value = me.first;
+        document.getElementById('inp-last').value = me.last;
+        document.getElementById('inp-phone').value = me.phone;
+        document.getElementById('inp-email').value = me.email;
+        const vehicles = GLC.getVehicles();
+        if (vehicles.length > 0) {
+          const v = vehicles[0];
+          document.getElementById('inp-vehicle').value =
+            `${v.brand} ${v.model}${v.year ? ' — ' + v.year : ''}${v.plate ? ' (' + v.plate + ')' : ''}`;
+        }
+      }
+    });
 
     function validateInfo() {
       const first = document.getElementById('inp-first');
@@ -487,8 +503,8 @@
       const first = document.getElementById('inp-first').value.trim();
       const last = document.getElementById('inp-last').value.trim();
       const phone = document.getElementById('inp-phone').value.trim();
-      const email = document.querySelector('input[type=email]')?.value.trim();
-      const vehicle = document.querySelector('input[placeholder*="Marque"]')?.value.trim();
+      const email = document.getElementById('inp-email').value.trim();
+      const vehicle = document.getElementById('inp-vehicle').value.trim();
       const problem = document.querySelector('textarea')?.value.trim();
       const appt = { service, date: selectedDate, time: selectedTime, first, last, phone, email, vehicle, problem, created: new Date().toISOString() };
       const arr = JSON.parse(localStorage.getItem('appointments')||'[]');
