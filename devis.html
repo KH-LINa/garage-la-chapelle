@@ -17,6 +17,7 @@
 
 <body>
   <script src="assets/js/nav.js" data-page="devis"></script>
+  <script src="assets/js/vehicules-data.js"></script>
 
   <main class="page-content">
     <div class="page-title-block">
@@ -54,16 +55,28 @@
             <option>Peugeot</option>
             <option>Renault</option>
             <option>Citroën</option>
+            <option>Dacia</option>
             <option>Volkswagen</option>
+            <option>Audi</option>
             <option>BMW</option>
             <option>Mercedes</option>
-            <option>Toyota</option>
+            <option>Opel</option>
             <option>Ford</option>
+            <option>Fiat</option>
+            <option>Toyota</option>
+            <option>Nissan</option>
+            <option>Kia</option>
+            <option>Hyundai</option>
+            <option>Seat</option>
+            <option>Skoda</option>
             <option>Autre</option>
           </select>
         </div>
-        <div class="form-group"><label class="form-label">Modèle *</label><input type="text" class="form-input"
-            id="dv-model" placeholder="208, Clio…" required /></div>
+        <div class="form-group">
+          <label class="form-label">Modèle *</label>
+          <select class="form-select" id="dv-model-select" style="display:none;margin-bottom:.4rem;"></select>
+          <input type="text" class="form-input" id="dv-model" placeholder="208, Clio…" required />
+        </div>
         <div class="form-group"><label class="form-label">Année</label><input type="number" class="form-input"
             id="dv-year" placeholder="2019" min="1980" max="2026" /></div>
         <div class="form-group"><label class="form-label">Kilométrage</label><input type="number" class="form-input"
@@ -114,6 +127,8 @@
 
   <script>
     // Pré-remplissage automatique depuis le profil client et ses véhicules
+    let modelPicker = null;
+
     function applyMyVehicle() {
       const vehicles = GLC.getVehicles();
       const idx = parseInt(document.getElementById('dv-myveh').value, 10);
@@ -122,12 +137,16 @@
       const brandSelect = document.getElementById('dv-brand');
       const known = [...brandSelect.options].some(o => o.value === v.brand || o.text === v.brand);
       brandSelect.value = known ? v.brand : 'Autre';
-      document.getElementById('dv-model').value = v.model || '';
+      if (modelPicker) modelPicker.refresh(v.model || '');
       document.getElementById('dv-year').value = v.year || '';
       document.getElementById('dv-km').value = (v.km || '').replace(/\s/g, '');
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      modelPicker = setupModelPicker(
+        document.getElementById('dv-brand'),
+        document.getElementById('dv-model-select'),
+        document.getElementById('dv-model'));
       const me = GLC.userIdentity();
       if (me) {
         document.getElementById('dv-first').value = me.first;
