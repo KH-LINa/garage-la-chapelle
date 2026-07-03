@@ -17,12 +17,19 @@
 </head>
 
 <body>
-  <script src="assets/js/nav.js" data-page="profile"></script>
+  <script src="assets/js/nav.js" data-page="rdv"></script>
 
   <main class="page-content">
-    <div class="page-title-block">
-      <h1>Mes rendez-vous</h1>
-      <p>Vous trouverez ci-dessous la liste de vos prises de rendez-vous.</p>
+    <div class="page-title-block"
+      style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+      <div>
+        <h1>Mes rendez-vous</h1>
+        <p>Vous trouverez ci-dessous la liste de vos prises de rendez-vous.</p>
+      </div>
+      <a class="btn-primary" href="rendez-vous.html">
+        <span class="material-symbols-outlined">add</span>
+        Nouveau RDV
+      </a>
     </div>
 
     <div id="appointments-container"></div>
@@ -47,6 +54,11 @@
     function renderAppointments() {
       const container = document.getElementById('appointments-container');
       const appts = getAppointments();
+      // aucun RDV pris → on emmène directement vers la prise de rendez-vous
+      if (appts.length === 0) {
+        window.location.replace('rendez-vous.html');
+        return;
+      }
       document.getElementById('no-appointments').style.display = appts.length ? 'none' : 'flex';
 
       container.innerHTML = appts.map((a, i) => `
