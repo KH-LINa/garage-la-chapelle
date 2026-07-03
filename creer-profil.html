@@ -24,8 +24,7 @@
             <p>Rejoignez-nous pour gérer vos devis, factures et suivre vos réparations.</p>
         </div>
 
-        <form style="display:grid;gap:1.5rem;"
-            onsubmit="event.preventDefault(); GLC.setUser({ name: document.getElementById('prenom').value.trim() + ' ' + document.getElementById('nom').value.trim(), email: document.getElementById('email').value.trim() }); window.location.href='espace-client.html';">
+        <form style="display:grid;gap:1.5rem;" onsubmit="event.preventDefault(); saveProfileAndGo();">
 
             <div class="form-block">
                 <h3>Informations Personnelles</h3>
@@ -75,17 +74,24 @@
     </main>
 
     <script>
-        // Simple password validation
-        const form = document.querySelector('form');
-        const pwd = document.getElementById('password');
-        const confirmPwd = document.getElementById('confirm_password');
-
-        form.addEventListener('submit', function (e) {
+        function saveProfileAndGo() {
+            const pwd = document.getElementById('password');
+            const confirmPwd = document.getElementById('confirm_password');
             if (pwd.value !== confirmPwd.value) {
-                e.preventDefault();
-                alert("Les mots de passe ne correspondent pas.");
+                alert('Les mots de passe ne correspondent pas.');
+                return;
             }
-        });
+            const first = document.getElementById('prenom').value.trim();
+            const last = document.getElementById('nom').value.trim();
+            GLC.setUser({
+                name: `${first} ${last}`,
+                firstName: first,
+                lastName: last,
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('tel').value.trim()
+            });
+            window.location.href = 'espace-client.html';
+        }
     </script>
 </body>
 

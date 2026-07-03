@@ -32,20 +32,24 @@
       <div class="form-block">
         <h3>Vos informations</h3>
         <div class="form-group"><label class="form-label">Prénom *</label><input type="text" class="form-input"
-            placeholder="Jean" required /></div>
+            id="dv-first" placeholder="Jean" required /></div>
         <div class="form-group"><label class="form-label">Nom *</label><input type="text" class="form-input"
-            placeholder="Dupont" required /></div>
+            id="dv-last" placeholder="Dupont" required /></div>
         <div class="form-group"><label class="form-label">Téléphone *</label><input type="tel" class="form-input"
-            placeholder="06 12 34 56 78" required /></div>
+            id="dv-phone" placeholder="06 12 34 56 78" required /></div>
         <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input"
-            placeholder="jean@email.fr" /></div>
+            id="dv-email" placeholder="jean@email.fr" /></div>
       </div>
 
       <div class="form-block">
         <h3>Votre véhicule</h3>
+        <div class="form-group" id="dv-myveh-group" style="display:none;">
+          <label class="form-label">Mes véhicules enregistrés</label>
+          <select class="form-select" id="dv-myveh" onchange="applyMyVehicle()"></select>
+        </div>
         <div class="form-group">
           <label class="form-label">Marque *</label>
-          <select class="form-select" required>
+          <select class="form-select" id="dv-brand" required>
             <option value="">Sélectionnez…</option>
             <option>Peugeot</option>
             <option>Renault</option>
@@ -59,11 +63,11 @@
           </select>
         </div>
         <div class="form-group"><label class="form-label">Modèle *</label><input type="text" class="form-input"
-            placeholder="208, Clio…" required /></div>
+            id="dv-model" placeholder="208, Clio…" required /></div>
         <div class="form-group"><label class="form-label">Année</label><input type="number" class="form-input"
-            placeholder="2019" min="1980" max="2026" /></div>
+            id="dv-year" placeholder="2019" min="1980" max="2026" /></div>
         <div class="form-group"><label class="form-label">Kilométrage</label><input type="number" class="form-input"
-            placeholder="85 000" /></div>
+            id="dv-km" placeholder="85 000" /></div>
       </div>
 
       <div class="form-block">
@@ -107,6 +111,40 @@
       }
     }
   </style>
+
+  <script>
+    // Pré-remplissage automatique depuis le profil client et ses véhicules
+    function applyMyVehicle() {
+      const vehicles = GLC.getVehicles();
+      const idx = parseInt(document.getElementById('dv-myveh').value, 10);
+      const v = vehicles[idx];
+      if (!v) return;
+      const brandSelect = document.getElementById('dv-brand');
+      const known = [...brandSelect.options].some(o => o.value === v.brand || o.text === v.brand);
+      brandSelect.value = known ? v.brand : 'Autre';
+      document.getElementById('dv-model').value = v.model || '';
+      document.getElementById('dv-year').value = v.year || '';
+      document.getElementById('dv-km').value = (v.km || '').replace(/\s/g, '');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const me = GLC.userIdentity();
+      if (me) {
+        document.getElementById('dv-first').value = me.first;
+        document.getElementById('dv-last').value = me.last;
+        document.getElementById('dv-phone').value = me.phone;
+        document.getElementById('dv-email').value = me.email;
+      }
+      const vehicles = me ? GLC.getVehicles() : [];
+      if (vehicles.length > 0) {
+        const sel = document.getElementById('dv-myveh');
+        sel.innerHTML = vehicles.map((v, i) =>
+          `<option value="${i}">${v.brand} ${v.model}${v.year ? ' — ' + v.year : ''}${v.plate ? ' (' + v.plate + ')' : ''}</option>`).join('');
+        document.getElementById('dv-myveh-group').style.display = '';
+        applyMyVehicle();
+      }
+    });
+  </script>
 </body>
 
 </html>

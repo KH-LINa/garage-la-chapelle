@@ -262,7 +262,9 @@
             e.preventDefault();
             const email = document.getElementById('login-email').value.trim();
             const name = email.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-            GLC.setUser({ name, email });
+            const prev = GLC.getUser();
+            const keep = prev && prev.email === email ? prev : {};
+            GLC.setUser(Object.assign({}, keep, { name: keep.name || name, email }));
             window.location.href = 'espace-client.html';
         }
 
@@ -290,9 +292,14 @@
                 confirmPwd.setCustomValidity("");
             }
 
+            const first = document.getElementById('reg-prenom').value.trim();
+            const last = document.getElementById('reg-nom').value.trim();
             GLC.setUser({
-                name: `${document.getElementById('reg-prenom').value.trim()} ${document.getElementById('reg-nom').value.trim()}`,
-                email: email.value.trim()
+                name: `${first} ${last}`,
+                firstName: first,
+                lastName: last,
+                email: email.value.trim(),
+                phone: document.getElementById('reg-tel').value.trim()
             });
             window.location.href = 'espace-client.html';
         }
