@@ -295,6 +295,10 @@
           <label class="form-label">Email</label>
           <input type="email" class="form-input" id="inp-email" placeholder="jean@email.com" />
         </div>
+        <div class="form-group" id="rdv-myveh-group" style="display:none;">
+          <label class="form-label">Mes véhicules enregistrés</label>
+          <select class="form-select" id="rdv-myveh" onchange="applyMyVehicle()"></select>
+        </div>
         <div class="form-group">
           <label class="form-label">Véhicule</label>
           <input type="text" class="form-input" id="inp-vehicle" placeholder="Marque, modèle, année" />
@@ -413,9 +417,12 @@
         document.getElementById('inp-email').value = me.email;
         const vehicles = GLC.getVehicles();
         if (vehicles.length > 0) {
-          const v = vehicles[0];
-          document.getElementById('inp-vehicle').value =
-            `${v.brand} ${v.model}${v.year ? ' — ' + v.year : ''}${v.plate ? ' (' + v.plate + ')' : ''}`;
+          const sel = document.getElementById('rdv-myveh');
+          sel.innerHTML = vehicles.map((v, i) =>
+            `<option value="${i}">${v.brand} ${v.model}${v.year ? ' — ' + v.year : ''}${v.plate ? ' (' + v.plate + ')' : ''}</option>`).join('')
+            + '<option value="autre">Autre véhicule…</option>';
+          document.getElementById('rdv-myveh-group').style.display = '';
+          applyMyVehicle();
         }
       }
     });
@@ -479,6 +486,18 @@
         }
       }
       window.scrollTo(0, 0);
+    }
+
+    function applyMyVehicle() {
+      const sel = document.getElementById('rdv-myveh');
+      const input = document.getElementById('inp-vehicle');
+      if (sel.value === 'autre') {
+        input.value = '';
+        input.focus();
+        return;
+      }
+      const v = GLC.getVehicles()[parseInt(sel.value, 10)];
+      if (v) input.value = `${v.brand} ${v.model}${v.year ? ' — ' + v.year : ''}${v.plate ? ' (' + v.plate + ')' : ''}`;
     }
 
     function selectSvc(el, name) {
