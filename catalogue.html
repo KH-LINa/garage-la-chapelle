@@ -1,12 +1,15 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Catalogue Pièces — Garage la Chapelle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#101622" />
+  <title>Catalogue Pièces — Garage de la Chapelle</title>
   <meta name="description"
-    content="Trouvez les pièces auto dont vous avez besoin. Catalogue complet de pièces détachées." />
+    content="Trouvez les pièces auto dont vous avez besoin. Catalogue complet de pièces détachées, montage possible à l'atelier d'Ingré." />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" />
   <link rel="stylesheet"
@@ -15,13 +18,13 @@
 </head>
 
 <body>
-  <script src="assets/js/nav.js" data-page="catalogue" data-cart="2"></script>
+  <script src="assets/js/nav.js" data-page="catalogue"></script>
 
   <main class="page-content">
 
     <div class="page-title-block">
       <h1>Catalogue Pièces</h1>
-      <p>Trouvez la pièce qu'il vous faut parmi nos +5 000 références.</p>
+      <p>Trouvez la pièce qu'il vous faut parmi nos +5 000 références. Montage possible à l'atelier.</p>
     </div>
 
     <div class="search-bar">
@@ -38,101 +41,11 @@
       <div class="chip" onclick="filterCat(this,'eclairage')">Éclairage</div>
       <div class="chip" onclick="filterCat(this,'pneumatiques')">Pneumatiques</div>
       <div class="chip" onclick="filterCat(this,'transmission')">Transmission</div>
+      <div class="chip" onclick="filterCat(this,'suspension')">Suspension</div>
+      <div class="chip" onclick="filterCat(this,'confort')">Confort</div>
     </div>
 
-    <div id="products-list" class="products-grid-wrap">
-
-      <a class="product-card-h" href="panier.html" data-cat="freinage">
-        <img
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSKPUBBIjAMQa8LfUWbT3sQUH-yFsrEDlbHlGm3P3xXLAJEpfCJXb_bqW0JkmDGZJiUibbBkLqQ6UqKHqHqr5v8x0VdMK-7yO16sNcXM9sMPsJjqTMqaLJvTcqF5hNWpEIRjKVjp_YA"
-          alt="Kit freins" />
-        <div class="info">
-          <span class="pname">Kit freins avant Peugeot 208</span>
-          <span class="pref">Réf: KF-P208-AV</span>
-          <span class="pcompat">Peugeot 208 2012-2022</span>
-          <div class="price-row">
-            <span class="pprice">89,90 €</span>
-            <button class="padd" onclick="addToCart(this)">+ Panier</button>
-          </div>
-        </div>
-      </a>
-
-      <a class="product-card-h" href="panier.html" data-cat="electricite">
-        <img
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSKPUBBIjAMQa8LfUWbT3sQUH-yFsrEDlbHlGm3P3xXLAJEpfCJXb_bqW0JkmDGZJiUibbBkLqQ6UqKHqHqr5v8x0VdMK-7yO16sNcXM9sMPsJjqTMqaLJvTcqF5hNWpEIRjKVjp_YA"
-          alt="Alternateur" />
-        <div class="info">
-          <span class="pname">Alternateur Peugeot 208 1.2 PureTech</span>
-          <span class="pref">Réf: ALT-P208-85</span>
-          <span class="pcompat">PureTech 82ch 2012→</span>
-          <div class="price-row">
-            <span class="pprice">169,90 €</span>
-            <button class="padd" onclick="addToCart(this)">+ Panier</button>
-          </div>
-        </div>
-      </a>
-
-      <a class="product-card-h" href="panier.html" data-cat="eclairage">
-        <img
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuClvEq3U8HHGQ_BYfStAeSYLzJDT-G1Dss_iBT4J_2GMN3_UG3jFq3bDZ-yC43PjmTQ8eTHsZxm44sazMUkf4B9X0q_hnZQ-V4ZlHlLWXpmXJkRMjmBrK_rEBHGSqHm1llGf4MhK5l3A"
-          alt="Phare Clio" />
-        <div class="info">
-          <span class="pname">Phare avant gauche Renault Clio IV</span>
-          <span class="pref">Réf: PH-RCLIO4-120</span>
-          <span class="pcompat">Clio IV 2012-2019</span>
-          <div class="price-row">
-            <span class="pprice">119,90 €</span>
-            <button class="padd" onclick="addToCart(this)">+ Panier</button>
-          </div>
-        </div>
-      </a>
-
-      <a class="product-card-h" href="panier.html" data-cat="moteur">
-        <img
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqZyXHGAwNlFdMj4E_1Nj7Kx7Q8oioUcAOCTd_L2x56GGXYfRCc-JSIPoql-T28BMHAQ0V7FYUK-Eg9PxceJiY3wvli2uDWlaBOIPtqF4Ui2ZVSck9Pj25BMiC3FJIler8qLlyxoi8a5Qa_od-Cp9QQk5u2EypjndqQHp1vd9sja3YNA9Wzb4wyac2xWTaeTL1nAaYzx70YShdspV-Z-eet-N2cC3wVPx9AnrZzuA4S1eYwgc4VTZXl8kv-sNxk4QXrlYTT739M5M1"
-          alt="Filtre huile" />
-        <div class="info">
-          <span class="pname">Kit révision complet (huile 5W-40 + filtres)</span>
-          <span class="pref">Réf: KIT-REV-MULTI</span>
-          <span class="pcompat">Multi-marques · Voir fiche</span>
-          <div class="price-row">
-            <span class="pprice">49,90 €</span>
-            <button class="padd" onclick="addToCart(this)">+ Panier</button>
-          </div>
-        </div>
-      </a>
-
-      <a class="product-card-h" href="panier.html" data-cat="pneumatiques">
-        <img
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu0Qo6vIwOUoytOhFdD8TXJkxU-b-lVqIl_tAWS4xT69M2YR54-nBdI4Y4C-_DFegY0pA-vGlPl2e5ZO50UUg4_MWKmLjstyyE9ppVQ3v7ulLCw7XsEP-LoBAb_aP2wNX72Mp8Qw1DIt01PpTeETfQ12UW2csjHSGgSH2dcCwjo8xKzExZylxEh_DmXwM66jl1glggBByqh0BKqa-qp1TW4tPN4Lw_OCqYq2rtFRY3votdu8a6RR5LQEDFubYx6jytM6kZliz1yrgL"
-          alt="Pneu" />
-        <div class="info">
-          <span class="pname">Pneu été Michelin Primacy 4 205/55 R16</span>
-          <span class="pref">Réf: PNE-MIC-P4-205</span>
-          <span class="pcompat">Indice: 91H · Montage inclus</span>
-          <div class="price-row">
-            <span class="pprice">89,00 €</span>
-            <button class="padd" onclick="addToCart(this)">+ Panier</button>
-          </div>
-        </div>
-      </a>
-
-      <a class="product-card-h" href="panier.html" data-cat="transmission">
-        <img
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSKPUBBIjAMQa8LfUWbT3sQUH-yFsrEDlbHlGm3P3xXLAJEpfCJXb_bqW0JkmDGZJiUibbBkLqQ6UqKHqHqr5v8x0VdMK-7yO16sNcXM9sMPsJjqTMqaLJvTcqF5hNWpEIRjKVjp_YA"
-          alt="Kit embrayage" />
-        <div class="info">
-          <span class="pname">Kit embrayage complet Renault Mégane III</span>
-          <span class="pref">Réf: KE-RMEG3-16</span>
-          <span class="pcompat">1.6 16V 110ch 2008-2015</span>
-          <div class="price-row">
-            <span class="pprice">245,00 €</span>
-            <button class="padd" onclick="addToCart(this)">+ Panier</button>
-          </div>
-        </div>
-      </a>
-
-    </div>
+    <div id="products-list" class="products-grid-wrap"></div>
 
     <div id="no-results" class="empty-state" style="display:none;">
       <span class="material-symbols-outlined">search_off</span>
@@ -140,9 +53,48 @@
       <p>Essayez un autre terme ou <a href="devis.html" style="color:var(--primary-light)">demandez un devis</a></p>
     </div>
 
+    <div class="alert info" style="margin-top:1rem;">
+      <span class="material-symbols-outlined">build</span>
+      <span>Vous ne trouvez pas votre pièce ? <a href="contact.html"
+          style="color:inherit;text-decoration:underline">Contactez-nous</a> : nous la commandons pour vous sous
+        24–48h.</span>
+    </div>
+
   </main>
 
   <script>
+    const PRODUCTS = [
+      { name: 'Kit freins avant Peugeot 208', ref: 'KF-P208-AV', compat: 'Peugeot 208 2012-2022', price: '89,90 €', cat: 'freinage', img: 'assets/img/piece-freins.svg' },
+      { name: 'Alternateur Peugeot 208 1.2 PureTech', ref: 'ALT-P208-85', compat: 'PureTech 82ch 2012→', price: '169,90 €', cat: 'electricite', img: 'assets/img/piece-alternateur.svg' },
+      { name: 'Phare avant gauche Renault Clio IV', ref: 'PH-RCLIO4-120', compat: 'Clio IV 2012-2019', price: '119,90 €', cat: 'eclairage', img: 'assets/img/piece-phare.svg' },
+      { name: 'Kit révision complet (huile 5W-40 + filtres)', ref: 'KIT-REV-MULTI', compat: 'Multi-marques · Voir fiche', price: '49,90 €', cat: 'moteur', img: 'assets/img/piece-revision.svg' },
+      { name: 'Pneu été Michelin Primacy 4 205/55 R16', ref: 'PNE-MIC-P4-205', compat: 'Indice 91H · Montage inclus', price: '89,00 €', cat: 'pneumatiques', img: 'assets/img/piece-pneu.svg' },
+      { name: 'Kit embrayage complet Renault Mégane III', ref: 'KE-RMEG3-16', compat: '1.6 16V 110ch 2008-2015', price: '245,00 €', cat: 'transmission', img: 'assets/img/piece-embrayage.svg' },
+      { name: 'Batterie 12V 60Ah 540A Bosch S4', ref: 'BAT-BOS-S4-60', compat: 'Multi-marques · Pose offerte', price: '109,90 €', cat: 'electricite', img: 'assets/img/piece-batterie.svg' },
+      { name: 'Paire amortisseurs avant Citroën C3', ref: 'AMO-CC3-AV', compat: 'C3 II & III 2009→', price: '139,90 €', cat: 'suspension', img: 'assets/img/piece-amortisseur.svg' },
+      { name: 'Jeu de 4 bougies d’allumage NGK', ref: 'BOU-NGK-LZK4', compat: 'Essence multi-marques', price: '34,90 €', cat: 'moteur', img: 'assets/img/piece-bougies.svg' },
+      { name: 'Filtre d’habitacle charbon actif', ref: 'FIL-HAB-CA', compat: 'Multi-marques · Voir fiche', price: '19,90 €', cat: 'confort', img: 'assets/img/piece-filtre.svg' },
+      { name: 'Balais essuie-glace Bosch Aerotwin (x2)', ref: 'EG-BOS-A555', compat: 'Multi-marques · Voir fiche', price: '29,90 €', cat: 'confort', img: 'assets/img/piece-essuie-glace.svg' },
+      { name: 'Kit distribution + pompe à eau VW Golf VII', ref: 'DIS-VWG7-TDI', compat: '1.6/2.0 TDI 2012-2020', price: '189,90 €', cat: 'moteur', img: 'assets/img/piece-distribution.svg' },
+    ];
+
+    function renderProducts() {
+      const list = document.getElementById('products-list');
+      list.innerHTML = PRODUCTS.map((p, i) => `
+        <div class="product-card-h" data-cat="${p.cat}">
+          <img src="${p.img}" alt="${p.name}" loading="lazy" />
+          <div class="info">
+            <span class="pname">${p.name}</span>
+            <span class="pref">Réf: ${p.ref}</span>
+            <span class="pcompat">${p.compat}</span>
+            <div class="price-row">
+              <span class="pprice">${p.price}</span>
+              <button class="padd" onclick="addProduct(event, ${i})">+ Panier</button>
+            </div>
+          </div>
+        </div>`).join('');
+    }
+
     let currentCat = 'all';
     function filterCat(el, cat) {
       document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
@@ -150,6 +102,7 @@
       currentCat = cat;
       filterProducts();
     }
+
     function filterProducts() {
       const q = document.getElementById('search-input').value.toLowerCase();
       const cards = document.querySelectorAll('.product-card-h');
@@ -164,43 +117,21 @@
       document.getElementById('no-results').style.display = visible === 0 ? 'flex' : 'none';
     }
 
-    function addToCart(btn) {
+    function addProduct(event, index) {
       event.preventDefault();
-      
-      // Get product info from the card
-      const card = btn.closest('.product-card-h');
-      const name = card.querySelector('.pname').textContent;
-      const price = card.querySelector('.pprice').textContent;
-      const ref = card.querySelector('.pref').textContent.replace('Réf: ', '');
-      const img = card.querySelector('img').src;
+      const p = PRODUCTS[index];
+      GLC.addToCart({ name: p.name, ref: p.ref, price: p.price, img: p.img });
 
-      // Get current cart from localStorage
-      let cart = JSON.parse(localStorage.getItem('cartItems') || '[]');
-      
-      // Check if product already exists
-      const existingItem = cart.find(item => item.ref === ref);
-      if (existingItem) {
-        existingItem.qty += 1;
-      } else {
-        cart.push({ name, price, ref, img, qty: 1 });
-      }
-
-      // Save to localStorage
-      localStorage.setItem('cartItems', JSON.stringify(cart));
-      
-      // Update badge
-      const count = cart.reduce((sum, item) => sum + item.qty, 0);
-      localStorage.setItem('cartCount', count);
-      document.querySelectorAll('.cart-pill .badge, .header-btn .cart-badge').forEach(b => b.textContent = count);
-
-      // Show notification
+      const btn = event.currentTarget;
       btn.textContent = '✓ Ajouté';
       btn.style.backgroundColor = 'var(--accent-green)';
       setTimeout(() => {
         btn.textContent = '+ Panier';
         btn.style.backgroundColor = '';
-      }, 2000);
+      }, 1500);
     }
+
+    renderProducts();
   </script>
 </body>
 

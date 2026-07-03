@@ -1,10 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Mon Panier — Garage la Chapelle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#101622" />
+  <title>Mon Panier — Garage de la Chapelle</title>
+  <meta name="description" content="Votre panier de pièces détachées — Garage de la Chapelle, Ingré." />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" />
   <link rel="stylesheet"
@@ -12,6 +16,7 @@
   <link rel="stylesheet" href="assets/css/mobile.css" />
   <style>
     .delivery-opt {
+      display: flex;
       align-items: center;
       gap: .75rem;
       padding: .875rem;
@@ -75,7 +80,7 @@
 </head>
 
 <body>
-  <script src="assets/js/nav.js" data-page="cart" data-cart="2"></script>
+  <script src="assets/js/nav.js" data-page="cart"></script>
 
   <main class="page-content">
 
@@ -84,83 +89,62 @@
       <p>Vérifiez vos articles puis finalisez votre commande.</p>
     </div>
 
-    <div class="cart-layout">
+    <!-- PANIER VIDE -->
+    <div id="cart-empty" class="empty-state" style="display:none;">
+      <span class="material-symbols-outlined">shopping_cart</span>
+      <h3>Votre panier est vide</h3>
+      <p>Parcourez notre catalogue pour trouver vos pièces.</p>
+      <a class="btn-primary" href="catalogue.html" style="margin-top:1rem;">
+        <span class="material-symbols-outlined">inventory_2</span>
+        Voir le catalogue
+      </a>
+    </div>
+
+    <div class="cart-layout" id="cart-layout">
       <div>
-        <!-- ITEMS -->
-        <div class="cart-item" id="item1">
-          <img class="cart-item-img"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSKPUBBIjAMQa8LfUWbT3sQUH-yFsrEDlbHlGm3P3xXLAJEpfCJXb_bqW0JkmDGZJiUibbBkLqQ6UqKHqHqr5v8x0VdMK-7yO16sNcXM9sMPsJjqTMqaLJvTcqF5hNWpEIRjKVjp_YA"
-            alt="Alt." />
-          <div class="cart-item-info">
-            <div class="cart-item-name">Alternateur — Peugeot 208</div>
-            <div class="cart-item-ref">Réf: ALT-P208-85</div>
-            <div class="cart-item-price">169,90 €</div>
-            <div class="qty-controls" style="margin-top:.5rem;">
-              <button class="qty-btn" onclick="changeQty('item1',-1)">−</button>
-              <span class="qty-value" id="item1-qty">1</span>
-              <button class="qty-btn" onclick="changeQty('item1',1)">+</button>
-              <button style="margin-left:auto;background:none;border:none;color:var(--accent-red);cursor:pointer;"
-                onclick="removeItem('item1')"><span class="material-symbols-outlined"
-                  style="font-size:18px">delete</span></button>
-            </div>
-          </div>
-        </div>
-        <div class="cart-item" id="item2">
-          <img class="cart-item-img"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuClvEq3U8HHGQ_BYfStAeSYLzJDT-G1Dss_iBT4J_2GMN3_UG3jFq3bDZ-yC43PjmTQ8eTHsZxm44sazMUkf4B9X0q_hnZQ-V4ZlHlLWXpmXJkRMjmBrK_rEBHGSqHm1llGf4MhK5l3A"
-            alt="Phare" />
-          <div class="cart-item-info">
-            <div class="cart-item-name">Phare avant gauche — Renault Clio IV</div>
-            <div class="cart-item-ref">Réf: PH-RCLIO4-120</div>
-            <div class="cart-item-price">119,90 €</div>
-            <div class="qty-controls" style="margin-top:.5rem;">
-              <button class="qty-btn" onclick="changeQty('item2',-1)">−</button>
-              <span class="qty-value" id="item2-qty">1</span>
-              <button class="qty-btn" onclick="changeQty('item2',1)">+</button>
-              <button style="margin-left:auto;background:none;border:none;color:var(--accent-red);cursor:pointer;"
-                onclick="removeItem('item2')"><span class="material-symbols-outlined"
-                  style="font-size:18px">delete</span></button>
-            </div>
-          </div>
-        </div>
+        <div id="cart-items"></div>
 
         <!-- Promo -->
         <div style="display:flex;gap:.5rem;margin-bottom:1rem;">
           <input type="text" id="promo-input" class="form-input" placeholder="Code promo" style="flex:1" />
-          <button class="btn-secondary" style="padding:.75rem 1rem;white-space:nowrap;" onclick="applyPromo()">Appliquer</button>
+          <button class="btn-secondary" style="padding:.75rem 1rem;white-space:nowrap;"
+            onclick="applyPromo()">Appliquer</button>
         </div>
       </div>
 
       <div class="cart-sidebar">
-        <!-- DELIVERY -->
+        <!-- LIVRAISON -->
         <div class="form-block">
           <h3>Livraison</h3>
-          <div class="delivery-opt selected" onclick="selectDel(this)">
+          <div class="delivery-opt" data-price="9.90" onclick="selectDel(this)">
             <div class="radio"></div>
-            <div class="del-info"><span class="lbl">Livraison à domicile</span><span class="sub">3-5 jours ouvrés</span>
-            </div>
+            <div class="del-info"><span class="lbl">Livraison à domicile</span><span class="sub">3-5 jours
+                ouvrés</span></div>
             <span class="del-price">9,90 €</span>
           </div>
-          <div class="delivery-opt" onclick="selectDel(this)">
+          <div class="delivery-opt selected" data-price="0" onclick="selectDel(this)">
             <div class="radio"></div>
-            <div class="del-info"><span class="lbl">Retrait en magasin</span><span class="sub">Disponible sous 2h</span>
-            </div>
+            <div class="del-info"><span class="lbl">Retrait à l'atelier (Ingré)</span><span class="sub">Disponible sous
+                2h</span></div>
             <span class="del-price" style="color:var(--accent-green)">Gratuit</span>
           </div>
         </div>
 
-        <!-- SUMMARY -->
+        <!-- RÉCAPITULATIF -->
         <div class="order-summary">
-          <div class="summary-row"><span class="label">Sous-total</span><span class="value">289,80 €</span></div>
-          <div class="summary-row"><span class="label">Livraison</span><span class="value">9,90 €</span></div>
-          <div class="summary-row"><span class="label">Promo</span><span class="value"
+          <div class="summary-row"><span class="label">Sous-total</span><span class="value" id="sum-subtotal">0,00
+              €</span></div>
+          <div class="summary-row"><span class="label">Livraison</span><span class="value" id="sum-delivery">0,00
+              €</span></div>
+          <div class="summary-row"><span class="label">Promo</span><span class="value" id="sum-promo"
               style="color:var(--accent-green)">– 0,00 €</span></div>
-          <div class="summary-row total"><span class="label">Total TTC</span><span class="value">299,70 €</span></div>
+          <div class="summary-row total"><span class="label">Total TTC</span><span class="value" id="sum-total">0,00
+              €</span></div>
         </div>
 
         <button class="btn-primary btn-full" id="pay-btn" onclick="placeOrder()">
           <span class="material-symbols-outlined">lock</span>
-          Payer · <span id="pay-amount">299,70 €</span>
+          Payer · <span id="pay-amount">0,00 €</span>
         </button>
         <p style="text-align:center;font-size:.72rem;color:var(--text-3);margin-top:.5rem;">CB · PayPal · Virement ·
           100% sécurisé</p>
@@ -173,202 +157,145 @@
   </main>
 
   <script>
-    function selectDel(el) { 
-      document.querySelectorAll('.delivery-opt').forEach(o => o.classList.remove('selected')); 
-      el.classList.add('selected'); 
-      updateCart();
-    }
-    function changeQty(id, delta) {
-      const el = document.getElementById(id + '-qty');
-      const nv = Math.max(1, parseInt(el.textContent) + delta);
-      el.textContent = nv;
-      updateCart();
-      refreshBadge();
-    }
-    function removeItem(id) {
-      if (confirm('Retirer cet article du panier ?')) {
-        document.getElementById(id).remove();
-        updateCart();
-        refreshBadge();
-      }
-    }
-
-    // Promo codes database
     const PROMO_CODES = {
-      'NOEL10': { discount: 10, type: 'percent' }, // 10% off
-      'GARAGE15': { discount: 15, type: 'percent' }, // 15% off
-      'LIVRAISON': { discount: 9.90, type: 'fixed' } // Free shipping
+      'NOEL10': { discount: 10, type: 'percent' },
+      'GARAGE15': { discount: 15, type: 'percent' },
+      'LIVRAISON': { discount: 9.90, type: 'fixed' }
     };
-
     let currentPromo = null;
+
+    function renderCart() {
+      const cart = GLC.getCart();
+      const itemsEl = document.getElementById('cart-items');
+      const emptyEl = document.getElementById('cart-empty');
+      const layoutEl = document.getElementById('cart-layout');
+
+      if (cart.length === 0) {
+        emptyEl.style.display = 'flex';
+        layoutEl.style.display = 'none';
+        return;
+      }
+      emptyEl.style.display = 'none';
+      layoutEl.style.display = '';
+
+      itemsEl.innerHTML = cart.map((item, i) => `
+        <div class="cart-item">
+          <img class="cart-item-img" src="${item.img || 'assets/img/piece-revision.svg'}" alt="${item.name}" />
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-ref">Réf: ${item.ref}</div>
+            <div class="cart-item-price">${item.price}</div>
+            <div class="qty-controls" style="margin-top:.5rem;">
+              <button class="qty-btn" onclick="changeQty(${i},-1)" aria-label="Diminuer">−</button>
+              <span class="qty-value">${item.qty}</span>
+              <button class="qty-btn" onclick="changeQty(${i},1)" aria-label="Augmenter">+</button>
+              <button style="margin-left:auto;background:none;border:none;color:var(--accent-red);cursor:pointer;"
+                onclick="removeItem(${i})" aria-label="Retirer">
+                <span class="material-symbols-outlined" style="font-size:18px">delete</span>
+              </button>
+            </div>
+          </div>
+        </div>`).join('');
+
+      updateTotals();
+    }
+
+    function changeQty(index, delta) {
+      const cart = GLC.getCart();
+      if (!cart[index]) return;
+      cart[index].qty = Math.max(1, cart[index].qty + delta);
+      GLC.saveCart(cart);
+      renderCart();
+    }
+
+    function removeItem(index) {
+      if (!confirm('Retirer cet article du panier ?')) return;
+      const cart = GLC.getCart();
+      cart.splice(index, 1);
+      GLC.saveCart(cart);
+      renderCart();
+    }
+
+    function selectDel(el) {
+      document.querySelectorAll('.delivery-opt').forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
+      updateTotals();
+    }
 
     function applyPromo() {
       const input = document.getElementById('promo-input');
       const code = input.value.trim().toUpperCase();
-
-      if (!code) {
-        alert('Veuillez entrer un code promo');
-        return;
-      }
-
+      if (!code) { alert('Veuillez entrer un code promo'); return; }
       if (!PROMO_CODES[code]) {
         alert('Code promo invalide');
         input.value = '';
         return;
       }
-
       currentPromo = { code, ...PROMO_CODES[code] };
-      updateCart();
+      updateTotals();
       alert(`Code "${code}" appliqué !`);
     }
 
-    function updateCart() {
-      // Calculate subtotal from items
-      let subtotal = 0;
-      document.querySelectorAll('.cart-item').forEach(el => {
-        const priceEl = el.querySelector('.cart-item-price');
-        const qtyEl = el.querySelector('.qty-value');
-        if (priceEl && qtyEl) {
-          const price = parsePrice(priceEl.textContent);
-          const qty = parseInt(qtyEl.textContent);
-          subtotal += price * qty;
-        }
-      });
-
-      // Get delivery cost
+    function computeTotals() {
+      const cart = GLC.getCart();
+      const subtotal = cart.reduce((s, item) => s + GLC.parsePrice(item.price) * item.qty, 0);
       const selectedDel = document.querySelector('.delivery-opt.selected');
-      let deliveryCost = 9.90;
-      if (selectedDel) {
-        const priceEl = selectedDel.querySelector('.del-price');
-        if (priceEl && priceEl.textContent.includes('Gratuit')) {
-          deliveryCost = 0;
-        } else if (priceEl) {
-          deliveryCost = parsePrice(priceEl.textContent);
-        }
-      }
-
-      // Calculate discount
+      const delivery = selectedDel ? parseFloat(selectedDel.dataset.price) : 0;
       let discount = 0;
       if (currentPromo) {
-        if (currentPromo.type === 'percent') {
-          discount = (subtotal + deliveryCost) * currentPromo.discount / 100;
-        } else if (currentPromo.type === 'fixed') {
-          discount = Math.min(currentPromo.discount, subtotal + deliveryCost);
-        }
+        discount = currentPromo.type === 'percent'
+          ? (subtotal + delivery) * currentPromo.discount / 100
+          : Math.min(currentPromo.discount, subtotal + delivery);
       }
-
-      // Calculate total
-      const total = Math.max(0, subtotal + deliveryCost - discount);
-
-      // Update summary
-      const summaryRows = document.querySelectorAll('.order-summary .summary-row');
-      // persist count for other pages
-      const cnt = document.querySelectorAll('.cart-item').length;
-      localStorage.setItem('cartCount', cnt);
-      if (summaryRows.length >= 4) {
-        summaryRows[0].querySelector('.value').textContent = formatPrice(subtotal) + ' €';
-        summaryRows[1].querySelector('.value').textContent = formatPrice(deliveryCost) + ' €';
-        summaryRows[2].querySelector('.value').textContent = '– ' + formatPrice(discount) + ' €';
-        summaryRows[3].querySelector('.value').textContent = formatPrice(total) + ' €';
-      }
-
-      // Update pay button
-      const payBtn = document.getElementById('pay-amount');
-      if (payBtn) payBtn.textContent = formatPrice(total) + ' €';
+      return { subtotal, delivery, discount, total: Math.max(0, subtotal + delivery - discount) };
     }
 
-    function refreshBadge() {
-      let count = document.querySelectorAll('.cart-item').length;
-      if (count === 0) {
-        const stored = parseInt(localStorage.getItem('cartCount')||'0',10);
-        if (stored>0) count = stored;
-      }
-      document.querySelectorAll('.cart-pill .badge, .header-btn .cart-badge').forEach(b=>b.textContent=count);
-    }
-
-    // Function to sync cart state with localStorage
-    function syncCartState() {
-      const stored = parseInt(localStorage.getItem('cartCount')||'0', 10);
-      if (stored === 0) {
-        document.querySelectorAll('.cart-item').forEach(el => el.remove());
-      }
-      updateCart();
-      refreshBadge();
-    }
-
-    // Run on initial page load
-    document.addEventListener('DOMContentLoaded', syncCartState);
-    
-    // Also run when page becomes visible again (from cache or tab switch)
-    window.addEventListener('pageshow', (event) => {
-      if (event.persisted) {
-        syncCartState();
-      }
-    });
-
-    function parsePrice(text) {
-      // Expects strings like "299,70 €"
-      return parseFloat(text.replace(/[^0-9,]/g, '').replace(',', '.')) || 0;
-    }
-
-    function formatPrice(num) {
-      return num.toFixed(2).replace('.', ',');
+    function updateTotals() {
+      const t = computeTotals();
+      document.getElementById('sum-subtotal').textContent = GLC.formatPrice(t.subtotal) + ' €';
+      document.getElementById('sum-delivery').textContent = t.delivery === 0 ? 'Gratuit' : GLC.formatPrice(t.delivery) + ' €';
+      document.getElementById('sum-promo').textContent = '– ' + GLC.formatPrice(t.discount) + ' €';
+      document.getElementById('sum-total').textContent = GLC.formatPrice(t.total) + ' €';
+      document.getElementById('pay-amount').textContent = GLC.formatPrice(t.total) + ' €';
     }
 
     function placeOrder() {
-      // Read total from the summary to keep values in sync
-      const totalEl = document.querySelector('.order-summary .total .value');
-      let total = 0;
-      if (totalEl) total = parsePrice(totalEl.textContent);
+      const cart = GLC.getCart();
+      if (cart.length === 0) return;
+      const t = computeTotals();
 
-      // Generate simple order id: CMD-YYYY-NNNN
       const now = new Date();
-      const year = now.getFullYear();
-      const rnd = Math.floor(Math.random() * 9000) + 1000;
-      const orderId = `CMD-${year}-${rnd}`;
+      const orderId = `CMD-${now.getFullYear()}-${Math.floor(Math.random() * 9000) + 1000}`;
 
-      // Read cart items
-      const items = [];
-      document.querySelectorAll('.cart-item').forEach(el => {
-        const nameEl = el.querySelector('.cart-item-name');
-        const priceEl = el.querySelector('.cart-item-price');
-        const qtyEl = el.querySelector('.qty-value');
-        if (nameEl && priceEl && qtyEl) {
-          items.push({
-            name: nameEl.textContent,
-            price: priceEl.textContent,
-            qty: parseInt(qtyEl.textContent)
-          });
-        }
-      });
-
-      // Read selected delivery option
       const selectedDel = document.querySelector('.delivery-opt.selected');
-      let delivery = 'Livraison à domicile';
-      let deliveryPrice = '9,90';
-      if (selectedDel) {
-        const lblEl = selectedDel.querySelector('.lbl');
-        const priceEl = selectedDel.querySelector('.del-price');
-        if (lblEl) delivery = lblEl.textContent;
-        if (priceEl) deliveryPrice = priceEl.textContent.includes('Gratuit') ? '0' : priceEl.textContent.replace(/[^0-9,]/g, '');
-      }
+      const delivery = selectedDel ? selectedDel.querySelector('.lbl').textContent : 'Retrait à l\'atelier (Ingré)';
 
-      // Build URL params
-      const params = new URLSearchParams({
-        order: orderId,
-        total: formatPrice(total),
-        items: JSON.stringify(items),
+      const order = {
+        id: orderId,
+        total: GLC.formatPrice(t.total),
+        items: cart.map(i => ({ name: i.name, price: i.price, qty: i.qty })),
         delivery: delivery,
-        deliveryPrice: deliveryPrice
-      });
-      // open confirmation in a new tab so panier reste ouvert
-      window.open('confirmation-commande.html?' + params.toString(), '_blank');
-      // reset cart UI
-      document.querySelectorAll('.cart-item').forEach(el=>el.remove());
+        deliveryPrice: GLC.formatPrice(t.delivery),
+        date: now.toISOString()
+      };
+      // mémorisé pour la page de suivi
+      localStorage.setItem('glc_lastOrder', JSON.stringify(order));
+
+      GLC.clearCart();
       currentPromo = null;
-      document.getElementById('promo-input').value = '';
-      updateCart();
+
+      const params = new URLSearchParams({
+        order: order.id,
+        total: order.total,
+        items: JSON.stringify(order.items),
+        delivery: order.delivery,
+        deliveryPrice: order.deliveryPrice
+      });
+      window.location.href = 'confirmation-commande.html?' + params.toString();
     }
+
+    document.addEventListener('DOMContentLoaded', renderCart);
+    window.addEventListener('pageshow', (e) => { if (e.persisted) renderCart(); });
   </script>
 </body>
 

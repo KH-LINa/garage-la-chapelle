@@ -1904,6 +1904,114 @@ textarea {
     cursor: not-allowed;
 }
 
+/* ─── FOOTER ─────────────────────────────────────────── */
+.site-footer {
+    background: #0c111c;
+    border-top: 1px solid var(--border);
+    padding: 2rem 1.25rem 1.25rem;
+    margin-top: 2rem;
+}
+
+.footer-grid {
+    display: grid;
+    gap: 1.75rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-brand .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    margin-bottom: .75rem;
+}
+
+.footer-brand .nav-logo .logo-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--primary);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-brand .nav-logo .logo-icon .material-symbols-outlined {
+    font-size: 18px;
+    color: #fff;
+}
+
+.footer-brand .nav-logo strong {
+    font-size: .95rem;
+    font-weight: 700;
+}
+
+.footer-brand .nav-logo span.sub {
+    font-size: .7rem;
+    color: var(--text-2);
+    display: block;
+}
+
+.footer-brand p {
+    font-size: .8rem;
+    color: var(--text-2);
+    line-height: 1.6;
+    max-width: 320px;
+}
+
+.footer-col h4 {
+    font-size: .8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--text-3);
+    margin-bottom: .75rem;
+}
+
+.footer-col a,
+.footer-col .footer-hours {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .85rem;
+    color: var(--text-2);
+    padding: .3rem 0;
+    transition: color .2s;
+}
+
+.footer-col a:hover {
+    color: var(--text);
+}
+
+.footer-col .material-symbols-outlined {
+    font-size: 16px;
+    color: var(--primary-light);
+    flex-shrink: 0;
+}
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .5rem;
+    max-width: 1200px;
+    margin: 1.5rem auto 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: .75rem;
+    color: var(--text-3);
+}
+
+.footer-bottom .footer-links {
+    display: flex;
+    gap: 1.25rem;
+}
+
+.footer-bottom .footer-links a:hover {
+    color: var(--text);
+}
+
 /* ════════════════════════════════════════════════════════
    DESKTOP LAYOUT  ≥ 900px
    ════════════════════════════════════════════════════════ */
@@ -2052,6 +2160,16 @@ textarea {
     .profile-avatar {
         width: 100px;
         height: 100px;
+    }
+
+    /* 16. Footer 4 colonnes */
+    .site-footer {
+        padding: 3rem 2.5rem 1.5rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1.4fr 1fr 1fr 1.4fr;
+        gap: 2.5rem;
     }
 }
 

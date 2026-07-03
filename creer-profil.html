@@ -3,8 +3,11 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Créer un profil — Garage la Chapelle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#101622" />
+    <title>Créer un profil — Garage de la Chapelle</title>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" />
     <link rel="stylesheet"
@@ -13,7 +16,7 @@
 </head>
 
 <body>
-    <script src="assets/js/nav.js" data-page="creer-profil" data-cart="2"></script>
+    <script src="assets/js/nav.js" data-page="creer-profil"></script>
 
     <main class="page-content">
         <div class="page-title-block">
@@ -22,7 +25,7 @@
         </div>
 
         <form style="display:grid;gap:1.5rem;"
-            onsubmit="event.preventDefault(); alert('✅ Votre compte a été créé avec succès !\n\nVous allez être redirigé.'); window.location.href='compte.html';">
+            onsubmit="event.preventDefault(); GLC.setUser({ name: document.getElementById('prenom').value.trim() + ' ' + document.getElementById('nom').value.trim(), email: document.getElementById('email').value.trim() }); window.location.href='espace-client.html';">
 
             <div class="form-block">
                 <h3>Informations Personnelles</h3>
