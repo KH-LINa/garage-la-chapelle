@@ -256,6 +256,33 @@
     refreshBadge();
   });
 
+  // ── AFFICHER / MASQUER LES MOTS DE PASSE ──────────
+  // Ajoute un bouton œil à tous les champs mot de passe du site.
+  function initPasswordToggles() {
+    document.querySelectorAll('input[type="password"]').forEach(input => {
+      if (input.dataset.hasToggle) return;
+      input.dataset.hasToggle = '1';
+      const wrap = document.createElement('div');
+      wrap.className = 'pwd-wrap';
+      input.parentNode.insertBefore(wrap, input);
+      wrap.appendChild(input);
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'pwd-toggle';
+      btn.setAttribute('aria-label', 'Afficher le mot de passe');
+      btn.innerHTML = '<span class="material-symbols-outlined">visibility</span>';
+      btn.addEventListener('click', () => {
+        const show = input.type === 'password';
+        input.type = show ? 'text' : 'password';
+        btn.querySelector('span').textContent = show ? 'visibility_off' : 'visibility';
+        btn.setAttribute('aria-label', show ? 'Masquer le mot de passe' : 'Afficher le mot de passe');
+      });
+      wrap.appendChild(btn);
+    });
+  }
+  document.addEventListener('DOMContentLoaded', initPasswordToggles);
+  window.GLC.initPasswordToggles = initPasswordToggles;
+
   // Badge à jour au retour depuis le bfcache et entre onglets
   window.addEventListener('pageshow', refreshBadge);
   window.addEventListener('storage', (e) => { if (e.key === CART_KEY) refreshBadge(); });

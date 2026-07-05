@@ -218,9 +218,40 @@
         <button class="btn-secondary btn-full" style="margin-top:.5rem;" onclick="toggleSignup()">
           <span id="auth-toggle-label">Créer un compte collaborateur</span>
         </button>
+        <a href="#" id="forgot-link" onclick="forgotPassword(); return false;"
+          style="display:block;text-align:center;color:var(--primary-light);font-size:.8rem;margin-top:.75rem;">
+          Mot de passe oublié ?
+        </a>
         <p style="font-size:.72rem;color:var(--text-3);margin-top:.75rem;text-align:center;">
           Les nouveaux comptes doivent être validés par l'administrateur avant d'accéder à la gestion.
         </p>
+      </div>
+    </div>
+
+    <!-- ══ VUE NOUVEAU MOT DE PASSE ══ -->
+    <div id="reset-view" style="display:none;max-width:440px;margin:0 auto;">
+      <div class="page-title-block" style="text-align:center;">
+        <div style="font-size:3rem;margin-bottom:.5rem">🔑</div>
+        <h1>Nouveau mot de passe</h1>
+        <p>Choisissez votre nouveau mot de passe (8 caractères minimum).</p>
+      </div>
+      <div id="reset-alert" class="alert error" style="display:none;">
+        <span class="material-symbols-outlined">error</span><span id="reset-alert-msg"></span>
+      </div>
+      <div class="form-block">
+        <div class="form-group">
+          <label class="form-label" for="reset-password">Nouveau mot de passe</label>
+          <input type="password" class="form-input" id="reset-password" placeholder="••••••••" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reset-confirm">Confirmez le mot de passe</label>
+          <input type="password" class="form-input" id="reset-confirm" placeholder="••••••••" />
+        </div>
+        <button class="btn-primary btn-full" onclick="submitNewPassword()">
+          <span class="material-symbols-outlined">key</span>
+          Enregistrer le mot de passe
+        </button>
+        <button class="btn-secondary btn-full" style="margin-top:.5rem;" onclick="cancelReset()">Annuler</button>
       </div>
     </div>
 
@@ -253,9 +284,14 @@
           <h1>Espace Pro</h1>
           <p><span id="whoami"></span> · <span class="admin-badge" id="whoami-role"></span></p>
         </div>
-        <button class="btn-secondary" onclick="doLogout()">
-          <span class="material-symbols-outlined">logout</span> Déconnexion
-        </button>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+          <button class="btn-secondary" onclick="openPasswordChange()">
+            <span class="material-symbols-outlined">key</span> Mot de passe
+          </button>
+          <button class="btn-secondary" onclick="doLogout()">
+            <span class="material-symbols-outlined">logout</span> Déconnexion
+          </button>
+        </div>
       </div>
 
       <div id="admin-alert" class="alert success" style="display:none;">
@@ -366,7 +402,7 @@
     const fmtPrice = (n) => Number(n).toFixed(2).replace('.', ',') + ' €';
 
     function show(viewId) {
-      ['auth-view', 'pending-view', 'offline-view', 'admin-view']
+      ['auth-view', 'pending-view', 'offline-view', 'admin-view', 'reset-view']
         .forEach(id => document.getElementById(id).style.display = id === viewId ? '' : 'none');
     }
 
@@ -416,9 +452,11 @@
           options: { data: { full_name: fullName } }
         });
         if (error) { authError(traduireErreur(error.message)); return; }
-        authInfo('Compte créé ! Vérifiez votre boîte mail pour confirmer votre adresse, puis connectez-vous. ' +
-          "L'administrateur devra ensuite valider votre accès.");
-        toggleSignup();
+        // les emails sont auto-confirmés : connexion immédiate,
+        // l'utilisateur arrive sur « compte en attente de validation »
+        const { error: loginError } = await sb.auth.signInWithPassword({ email, password });
+        if (loginError) { authError(traduireErreur(loginError.message)); return; }
+        await route();
       } else {
         const { error } = await sb.auth.signInWithPassword({ email, password });
         if (error) { authError(traduireErreur(error.message)); return; }
@@ -440,6 +478,50 @@
       await sb.auth.signOut();
       currentProfile = null;
       show('auth-view');
+    }
+
+    // ── Mot de passe oublié / réinitialisation ───────
+    async function forgotPassword() {
+      const email = document.getElementById('auth-email').value.trim();
+      if (!email) {
+        authError('Saisissez votre email ci-dessus, puis recliquez sur « Mot de passe oublié ? ».');
+        return;
+      }
+      authError('');
+      const { error } = await sb.auth.resetPasswordForEmail(email, {
+        redirectTo: 'https://kh-lina.github.io/garage-la-chapelle/admin.html'
+      });
+      if (error) { authError(traduireErreur(error.message)); return; }
+      authInfo('Email de réinitialisation envoyé à ' + email +
+        ' — pensez à vérifier vos spams. Le lien vous ramènera ici pour choisir un nouveau mot de passe.');
+    }
+
+    function resetError(msg) {
+      const box = document.getElementById('reset-alert');
+      document.getElementById('reset-alert-msg').textContent = msg;
+      box.style.display = msg ? 'flex' : 'none';
+    }
+
+    function openPasswordChange() {
+      resetError('');
+      document.getElementById('reset-password').value = '';
+      document.getElementById('reset-confirm').value = '';
+      show('reset-view');
+    }
+
+    async function cancelReset() {
+      await route();
+    }
+
+    async function submitNewPassword() {
+      const pwd = document.getElementById('reset-password').value;
+      const confirm = document.getElementById('reset-confirm').value;
+      if (pwd.length < 8) { resetError('8 caractères minimum.'); return; }
+      if (pwd !== confirm) { resetError('Les deux mots de passe ne correspondent pas.'); return; }
+      const { error } = await sb.auth.updateUser({ password: pwd });
+      if (error) { resetError(traduireErreur(error.message)); return; }
+      await route();
+      flash('Mot de passe mis à jour ✔');
     }
 
     // ── Routage selon session/rôle ───────────────────
@@ -601,11 +683,19 @@
     document.addEventListener('DOMContentLoaded', async () => {
       sb = window.getSupabaseClient();
       if (!sb) { show('offline-view'); return; }
+
+      // lien « mot de passe oublié » cliqué dans l'email → proposer un nouveau mot de passe
+      sb.auth.onAuthStateChange((event) => {
+        if (event === 'PASSWORD_RECOVERY') openPasswordChange();
+      });
+
       try {
         await route();
       } catch (e) {
         show('offline-view');
       }
+      // champs mot de passe injectés dynamiquement inclus
+      if (window.GLC && GLC.initPasswordToggles) GLC.initPasswordToggles();
     });
   </script>
 </body>

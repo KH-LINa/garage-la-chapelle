@@ -47,11 +47,21 @@ python3 -m http.server 8000
 La page `admin.html` (lien « Espace Pro » en bas de page) est branchée sur **Supabase**
 (projet `garage-la-chapelle`, région Paris, offre gratuite) :
 
-- **Authentification** email + mot de passe (Supabase Auth).
+- **Authentification** email + mot de passe (Supabase Auth), avec affichage/masquage du mot
+  de passe, « mot de passe oublié » (email de réinitialisation) et changement de mot de passe
+  une fois connecté.
+- **Emails auto-confirmés** : un trigger en base confirme l'email à l'inscription (le mailer
+  intégré de Supabase est limité à ~2 emails/h et peu fiable) — la sécurité d'accès reste
+  assurée par la validation admin des comptes. Pour fiabiliser l'email de réinitialisation en
+  production, configurer un SMTP custom (Resend, Brevo…) dans le dashboard Supabase.
 - **Rôles** : `admin` (gère les pièces **et** les comptes), `collaborateur` (gère les pièces),
   `pending` (nouveau compte en attente de validation par l'admin).
   Le **premier compte inscrit devient automatiquement admin** ; les suivants sont `pending`
   jusqu'à validation dans la section « Équipe & rôles ».
+- ⚠️ Pour que le lien « mot de passe oublié » redirige vers le site (et non `localhost:3000`),
+  configurer dans le dashboard Supabase → Authentication → URL Configuration :
+  Site URL `https://kh-lina.github.io/garage-la-chapelle/` et Redirect URL
+  `https://kh-lina.github.io/garage-la-chapelle/admin.html`.
 - **Catalogue partagé** : les pièces sont stockées dans la table `products` ; la page
   `catalogue.html` les charge depuis Supabase (les visiteurs voient les ajouts en temps réel),
   avec une liste de secours embarquée si la base est injoignable.

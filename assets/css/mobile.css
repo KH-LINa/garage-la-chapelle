@@ -1904,6 +1904,39 @@ textarea {
     cursor: not-allowed;
 }
 
+/* ─── AFFICHER/MASQUER MOT DE PASSE ──────────────────── */
+.pwd-wrap {
+    position: relative;
+}
+
+.pwd-wrap input {
+    padding-right: 2.75rem;
+}
+
+.pwd-toggle {
+    position: absolute;
+    right: .4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: .35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.pwd-toggle:hover {
+    background: rgba(255, 255, 255, .06);
+}
+
+.pwd-toggle .material-symbols-outlined {
+    font-size: 19px;
+    color: var(--text-3);
+}
+
 /* ─── FOOTER ─────────────────────────────────────────── */
 .site-footer {
     background: #0c111c;
