@@ -176,17 +176,21 @@
         document.getElementById('delivery-est').textContent = 'retrait à l\'atelier sous 2h';
       }
 
+      // Échappement HTML : les libellés proviennent de la commande stockée (nom de pièce saisi par le staff)
+      const esc = (s) => String(s ?? '').replace(/[&<>"']/g,
+        c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
       const rows = order.items.map(item => `
         <div class="info-row"><span class="material-symbols-outlined">category</span><span
-            class="info-label">${item.name}${item.qty > 1 ? ' ×' + item.qty : ''}</span><span
-            class="info-value">${item.price}</span></div>`).join('');
+            class="info-label">${esc(item.name)}${item.qty > 1 ? ' ×' + esc(item.qty) : ''}</span><span
+            class="info-value">${esc(item.price)}</span></div>`).join('');
       const deliveryRow = `
         <div class="info-row"><span class="material-symbols-outlined">local_shipping</span><span
-            class="info-label">${order.delivery}</span><span class="info-value">${order.deliveryPrice === '0,00' ? 'Gratuit' : order.deliveryPrice + ' €'}</span></div>`;
+            class="info-label">${esc(order.delivery)}</span><span class="info-value">${order.deliveryPrice === '0,00' ? 'Gratuit' : esc(order.deliveryPrice) + ' €'}</span></div>`;
       const totalRow = `
         <div class="info-row" style="padding-top:.75rem;margin-top:.25rem;border-top:1px solid var(--border)">
           <span class="material-symbols-outlined">receipt</span><span class="info-label">Total</span>
-          <span class="info-value" style="font-weight:800;color:var(--primary-light)">${order.total} €</span></div>`;
+          <span class="info-value" style="font-weight:800;color:var(--primary-light)">${esc(order.total)} €</span></div>`;
       document.getElementById('order-details').innerHTML = rows + deliveryRow + totalRow;
     });
   </script>

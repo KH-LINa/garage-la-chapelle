@@ -46,6 +46,9 @@
   </main>
 
   <script>
+    const esc = (s) => String(s ?? '').replace(/[&<>"']/g,
+      c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
     function getAppointments() {
       try { return JSON.parse(localStorage.getItem('appointments') || '[]'); }
       catch (e) { return []; }
@@ -63,28 +66,28 @@
 
       container.innerHTML = appts.map((a, i) => `
         <div class="info-card">
-          <h3><span class="material-symbols-outlined">build</span> ${a.service || 'Intervention'}</h3>
+          <h3><span class="material-symbols-outlined">build</span> ${esc(a.service || 'Intervention')}</h3>
           <div class="info-row">
             <span class="material-symbols-outlined">calendar_month</span>
             <span class="info-label">Date</span>
-            <span class="info-value">${a.date}${a.time ? ' à ' + a.time : ''}</span>
+            <span class="info-value">${esc(a.date)}${a.time ? ' à ' + esc(a.time) : ''}</span>
           </div>
           <div class="info-row">
             <span class="material-symbols-outlined">person</span>
             <span class="info-label">Client</span>
-            <span class="info-value">${a.first} ${a.last} · ${a.phone}</span>
+            <span class="info-value">${esc(a.first)} ${esc(a.last)} · ${esc(a.phone)}</span>
           </div>
           ${a.vehicle ? `
           <div class="info-row">
             <span class="material-symbols-outlined">directions_car</span>
             <span class="info-label">Véhicule</span>
-            <span class="info-value">${a.vehicle}</span>
+            <span class="info-value">${esc(a.vehicle)}</span>
           </div>` : ''}
           ${a.problem ? `
           <div class="info-row">
             <span class="material-symbols-outlined">description</span>
             <span class="info-label">Demande</span>
-            <span class="info-value">${a.problem}</span>
+            <span class="info-value">${esc(a.problem)}</span>
           </div>` : ''}
           <div class="info-row">
             <span class="material-symbols-outlined">location_on</span>

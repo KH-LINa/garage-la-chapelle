@@ -332,6 +332,10 @@
 
         let CURRENT_ORDER_ID = 'CMD-2026-0343';
 
+        // Échappement HTML : ces valeurs proviennent des paramètres d'URL (non fiables)
+        const esc = (s) => String(s ?? '').replace(/[&<>"']/g,
+            c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
         function renderOrderItems(items, delivery, deliveryPrice) {
             const summaryEl = document.getElementById('summary-items');
             if (!summaryEl || !items || items.length === 0) return;
@@ -339,16 +343,16 @@
             let html = '';
             items.forEach(item => {
                 html += `<div class="summary-row">
-                    <span class="label">${item.name} × ${item.qty}</span>
-                    <span class="value">${item.price}</span>
+                    <span class="label">${esc(item.name)} × ${esc(item.qty)}</span>
+                    <span class="value">${esc(item.price)}</span>
                 </div>`;
             });
 
             // Add delivery
             if (delivery) {
-                const delPrice = deliveryPrice === '0' || deliveryPrice === 'Gratuit' ? 'Gratuit' : deliveryPrice + ' €';
+                const delPrice = deliveryPrice === '0' || deliveryPrice === 'Gratuit' ? 'Gratuit' : esc(deliveryPrice) + ' €';
                 html += `<div class="summary-row">
-                    <span class="label">${delivery}</span>
+                    <span class="label">${esc(delivery)}</span>
                     <span class="value" style="color:${deliveryPrice === '0' ? 'var(--accent-green)' : ''}">${delPrice}</span>
                 </div>`;
             }

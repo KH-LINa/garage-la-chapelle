@@ -157,6 +157,11 @@
   </main>
 
   <script>
+    // Échappement HTML des données du panier (le nom d'une pièce provient de la base,
+    // renseigné par le staff : on ne l'injecte jamais brut dans le DOM)
+    const esc = (s) => String(s ?? '').replace(/[&<>"']/g,
+      c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
     const PROMO_CODES = {
       'NOEL10': { discount: 10, type: 'percent' },
       'GARAGE15': { discount: 15, type: 'percent' },
@@ -180,11 +185,11 @@
 
       itemsEl.innerHTML = cart.map((item, i) => `
         <div class="cart-item">
-          <img class="cart-item-img" src="${item.img || 'assets/img/piece-revision.svg'}" alt="${item.name}" />
+          <img class="cart-item-img" src="${esc(item.img || 'assets/img/piece-revision.svg')}" alt="${esc(item.name)}" />
           <div class="cart-item-info">
-            <div class="cart-item-name">${item.name}</div>
-            <div class="cart-item-ref">Réf: ${item.ref}</div>
-            <div class="cart-item-price">${item.price}</div>
+            <div class="cart-item-name">${esc(item.name)}</div>
+            <div class="cart-item-ref">Réf: ${esc(item.ref)}</div>
+            <div class="cart-item-price">${esc(item.price)}</div>
             <div class="qty-controls" style="margin-top:.5rem;">
               <button class="qty-btn" onclick="changeQty(${i},-1)" aria-label="Diminuer">−</button>
               <span class="qty-value">${item.qty}</span>
